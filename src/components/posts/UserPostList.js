@@ -15,7 +15,7 @@ export const UserPostList = props => {
     <div className="userPostList">
       <ListGroup>
         { posts.map(post => (
-          <ListGroup.Item as={Link} to={`/posts/${post.id}`}>
+          <ListGroup.Item key={post.id} as={Link} to={`/posts/${post.id}`}>
             <UserPostListItem post={post} />
           </ListGroup.Item>
         ))}
