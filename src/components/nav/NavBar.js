@@ -1,13 +1,11 @@
 import React from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
 import "./NavBar.css"
 import Logo from "./rare.jpeg"
 
 export const NavBar = () => {
-    const history = useHistory()
-
     return (
       <Navbar expand="lg">
         <Navbar.Brand as={Link} to="/">
