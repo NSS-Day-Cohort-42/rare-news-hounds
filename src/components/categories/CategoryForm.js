@@ -1,12 +1,17 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { Form, FormGroup } from "react-bootstrap";
+import { CategoryContext } from "./CategoryProvider";
 import NewCategoryButton from "./NewCategoryButton";
 
 export default (props) => {
+    const {createCategory} = useContext(CategoryContext)
     const categoryRef = useRef("")  
     const handleSubmitButtonPress = (e) => {
         e.preventDefault()
-        alert('this will submit a new category')
+        const newCategory = {
+            name: categoryRef.current.value
+        }
+        createCategory(newCategory)
     }    
 
 return (
