@@ -1,5 +1,7 @@
 import React from "react"
 import { Link, useHistory } from "react-router-dom"
+import Navbar from "react-bootstrap/Navbar"
+import Nav from "react-bootstrap/Nav"
 import "./NavBar.css"
 import Logo from "./rare.jpeg"
 
@@ -7,31 +9,18 @@ export const NavBar = () => {
     const history = useHistory()
 
     return (
-        <ul className="navbar">
-            <li className="navbar__item">
-                <img className="navbar__logo" src={Logo} />
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/">Posts</Link>
-            </li>
-            {
-                (localStorage.getItem("rare_user_id") !== null) ?
-                    <li className="nav-item">
-                        <button className="nav-link fakeLink"
-                            onClick={() => {
-                                localStorage.removeItem("rare_user_id")
-                                history.push({ pathname: "/" })
-                            }}
-                        >Logout</button>
-                    </li> :
-                    <>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/login">Login</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/register">Register</Link>
-                        </li>
-                    </>
-            }        </ul>
+      <Navbar expand="lg">
+        <Navbar.Brand as={Link} to="/">
+          <img className="navbar__logo" src={Logo} alt="Rare Publishing Platform" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link as={Link} to="/categories">Categories</Nav.Link>
+            <Nav.Link as={Link} to="/tags">Tags</Nav.Link>
+            <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     )
 }
