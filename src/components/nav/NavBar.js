@@ -15,6 +15,7 @@ export const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link as={Link} to="/categories">Categories</Nav.Link>
+            <Nav.Link as={Link} to="/my-posts">My Posts</Nav.Link>
             <Nav.Link as={Link} to="/tags">Tags</Nav.Link>
             <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
           </Nav>
