@@ -77,11 +77,12 @@ export const Register = (props) => {
                     <label htmlFor="verifyPassword"> Verify Password </label>
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
+                
                 <fieldset style={{
                     textAlign: "center"
                 }}>
-                    <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
-                </fieldset>
+                     <button className="btn btn-1" type="submit">Register</button>
+              </fieldset>
             </form>
             <section className="link--register">
                 Already registered? <Link to="/login">Login</Link>
