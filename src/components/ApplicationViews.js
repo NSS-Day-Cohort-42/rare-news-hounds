@@ -25,13 +25,17 @@ export const ApplicationViews = () => {
         }}
       >
         <CategoryProvider>
-          <CategoryForm />
-          <CategoryList />
+          <Route path="/categories">
+            <CategoryForm />
+            <CategoryList />
+          </Route>
         </CategoryProvider>
 
         <TagProvider>
-          <TagForm />
-          <TagList />
+          <Route path="/tags">
+            <TagForm />
+            <TagList />
+          </Route>
         </TagProvider>
       </main>
     </>
