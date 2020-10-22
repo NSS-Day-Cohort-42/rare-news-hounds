@@ -13,7 +13,10 @@ export const ApplicationViews = () => {
         <CategoryProvider>
                 <CategoryForm />
                 <CategoryList />
-        </CategoryProvider>        
+        </CategoryProvider>
+        <Route exact path="/">
+            
+        </Route>        
         </main>
     </>
 }
