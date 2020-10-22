@@ -12,6 +12,7 @@ export default (props) => {
             name: categoryRef.current.value
         }
         createCategory(newCategory)
+        categoryRef.current.value = ""
     }    
 
 return (
