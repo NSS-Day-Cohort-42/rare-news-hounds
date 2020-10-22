@@ -20,14 +20,14 @@ export const ApplicationViews = () => {
         }}
       />
 
-      <PostProvider>
-        <Route path="/my-posts" component={UserPostList} />
-      </PostProvider>
-
       <main style={{
             margin: "5rem 2rem",
             lineHeight: "1.75rem"
         }}>
+        <PostProvider>
+          <Route path="/my-posts" component={UserPostList} />
+        </PostProvider>
+
         <CategoryProvider>
           <Route path="/categories">
             <CategoryForm />
