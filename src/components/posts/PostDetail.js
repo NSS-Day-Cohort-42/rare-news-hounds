@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { Image } from "react-bootstrap";
 import { PostContext } from "./PostProvider";
 
 export default (props) => {
@@ -11,9 +12,13 @@ export default (props) => {
   }, []);
 
   return (
-    <>
-      <section>{post.title}</section>
+      <>
+          <section>{post.title}</section>
+          <section>{post.user.username}</section>
           <section>{post.category.name}</section>
+          <section>{post.publication_time}</section>
+          <Image src={post.image}/>
+          <section>{post.content}</section>
     </>
   );
 };
