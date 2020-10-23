@@ -1,9 +1,21 @@
-import React from "react"
+import React, { useContext, useRef } from "react"
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
+import NewPostButton from "./NewPostButton";
+import { CategoryContext } from "../categories/CategoryProvider";
+import { PostContext } from "./PostProvider";
 export const PostForm = (props) => {
+    const {createPost} = useContext(PostContext)
+    const {categories, getCategories} = useContext(CategoryContext)
+    const categoryRef = useRef("")
+    const handleSubmitButtonPress = (e) => {
+        e.preventDefault()
+        const newPost = {
+            user_id: categoryRef.localStorage.getItem('rare_user_id'),
 
+        }
+    }
 
     return (
         <Form>
@@ -14,11 +26,7 @@ export const PostForm = (props) => {
             <Form.Group controlId="categorySelect">
             <Form.Label>Categories</Form.Label>
                 <Form.Control as="select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                {}
                 </Form.Control>
             </Form.Group>
             <FormGroup>
@@ -33,7 +41,7 @@ export const PostForm = (props) => {
                 <Form.Label>Content</Form.Label>
                 <Form.Control as="Textarea" rows={3} placeholder="Enter post..." />
             </FormGroup>
-            <Button>Submit Post</Button>  
+            <NewPostButton />
         </Form>    
     )
 
