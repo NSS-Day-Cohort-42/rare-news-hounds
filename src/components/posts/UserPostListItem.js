@@ -5,7 +5,7 @@ import "./UserPostListItem.css"
 
 export const UserPostListItem = props => {
   const { post } = props
-  const { id, title, user_id, category_id } = post
+  const { id, title, user, category } = post
 
   const { deletePost } = useContext(PostContext);
 
@@ -13,10 +13,10 @@ export const UserPostListItem = props => {
     <div className="userPostListItem">
       <div className="userPostListItem--col-left">
         <p className="userPostListItem__title">{title}</p>
-        <p className="userPostListItem__author">{user_id}</p>
+        <p className="userPostListItem__author">{user.first_name} {user.last_name}</p>
       </div>
       <div className="userPostListItem--col-right">
-        <p className="userPostListItem__category">{category_id}</p>
+        <p className="userPostListItem__category">{category.name}</p>
         <ConfirmableDeleteButton onDelete={() => deletePost(id)} />
       </div>
     </div>

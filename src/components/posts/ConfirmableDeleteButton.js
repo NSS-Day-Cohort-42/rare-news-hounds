@@ -33,7 +33,7 @@ export const ConfirmableDeleteButton = props => {
   )
 
   return (
-    <div className="deleteButtonContainer" onClick={e => e.preventDefault()}>
+    <div className="confirmableDeleteButtonContainer" onClick={e => e.preventDefault()}>
       { isDeleting ? renderConfirmDeleteButtons() : renderInitialDeleteButton() }
     </div>
   )
