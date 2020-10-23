@@ -27,7 +27,7 @@ export default (props) => {
       <Image src={post.image} />
       <section>{post.content}</section>
           <ConfirmableDeleteButton onDelete={() => {
-              deletePost(post.id)
+              deletePost(post.id).then()
           }}/>
     </>
   );
