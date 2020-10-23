@@ -62,13 +62,13 @@ export const PostForm = (props) => {
                 <Form.Label>Publish Date:</Form.Label>
                 <Form.Control type="date" ref={publicationRef}/> 
             </FormGroup>
-            <FormGroup controlId ="Text">
+            <FormGroup controlId ="text">
                 <Form.Label>Image</Form.Label>
-                <Form.Control type="Text" placeholder="Image Url" ref={imageRef} />
+                <Form.Control type="text" placeholder="Image Url" ref={imageRef} />
             </FormGroup>
-            <FormGroup controlId ="Text">
+            <FormGroup controlId ="text">
                 <Form.Label>Content</Form.Label>
-                <Form.Control as="Textarea" rows={3} placeholder="Enter post..." ref={contentRef} />
+                <Form.Control as="textarea" rows={3} placeholder="Enter post..." ref={contentRef} />
             </FormGroup>
             <Button type="submit" 
             onClick={e=> {
