@@ -8,6 +8,7 @@ import { UserPostList} from "./posts/UserPostList"
 import TagForm from "./tags/TagForm";
 import TagList from "./tags/TagList";
 import { TagProvider } from "./tags/TagProvider";
+import { PostList } from "./posts/PostList"
 
 export const ApplicationViews = () => {
   return (
@@ -25,8 +26,12 @@ export const ApplicationViews = () => {
             lineHeight: "1.75rem"
         }}>
         <PostProvider>
+          <Route exact path="/" component={PostList} />
+        </PostProvider>
+        <PostProvider>
           <Route path="/my-posts" component={UserPostList} />
         </PostProvider>
+
 
         <CategoryProvider>
           <Route path="/categories">
