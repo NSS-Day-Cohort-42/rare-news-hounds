@@ -1,0 +1,20 @@
+.postListItem,
+.postListItem--col-left,
+.postListItem--col-right {
+  display: flex;
+  align-items: center;
+}
+
+.postListItem {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.postListItem p {
+  margin-bottom: 0;
+}
+
+.postListItem__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
