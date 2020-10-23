@@ -15,11 +15,8 @@ export const PostList = props => {
         getPosts()
     }, [])
 
-   
-
-    useEffect(() => {
-        setFiltered(animals)
-    }, [animals])
+  
+    
 
     return (
         <div className="postList">
