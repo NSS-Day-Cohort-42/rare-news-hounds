@@ -3,13 +3,18 @@ import React, { useState, createContext } from "react";
 export const PostContext = createContext();
 
 export const PostProvider = props => {
-  const [ posts, setPosts ] = useState([]);
-
+  const [posts, setPosts] = useState([]);
+  
   const getPosts = () => {
-    return fetch("http://localhost:8088/posts")
-        .then(res => res.json())
-        .then(setPosts)
-}
+    return fetch(`http://localhost:8088/posts`)
+      .then(res => res.json())
+      .then(setPosts);
+  };
+
+  const getPostById = (postId) => {
+    return fetch(`http://localhost:8088/posts/${postId}`)
+      .then(res => res.json())
+  };
 
   const getPostsByUserId = userId => {
     return fetch(`http://localhost:8088/posts?user_id=${userId}`)
@@ -24,7 +29,11 @@ export const PostProvider = props => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(post),
-    }).then(getPosts);
+    }).then(res => res.json())
+      .then((newPost) => {
+        getPosts()
+        return newPost
+      });
   };
   const deletePost = id => {
     return fetch(`http://localhost:8088/posts/${id}`, {
@@ -35,7 +44,9 @@ export const PostProvider = props => {
   return (
     <PostContext.Provider
       value={{
-        posts, getPosts,
+        posts,
+        getPosts,
+        getPostById,
         getPostsByUserId,
         deletePost,
         createPost

@@ -9,7 +9,8 @@ import { UserPostList} from "./posts/UserPostList"
 import TagForm from "./tags/TagForm";
 import TagList from "./tags/TagList";
 import { TagProvider } from "./tags/TagProvider";
-import { PostList } from "./posts/PostList"
+import PostDetail from "./posts/PostDetail";
+import { PostList } from "./posts/PostList";
 
 export const ApplicationViews = () => {
   return (
@@ -26,9 +27,6 @@ export const ApplicationViews = () => {
             margin: "5rem 2rem",
             lineHeight: "1.75rem"
         }}>
-        {/* <Route path="/posts/create" render={
-            props => <PostForm {...props}/>
-        } /> */}
         <PostProvider>
           <CategoryProvider>
             <Route path="/posts/create" component={PostForm} />
@@ -39,8 +37,12 @@ export const ApplicationViews = () => {
         </PostProvider>
         <PostProvider>
           <Route path="/my-posts" component={UserPostList} />
+          <Route
+            exact
+            path="/posts/:postId(\d+)"
+            render={(props) => <PostDetail {...props} />}
+          />
         </PostProvider>
-
 
         <CategoryProvider>
           <Route path="/categories">

@@ -16,8 +16,9 @@ export const PostForm = (props) => {
     const contentRef = useRef("")
     const publicationRef = useRef("")
     const constructNewPost = () => {
+
         
-        if (categoryRef === '0') {
+        if (categoryRef.current.value === '0') {
             window.alert("Please select a category")
         } else {
         createPost({
@@ -32,7 +33,7 @@ export const PostForm = (props) => {
             creation_time: Date.now()
 
         })
-        .then(() => props.history.push("/"))
+        .then((newPost) => props.history.push(`/posts/${newPost.id}`))
     }
     }
 
@@ -61,11 +62,11 @@ export const PostForm = (props) => {
                 <Form.Label>Publish Date:</Form.Label>
                 <Form.Control type="date" ref={publicationRef}/> 
             </FormGroup>
-            <FormGroup controlId ="Email">
+            <FormGroup controlId ="Text">
                 <Form.Label>Image</Form.Label>
                 <Form.Control type="Text" placeholder="Image Url" ref={imageRef} />
             </FormGroup>
-            <FormGroup controlId ="Email">
+            <FormGroup controlId ="Text">
                 <Form.Label>Content</Form.Label>
                 <Form.Control as="Textarea" rows={3} placeholder="Enter post..." ref={contentRef} />
             </FormGroup>
