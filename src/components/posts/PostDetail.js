@@ -5,18 +5,17 @@ import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
 
 export default (props) => {
-  const { getPostById, deletePost } = useContext(PostContext);
+  const { getPostById, deletePost, getPosts } = useContext(PostContext);
   const [post, setPost] = useState({ category: {}, user: {} });
+  const currentUser = parseInt(localStorage.getItem("rare_user_id"));
+  const date = moment(post.publication_time).format(
+    "dddd, MMMM Do YYYY, h:mm:ss a"
+  );
 
   useEffect(() => {
     const postId = parseInt(props.match.params.postId);
     getPostById(postId).then(setPost);
   }, []);
-
-  const currentUser = localStorage.getItem("rare_user_id");
-  const date = moment(post.publication_time).format(
-    "dddd, MMMM Do YYYY, h:mm:ss a"
-  );
 
   return (
     <>
@@ -26,9 +25,20 @@ export default (props) => {
       <section>{post.category.name}</section>
       <Image src={post.image} />
       <section>{post.content}</section>
-          <ConfirmableDeleteButton onDelete={() => {
-              deletePost(post.id).then()
-          }}/>
+      {currentUser === post.user_id && (
+        <ConfirmableDeleteButton
+          onDelete={() => {
+            deletePost(post.id)
+              .then(() => {
+                getPosts();
+              })
+              .then(() => {
+                console.log(props.history);
+                props.history.goBack();
+              });
+          }}
+        />
+      )}
     </>
   );
 };
