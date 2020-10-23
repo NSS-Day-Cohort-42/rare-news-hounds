@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import ListGroup from "react-bootstrap/ListGroup"
 import { PostContext } from "./PostProvider"
-import { Post } from "./Post"
-import "./Animals.css"
+import { PostListItem } from "./PostListItem"
+
 
 export const PostList = props => {
     const { getPosts, posts } = useContext(PostContext)
