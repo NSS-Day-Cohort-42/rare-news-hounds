@@ -34,7 +34,8 @@ export const PostProvider = props => {
         posts,
         getPosts,
         getPostById,
-        getPostsByUserId
+        getPostsByUserId,
+        deletePost
       }}
     >
       {props.children}
