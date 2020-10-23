@@ -1,7 +1,3 @@
-.userPostList a {
-  color: #000;
-}
-
 .userPostList a,
 .userPostList a:hover {
   text-decoration: none;
