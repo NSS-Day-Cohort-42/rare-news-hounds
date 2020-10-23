@@ -1,8 +1,8 @@
 import React, { useState, createContext } from "react";
 
-export const PostContext = createContext();
+export const PostTagContext = createContext();
 
-export const PostProvider = props => {
+export const PostTagProvider = props => {
     const [thisPostTags, setPostTags] = useState([]);
 
 
