@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useContext, useState, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import { PostContext } from "./PostProvider";
@@ -12,13 +13,14 @@ export default (props) => {
   }, []);
 
   return (
-      <>
-          <section>{post.title}</section>
-          <section>{post.user.username}</section>
-          <section>{post.category.name}</section>
-          <section>{post.publication_time}</section>
-          <Image src={post.image}/>
-          <section>{post.content}</section>
+    <>
+      <section>{moment(post.publication_time).format("dddd, MMMM Do YYYY, h:mm:ss a")}</section>
+      <section>{post.title}</section>
+      <section>{post.user.username}</section>
+      <section>{post.category.name}</section>
+      <section>{post.publication_time}</section>
+      <Image src={post.image} />
+      <section>{post.content}</section>
     </>
   );
 };
