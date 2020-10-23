@@ -21,7 +21,6 @@ export const PostTagForm = ({postId}) => {
 	const { getPostTagsByPostId, addPostTag, deletePostTag } = useContext(PostTagContext)
 	const [ thisPostTags, setThisPostTags ] = useState([]) 
 	const [ selectedPostTags, setSelectedPostTags ] = useState([]) 
-	const [value, setValue] = useState([1, 3]);
 
 	const handleChange = (val) => {
 		setSelectedPostTags(val)
@@ -50,6 +49,7 @@ export const PostTagForm = ({postId}) => {
 					})					
 				}
 			</ToggleButtonGroup>
+			{/* TODO: Add a save button */}
 			</div>
 		</>
 	)
