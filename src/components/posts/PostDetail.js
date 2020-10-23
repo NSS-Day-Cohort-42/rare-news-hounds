@@ -12,13 +12,18 @@ export default (props) => {
     getPostById(postId).then(setPost);
   }, []);
 
+  const date = moment(post.publication_time).format(
+    "dddd, MMMM Do YYYY, h:mm:ss a"
+  );
+
   return (
     <>
-      <section>{moment(post.publication_time).format("dddd, MMMM Do YYYY, h:mm:ss a")}</section>
+      <section>
+        {date}
+      </section>
       <section>{post.title}</section>
       <section>{post.user.username}</section>
       <section>{post.category.name}</section>
-      <section>{post.publication_time}</section>
       <Image src={post.image} />
       <section>{post.content}</section>
     </>
