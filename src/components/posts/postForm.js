@@ -17,7 +17,7 @@ export const PostForm = (props) => {
     const publicationRef = useRef("")
     const constructNewPost = () => {
         
-        if (categoryRef === 0) {
+        if (categoryRef === '0') {
             window.alert("Please select a category")
         } else {
         createPost({
