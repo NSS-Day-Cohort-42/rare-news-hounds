@@ -26,7 +26,7 @@ export const ApplicationViews = () => {
             lineHeight: "1.75rem"
         }}>
         <PostProvider>
-          <Route path="/" component={PostList} />
+          <Route exact path="/" component={PostList} />
         </PostProvider>
         <PostProvider>
           <Route path="/my-posts" component={UserPostList} />
