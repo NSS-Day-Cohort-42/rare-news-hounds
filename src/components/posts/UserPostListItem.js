@@ -7,7 +7,12 @@ export const UserPostListItem = props => {
   const { post } = props
   const { id, title, user, category } = post
 
-  const { deletePost } = useContext(PostContext);
+  const { deletePost, getPostsByUserId } = useContext(PostContext)
+
+  const handleDelete = id => {
+    deletePost(id)
+      .then(() => getPostsByUserId(localStorage.getItem('rare_user_id')))
+  }
 
   return (
     <div className="userPostListItem">
@@ -17,7 +22,7 @@ export const UserPostListItem = props => {
       </div>
       <div className="userPostListItem--col-right">
         <p className="userPostListItem__category">{category.name}</p>
-        <ConfirmableDeleteButton onDelete={() => deletePost(id)} />
+        <ConfirmableDeleteButton onDelete={() => handleDelete(id)} />
       </div>
     </div>
   )
