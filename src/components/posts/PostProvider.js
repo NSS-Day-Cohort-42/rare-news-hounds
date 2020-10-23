@@ -22,6 +22,12 @@ export const PostProvider = props => {
       .then(setPosts);
   };
 
+  const deletePost = id => {
+    return fetch(`http://localhost:8088/posts/${id}`, {
+      method: "DELETE"
+    })
+  }
+
   return (
     <PostContext.Provider
       value={{
