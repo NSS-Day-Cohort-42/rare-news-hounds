@@ -22,6 +22,19 @@ export const PostProvider = props => {
       .then(setPosts);
   };
 
+  const createPost = (post) => {
+    return fetch(`http://localhost:8088/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(post),
+    }).then(res => res.json())
+      .then((newPost) => {
+        getPosts()
+        return newPost
+      });
+  };
   const deletePost = id => {
     return fetch(`http://localhost:8088/posts/${id}`, {
       method: "DELETE"
@@ -35,7 +48,8 @@ export const PostProvider = props => {
         getPosts,
         getPostById,
         getPostsByUserId,
-        deletePost
+        deletePost,
+        createPost
       }}
     >
       {props.children}

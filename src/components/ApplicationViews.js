@@ -1,10 +1,11 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { CategoryProvider } from "./categories/CategoryProvider";
-import CategoryForm from "./categories/CategoryForm";
-import CategoryList from "./categories/CategoryList";
-import { PostProvider } from "./posts/PostProvider";
-import { UserPostList } from "./posts/UserPostList";
+import React from "react"
+import { Route, Redirect } from "react-router-dom"
+import { CategoryProvider } from "./categories/CategoryProvider"
+import CategoryForm from "./categories/CategoryForm"
+import CategoryList from "./categories/CategoryList"
+import { PostForm } from "./posts/postForm"
+import { PostProvider } from "./posts/PostProvider"
+import { UserPostList} from "./posts/UserPostList"
 import TagForm from "./tags/TagForm";
 import TagList from "./tags/TagList";
 import { TagProvider } from "./tags/TagProvider";
@@ -22,12 +23,15 @@ export const ApplicationViews = () => {
         }}
       />
 
-      <main
-        style={{
-          margin: "5rem 2rem",
-          lineHeight: "1.75rem",
-        }}
-      >
+      <main style={{
+            margin: "5rem 2rem",
+            lineHeight: "1.75rem"
+        }}>
+        <PostProvider>
+          <CategoryProvider>
+            <Route path="/posts/create" component={PostForm} />
+          </CategoryProvider>
+        </PostProvider>
         <PostProvider>
           <Route exact path="/" component={PostList} />
         </PostProvider>
