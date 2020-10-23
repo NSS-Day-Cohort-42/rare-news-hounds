@@ -26,7 +26,12 @@ export const PostForm = (props) => {
             <Form.Group controlId="categorySelect">
             <Form.Label>Categories</Form.Label>
                 <Form.Control as="select">
-                {}
+                <select value ="0">Select a category</select>
+                {categories.mao(c => (
+                    <select key={c.id} value={c.id}>
+                        {c.name}
+                    </select>
+                ))}
                 </Form.Control>
             </Form.Group>
             <FormGroup>

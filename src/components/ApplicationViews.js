@@ -28,7 +28,11 @@ export const ApplicationViews = () => {
         {/* <Route path="/posts/create" render={
             props => <PostForm {...props}/>
         } /> */}
-        <Route path="/posts/create" component={PostForm} />
+        <PostProvider>
+          <CategoryProvider>
+            <Route path="/posts/create" component={PostForm} />
+          </CategoryProvider>
+        </PostProvider>
         <PostProvider>
           <Route path="/my-posts" component={UserPostList} />
         </PostProvider>
