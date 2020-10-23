@@ -1,3 +1,7 @@
+.userPostList a:hover {
+  text-decoration: none;
+}
+
 .userPostListItem,
 .userPostListItem--col-left,
 .userPostListItem--col-right {

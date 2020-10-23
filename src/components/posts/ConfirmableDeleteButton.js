@@ -14,36 +14,27 @@ export const ConfirmableDeleteButton = props => {
     setIsDeleting(false)
   }
 
-  /**
-   * Depending on isDeleting state, either render:
-   *  a) a single button that upon clicking will trigger isDeleting state to be set to true, or
-   *  b) two buttons side-by-side, with one allowing the user to cancel (and thus set isDeleting to false), or confirm their deletion
-   */
-  const renderDeleteButtons = () => {
-    if(isDeleting) {
-      return <>
-        <Button variant="secondary" onClick={() => setIsDeleting(false)}>
-          Cancel
-        </Button>
+  const renderInitialDeleteButton = () => (
+    <Button variant="danger" onClick={() => setIsDeleting(true)}>
+      Delete
+    </Button>
+  )
 
-        <Button variant="danger" onClick={handleConfirmDelete}>
-          Confirm Delete
-        </Button>
-      </>
-    }
+  const renderConfirmDeleteButtons = () => (
+    <>
+      <Button variant="secondary" onClick={() => setIsDeleting(false)}>
+        Cancel
+      </Button>
 
-    else {
-      return (
-        <Button variant="danger" onClick={() => setIsDeleting(true)}>
-          Delete
-        </Button>
-      )
-    }
-  }
+      <Button variant="danger" onClick={handleConfirmDelete}>
+        Confirm Delete
+      </Button>
+    </>
+  )
 
   return (
-    <div className="deleteButtonContainer">
-      { renderDeleteButtons() }
+    <div className="deleteButtonContainer" onClick={e => e.preventDefault()}>
+      { isDeleting ? renderConfirmDeleteButtons() : renderInitialDeleteButton() }
     </div>
   )
 }

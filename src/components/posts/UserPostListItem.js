@@ -1,9 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
+import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
+import { PostContext } from "./PostProvider"
 import "./UserPostListItem.css"
 
 export const UserPostListItem = props => {
   const { post } = props
-  const { title, user_id, category_id } = post
+  const { id, title, user_id, category_id } = post
+
+  const { deletePost } = useContext(PostContext);
 
   return (
     <div className="userPostListItem">
@@ -13,6 +17,7 @@ export const UserPostListItem = props => {
       </div>
       <div className="userPostListItem--col-right">
         <p className="userPostListItem__category">{category_id}</p>
+        <ConfirmableDeleteButton onDelete={() => deletePost(id)} />
       </div>
     </div>
   )
