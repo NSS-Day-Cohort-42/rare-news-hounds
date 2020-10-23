@@ -43,7 +43,7 @@ export const Login = () => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Level Up</h1>
+                    <h1>News Hounds</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
@@ -56,7 +56,7 @@ export const Login = () => {
                     <fieldset style={{
                         textAlign:"center"
                     }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
+                          <button className="btn btn-1 " type="submit">Sign In</button>
                     </fieldset>
                 </form>
             </section>

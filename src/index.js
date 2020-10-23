@@ -4,6 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom"
 import { Rare } from "./components/Rare.js"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./index.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 ReactDOM.render(
     <React.StrictMode>

@@ -14,9 +14,10 @@ export const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link as={Link} to="/categories">Categories</Nav.Link>
-            <Nav.Link as={Link} to="/tags">Tags</Nav.Link>
             <Nav.Link as={Link} to="/posts/create">New Post</Nav.Link>
+            <Nav.Link as={Link} to="/my-posts">My Posts</Nav.Link>
+            <Nav.Link as={Link} to="/tags">Tags</Nav.Link>
+            <Nav.Link as={Link} to="/categories">Categories</Nav.Link>
             <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
