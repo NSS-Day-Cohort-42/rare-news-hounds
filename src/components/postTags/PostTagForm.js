@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { TagContext } from "../tags/TagProvider"
-import Button from "react-bootstrap/Button"
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup"
+import ToggleButton from "react-bootstrap/ToggleButton"
 import { PostTagContext } from "./PostTagProvider"
 
 /*
@@ -19,40 +20,36 @@ export const PostTagForm = ({postId}) => {
 	const { tags, getTags } = useContext(TagContext)
 	const { getPostTagsByPostId, addPostTag, deletePostTag } = useContext(PostTagContext)
 	const [ thisPostTags, setThisPostTags ] = useState([]) 
+	const [ selectedPostTags, setSelectedPostTags ] = useState([]) 
+	const [value, setValue] = useState([1, 3]);
 
+	const handleChange = (val) => {
+		setSelectedPostTags(val)
+	}
 
 	useEffect( () => {
 		getTags()
 		getPostTagsByPostId(postId)
 			.then(thisPostTagsInitial => {
 				setThisPostTags(thisPostTagsInitial)
+				setSelectedPostTags(thisPostTagsInitial.map(pt => pt.tag_id))
 			})
 	}, [postId] )
 
 	return (
 		<>
 			<div>
+			<ToggleButtonGroup 
+			type="checkbox" 
+			value={selectedPostTags} 
+			className="mb-2"
+			onChange={handleChange}>
 				{
 					tags.map( tag => {
-						const matchingPostTag = thisPostTags.find( pt => pt.tag_id === tag.id) 
-
-						if (matchingPostTag){
-								return (
-									<Button variant="primary" size="sm">
-										{tag.name}
-									</Button>
-								)
-							}
-
-						else {
-							return (
-								<Button variant="warning" size="sm">
-									{tag.name}
-								</Button>
-							)
-						}
+						return ( <ToggleButton value={tag.id} key={tag.id}>{tag.name}</ToggleButton> )
 					})					
 				}
+			</ToggleButtonGroup>
 			</div>
 		</>
 	)
