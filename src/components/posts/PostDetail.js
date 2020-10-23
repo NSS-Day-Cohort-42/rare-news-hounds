@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Image } from "react-bootstrap";
+import { PostTagForm } from "../postTags/PostTagForm";
 import { PostContext } from "./PostProvider";
 
 export default (props) => {
@@ -19,6 +20,7 @@ export default (props) => {
           <section>{post.publication_time}</section>
           <Image src={post.image}/>
           <section>{post.content}</section>
+					<PostTagForm postId={post.id} />
     </>
   );
 };

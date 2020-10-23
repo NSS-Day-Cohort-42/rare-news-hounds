@@ -15,7 +15,7 @@ The post tag form should take in a post as a prop, and let users select which of
 */
 
 
-export const PostTagForm = ({post}) => {
+export const PostTagForm = ({postId}) => {
 	const { tags, getTags } = useContext(TagContext)
 	const { getPostTagsByPostId, addPostTag, deletePostTag } = useContext(PostTagContext)
 	const [ thisPostTags, setThisPostTags ] = useState([]) 
@@ -23,9 +23,11 @@ export const PostTagForm = ({post}) => {
 
 	useEffect( () => {
 		getTags()
-		thisPostTagsInitial = getPostTagsByPostId()
-		setThisPostTags(thisPostTagsInitial)
-	}, [] )
+		getPostTagsByPostId(postId)
+			.then(thisPostTagsInitial => {
+				setThisPostTags(thisPostTagsInitial)
+			})
+	}, [postId] )
 
 	return (
 		<>
@@ -41,9 +43,10 @@ export const PostTagForm = ({post}) => {
 									</Button>
 								)
 							}
+
 						else {
 							return (
-								<Button variant="outline-primary" size="sm">
+								<Button variant="warning" size="sm">
 									{tag.name}
 								</Button>
 							)

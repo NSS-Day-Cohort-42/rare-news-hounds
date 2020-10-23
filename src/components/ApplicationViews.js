@@ -10,6 +10,7 @@ import TagList from "./tags/TagList";
 import { TagProvider } from "./tags/TagProvider";
 import PostDetail from "./posts/PostDetail";
 import { PostList } from "./posts/PostList";
+import { PostTagProvider } from "./postTags/PostTagProvider";
 
 export const ApplicationViews = () => {
   return (
@@ -31,14 +32,19 @@ export const ApplicationViews = () => {
         <PostProvider>
           <Route exact path="/" component={PostList} />
         </PostProvider>
-        <PostProvider>
-          <Route path="/my-posts" component={UserPostList} />
-          <Route
-            exact
-            path="/posts/:postId(\d+)"
-            render={(props) => <PostDetail {...props} />}
-          />
-        </PostProvider>
+
+				<PostTagProvider>
+					<TagProvider>
+						<PostProvider>
+							<Route path="/my-posts" component={UserPostList} />
+							<Route
+								exact
+								path="/posts/:postId(\d+)"
+								render={(props) => <PostDetail {...props} />}
+							/>
+						</PostProvider>
+					</TagProvider>
+				</PostTagProvider>
 
         <CategoryProvider>
           <Route path="/categories">
