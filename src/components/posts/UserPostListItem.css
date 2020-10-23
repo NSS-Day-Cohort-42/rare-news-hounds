@@ -1,8 +1,14 @@
+.userPostList a,
+.userPostList a:hover {
+  text-decoration: none;
+}
+
 .userPostListItem,
 .userPostListItem--col-left,
 .userPostListItem--col-right {
   display: flex;
   align-items: center;
+  line-height: 1;
 }
 
 .userPostListItem {
@@ -17,4 +23,17 @@
 .userPostListItem__title {
   font-size: 1.5rem;
   font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.userPostListItem__author {
+  align-self: flex-end;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.userPostListItem__author,
+.userPostListItem__category,
+.userPostListItem .confirmableDeleteButtonContainer {
+  color: #333;
 }
