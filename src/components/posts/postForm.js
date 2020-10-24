@@ -18,8 +18,14 @@ export const PostForm = (props) => {
     const constructNewPost = () => {
 
         
-        if (categoryRef.current.value === '0') {
+        if (titleRef.current.value === "") {
+            window.alert("Please fill in a title")
+        } else if(categoryRef.current.value === '0') {
             window.alert("Please select a category")
+        } else if (publicationRef.current.value === "") {
+            window.alert("Please select a puplication date")
+        } else if (contentRef.current.value === "") {
+            window.alert("Please fill out content")
         } else {
         createPost({
             user_id: localStorage.getItem('rare_user_id'),
