@@ -24,7 +24,9 @@ export const PostForm = (props) => {
             window.alert("Please select a category")
         } else if (publicationRef.current.value === "") {
             window.alert("Please select a puplication date")
-        } else if (contentRef.current.value === "") {
+        }/*else if (imageRef.current.value === "") {
+            window.alert("Please add an image URL")
+        }*/else if (contentRef.current.value === "") {
             window.alert("Please fill out content")
         } else {
         createPost({
