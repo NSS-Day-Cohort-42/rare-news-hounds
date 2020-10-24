@@ -11,6 +11,15 @@ export default (props) => {
   const date = moment(post.publication_time).format(
     "dddd, MMMM Do YYYY, h:mm:ss a"
   );
+  const handleDeleteButtonClick = () => {
+    deletePost(post.id)
+      .then(() => {
+        getPosts();
+      })
+      .then(() => {
+        props.history.goBack();
+      });
+  };
 
   useEffect(() => {
     const postId = parseInt(props.match.params.postId);
@@ -25,20 +34,7 @@ export default (props) => {
       <section>{post.category.name}</section>
       <Image src={post.image} />
       <section>{post.content}</section>
-      {currentUser === post.user_id && (
-        <ConfirmableDeleteButton
-          onDelete={() => {
-            deletePost(post.id)
-              .then(() => {
-                getPosts();
-              })
-              .then(() => {
-                console.log(props.history);
-                props.history.goBack();
-              });
-          }}
-        />
-      )}
+      {currentUser === post.user_id && <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />}
     </>
   );
 };
