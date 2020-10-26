@@ -32,6 +32,8 @@ export const PostForm = (props) => {
       categoryRef.current.value = post.category_id
       imageRef.current.value = post.image
       contentRef.current.value = post.content
+
+      // HTML date inputs take their value in the format YYYY-MM-DD
       publicationRef.current.value = moment(post.publication_time + 86400000).format(
         "YYYY-MM-DD"
       );
