@@ -20,7 +20,7 @@ export const PostTagForm = ({postId, endEditTags}) => {
 		
 		// Iterate through the selected tag ids and save any tags that weren't initially selected.
 		selectedPostTags.forEach( selectedTagId => {
-			const matchingPostTag = thisPostTags.find( pt => pt.id === selectedTagId)
+			const matchingPostTag = thisPostTags.find( pt => pt.tag_id === selectedTagId)
 			if (matchingPostTag === undefined) {
 				const newPostTag = {
 					post_id : postId,
@@ -32,13 +32,13 @@ export const PostTagForm = ({postId, endEditTags}) => {
 
 		// Iterate through the post tags that were initially selected, and delete the ones that were removed.
 		thisPostTags.forEach( pt => {
-			const matchingSelection = selectedPostTags.find( selectedTagId => selectedTagId === pt.id )
+			const matchingSelection = selectedPostTags.find( selectedTagId => selectedTagId === pt.tag_id )
 			if (matchingSelection === undefined) {
 				deletePostTag(pt.id)
 			}
 
-		endEditTags()
-		})
+	})
+	endEditTags()
 
 
 	}
