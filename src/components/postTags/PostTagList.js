@@ -16,7 +16,6 @@ export const PostTagList = ({postId}) => {
             .then(thisPostTagsInitial => {
                 setThisPostTags(thisPostTagsInitial)
                 setSelectedPostTags(thisPostTagsInitial.map(pt => pt.tag_id))
-                debugger
             })
     }, [postId] )
     
