@@ -33,8 +33,11 @@ export const ApplicationViews = () => {
           </CategoryProvider>
         </PostProvider>
         <PostProvider>
+          <CategoryProvider>
           <Route exact path="/" component={PostList} />
+          </CategoryProvider>
         </PostProvider>
+        <CategoryProvider>
         <PostProvider>
           <Route path="/my-posts" component={UserPostList} />
           <Route
@@ -43,7 +46,7 @@ export const ApplicationViews = () => {
             render={(props) => <PostDetail {...props} />}
           />
         </PostProvider>
-
+        </CategoryProvider>
         <CategoryProvider>
           <Route path="/categories">
             <CategoryForm />

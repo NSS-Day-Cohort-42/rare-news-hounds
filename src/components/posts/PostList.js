@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import ListGroup from "react-bootstrap/ListGroup"
 import { PostContext } from "./PostProvider"
 import { PostListItem } from "./PostListItem"
+import CategoryDropDown from "./CategoryDropDown"
 
 
 export const PostList = props => {
@@ -20,6 +21,7 @@ export const PostList = props => {
 
     return (
         <div className="postList">
+          <CategoryDropDown action={props}/>
           <ListGroup>
             { posts.map(post => (
               <ListGroup.Item key={post.id} as={Link} to={`/posts/${post.id}`}>
