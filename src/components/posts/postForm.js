@@ -65,6 +65,7 @@ export const PostForm = (props) => {
 
           if(isEditMode) {
             updatePost(props.match.params.postId, newPostObject)
+              .then(() => props.history.push(`/posts/${props.match.params.postId}`))
           }
           else {
             newPostObject.creation_time = Date.now()
