@@ -5,7 +5,7 @@ import ToggleButton from "react-bootstrap/ToggleButton"
 import { PostTagContext } from "./PostTagProvider"
 import Button from "react-bootstrap/esm/Button"
 
-export const PostTagForm = ({postId}) => {
+export const PostTagForm = ({postId, endEditTags}) => {
 	const { tags, getTags } = useContext(TagContext)
 	const { getPostTagsByPostId, addPostTag, deletePostTag } = useContext(PostTagContext)
 	const [ thisPostTags, setThisPostTags ] = useState([]) 
@@ -35,6 +35,8 @@ export const PostTagForm = ({postId}) => {
 			if (matchingSelection === undefined) {
 				deletePostTag(pt.id)
 			}
+
+		endEditTags()
 		})
 
 
@@ -63,7 +65,12 @@ export const PostTagForm = ({postId}) => {
 					})					
 				}
 			</ToggleButtonGroup>
-			<Button onClick={savePostTags}>Save</Button>
+				<div>
+					<Button variant='secondary'
+					onClick={endEditTags}
+					>Cancel</Button>
+					<Button onClick={savePostTags}>Save</Button>
+				</div>
 			</div>
 		</>
 	)
