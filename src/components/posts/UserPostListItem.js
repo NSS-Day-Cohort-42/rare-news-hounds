@@ -24,7 +24,7 @@ export const UserPostListItem = props => {
       <div className="userPostListItem--col-right">
         <p className="userPostListItem__category">{category.name}</p>
         <ConfirmableDeleteButton onDelete={() => handleDelete(id)} />
-        <EditPostButton action={props} />
+        <EditPostButton action={props} postId={id} />
       </div>
     </div>
   )
