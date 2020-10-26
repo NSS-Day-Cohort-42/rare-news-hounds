@@ -22,6 +22,12 @@ export const PostProvider = props => {
       .then(setPosts);
   };
 
+  const getPostsByCategoryId = categoryId => {
+    return fetch(`http://localhost:8088/posts?category_id=${categoryId}`)
+      .then(res => res.json())
+      .then(setPosts);
+  };
+
   const createPost = (post) => {
     return fetch(`http://localhost:8088/posts`, {
       method: "POST",
@@ -49,7 +55,8 @@ export const PostProvider = props => {
         getPostById,
         getPostsByUserId,
         deletePost,
-        createPost
+        createPost,
+        getPostsByCategoryId
       }}
     >
       {props.children}

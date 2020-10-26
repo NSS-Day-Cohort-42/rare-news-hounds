@@ -55,7 +55,7 @@ export const PostForm = (props) => {
                 <Form.Label>Title</Form.Label>
                 <Form.Control type="text" placeholder="Enter Title" ref={titleRef} />
             </FormGroup>
-            <Form.Group controlId="categorySelect">
+            <FormGroup controlId="categorySelect">
             <Form.Label>Categories</Form.Label>
                 <Form.Control as="select" ref={categoryRef}>
                 <option value ="0">Select a category</option>
@@ -65,7 +65,7 @@ export const PostForm = (props) => {
                     </option>
                 ))}
                 </Form.Control>
-            </Form.Group>
+            </FormGroup>
             <FormGroup>
                 <Form.Label>Publish Date:</Form.Label>
                 <Form.Control type="date" ref={publicationRef}/> 
