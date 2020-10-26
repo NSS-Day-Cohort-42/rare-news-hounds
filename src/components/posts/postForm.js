@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef } from "react"
 import moment from 'moment';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
-// import NewPostButton from "./NewPostButton";
 import { CategoryContext } from "../categories/CategoryProvider";
 import { PostContext } from "./PostProvider";
 
