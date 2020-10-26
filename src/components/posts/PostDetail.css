@@ -1,0 +1,14 @@
+.postDetail__header--row {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* these are borrowed from PostListItem */
+.postDetail p {
+    margin-bottom: 0;
+}
+
+.postDetail__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
