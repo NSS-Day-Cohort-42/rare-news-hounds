@@ -64,7 +64,6 @@ export const PostTagForm = ({postId}) => {
 				}
 			</ToggleButtonGroup>
 			<Button onClick={savePostTags}>Save</Button>
-			{/* TODO: Add a save button */}
 			</div>
 		</>
 	)
