@@ -1,0 +1,20 @@
+.postDetail,
+.postDetail--col-left,
+.postDetail--col-right {
+    display: flex;
+    align-items: center;
+}
+
+.postDetail {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.postDetail p {
+    margin-bottom: 0;
+}
+
+.postDetail__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}

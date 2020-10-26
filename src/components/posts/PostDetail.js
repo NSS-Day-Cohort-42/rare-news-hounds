@@ -8,8 +8,8 @@ export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
   const [post, setPost] = useState({ category: {}, user: {} });
   const currentUser = parseInt(localStorage.getItem("rare_user_id"));
-  const date = moment(post.publication_time).format(
-    "dddd, MMMM Do YYYY, h:mm:ss a"
+  const date = moment(post.publication_time + 86400000).format(
+    "dddd, MMMM Do YYYY"
   );
   const handleDeleteButtonClick = () => {
     deletePost(post.id)
@@ -27,7 +27,7 @@ export default (props) => {
   }, []);
 
   return (
-    <>
+    <section className="postDetail">
       <section>{date}</section>
       <section>{post.title}</section>
       <section>{post.user.username}</section>
@@ -35,6 +35,6 @@ export default (props) => {
       <Image src={post.image} />
       <section>{post.content}</section>
       {currentUser === post.user_id && <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />}
-    </>
+    </section>
   );
 };
