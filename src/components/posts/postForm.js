@@ -70,7 +70,7 @@ export const PostForm = (props) => {
           else {
             newPostObject.creation_time = Date.now()
             createPost(newPostObject)
-            .then((newPost) => props.history.push(`/posts/${newPost.id}`))
+              .then((newPost) => props.history.push(`/posts/${newPost.id}`))
           }
         }
     }
