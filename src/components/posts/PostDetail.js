@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
+import "./PostDetail.css";
 
 export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
@@ -27,14 +28,18 @@ export default (props) => {
   }, []);
 
   return (
-    <section className="postDetail">
-      <section>{date}</section>
-      <section>{post.title}</section>
-      <section>{post.user.username}</section>
-      <section>{post.category.name}</section>
-      <Image src={post.image} />
-      <section>{post.content}</section>
-      {currentUser === post.user_id && <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />}
-    </section>
+    <div className="postDetail">
+      <header className="postDetail--header">
+        {date}
+        <div>{post.title}</div>
+        <div>{post.user.username}</div>
+        <div>{post.category.name}</div>
+      </header>
+      <Image src={post.image} fluid />
+      <div>{post.content}</div>
+      {currentUser === post.user_id && (
+        <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />
+      )}
+    </div>
   );
 };
