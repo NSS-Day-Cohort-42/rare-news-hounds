@@ -30,13 +30,15 @@ export default (props) => {
   return (
     <div className="postDetail">
       <header className="postDetail--header">
-        {date}
-        <div>{post.title}</div>
-        <div>{post.user.username}</div>
-        <div>{post.category.name}</div>
+          <p className="postDetail__title">{post.title}</p>
+          <p className="postDetail__date">{date}</p>
+          <p className="postDetail__username">{post.user.username}</p>
+          <p className="postDetail__category">{post.category.name}</p>
       </header>
-      <Image src={post.image} fluid />
-      <div>{post.content}</div>
+      <div className="postDetail__headerimage">
+        <Image src={post.image} fluid />
+      </div>
+      <p>{post.content}</p>
       {currentUser === post.user_id && (
         <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />
       )}

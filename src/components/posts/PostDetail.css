@@ -3,6 +3,13 @@
 .postDetail--col-right {
     display: flex;
     align-items: center;
+    flex-direction: column
+}
+
+.postDetail--header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .postDetail {
