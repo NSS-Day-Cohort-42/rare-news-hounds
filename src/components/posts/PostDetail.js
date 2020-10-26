@@ -20,7 +20,7 @@ export default (props) => {
           <section>{post.publication_time}</section>
           <Image src={post.image}/>
           <section>{post.content}</section>
-					<PostTagManager postId={post.id} />
+					<PostTagManager postId={post.id} isPostOwner={false} />
     </>
   );
 };
