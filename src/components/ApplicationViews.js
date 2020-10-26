@@ -31,7 +31,7 @@ export const ApplicationViews = () => {
           <CategoryProvider>
             <Route path="/posts/create" component={PostForm} />
 
-            <Route path="/posts/edit/:post_id" component={PostForm} />
+            <Route path="/posts/edit/:postId" component={PostForm} />
           </CategoryProvider>
         </PostProvider>
         <PostProvider>

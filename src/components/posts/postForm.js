@@ -16,12 +16,12 @@ export const PostForm = (props) => {
     const contentRef = useRef("")
     const publicationRef = useRef("")
 
-    const isEditMode = props.match.params.hasOwnProperty("post_id")
+    const isEditMode = props.match.params.hasOwnProperty("postId")
 
     useEffect(()=>{
         getCategories().then(() => {
           if(isEditMode) {
-            getPostById(props.match.params.post_id)
+            getPostById(props.match.params.postId)
               .then(populateFormValues)
           }
         })
@@ -62,7 +62,7 @@ export const PostForm = (props) => {
           }
 
           if(isEditMode) {
-            updatePost(props.match.params.post_id, newPostObject)
+            updatePost(props.match.params.postId, newPostObject)
           }
           else {
             newPostObject.creation_time = Date.now()
