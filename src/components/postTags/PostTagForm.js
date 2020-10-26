@@ -3,6 +3,7 @@ import { TagContext } from "../tags/TagProvider"
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup"
 import ToggleButton from "react-bootstrap/ToggleButton"
 import { PostTagContext } from "./PostTagProvider"
+import Button from "react-bootstrap/esm/Button"
 
 /*
 The post tag form should take in a post as a prop, and let users select which of the existing tags they want to apply. This form should work for editing and creating. When the form is submitted, any postTags that have been un-selected should be deleted, and an postTags that have been selected should be added.
@@ -24,6 +25,31 @@ export const PostTagForm = ({postId}) => {
 
 	const handleChange = (val) => {
 		setSelectedPostTags(val)
+	}
+
+	const savePostTags = () => {
+		
+		// Iterate through the selected tag ids and save any tags that weren't initially selected.
+		selectedPostTags.forEach( selectedTagId => {
+			const matchingPostTag = thisPostTags.find( pt => pt.id === selectedTagId)
+			if (matchingPostTag === undefined) {
+				const newPostTag = {
+					post_id : postId,
+					tag_id : selectedTagId
+				}
+				addPostTag(newPostTag)
+			}
+		})
+
+		// Iterate through the post tags that were initially selected, and delete the ones that were removed.
+		thisPostTags.forEach( pt => {
+			const matchingSelection = selectedPostTags.find( selectedTagId => selectedTagId === pt.id )
+			if (matchingSelection === undefined) {
+				deletePostTag(pt.id)
+			}
+		})
+
+
 	}
 
 	useEffect( () => {
@@ -49,6 +75,7 @@ export const PostTagForm = ({postId}) => {
 					})					
 				}
 			</ToggleButtonGroup>
+			<Button onClick={savePostTags}>Save</Button>
 			{/* TODO: Add a save button */}
 			</div>
 		</>
