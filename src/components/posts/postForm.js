@@ -1,23 +1,45 @@
 import React, { useContext, useEffect, useRef } from "react"
+import moment from 'moment';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
-// import NewPostButton from "./NewPostButton";
 import { CategoryContext } from "../categories/CategoryProvider";
 import { PostContext } from "./PostProvider";
+
 export const PostForm = (props) => {
-    const {createPost} = useContext(PostContext)
+    const {createPost, updatePost, getPostById} = useContext(PostContext)
     const {categories, getCategories} = useContext(CategoryContext)
-    
 
     const titleRef = useRef("")
     const categoryRef = useRef("")
     const imageRef = useRef("")
     const contentRef = useRef("")
     const publicationRef = useRef("")
-    const constructNewPost = () => {
 
-        
+    const isEditMode = props.match.params.hasOwnProperty("postId")
+
+    useEffect(()=>{
+        getCategories().then(() => {
+          if(isEditMode) {
+            getPostById(props.match.params.postId)
+              .then(populateFormValues)
+          }
+        })
+    },[])
+
+    const populateFormValues = post => {
+      titleRef.current.value = post.title
+      categoryRef.current.value = post.category_id
+      imageRef.current.value = post.image
+      contentRef.current.value = post.content
+
+      // HTML date inputs take their value in the format YYYY-MM-DD
+      publicationRef.current.value = moment(post.publication_time + 86400000).format(
+        "YYYY-MM-DD"
+      );
+    }
+
+    const constructNewPost = () => {
         if (titleRef.current.value === "") {
             window.alert("Please fill in a title")
         } else if(categoryRef.current.value === '0') {
@@ -29,7 +51,8 @@ export const PostForm = (props) => {
         }*/else if (contentRef.current.value === "") {
             window.alert("Please fill out content")
         } else {
-        createPost({
+          // validation success - create a new object from the form inputs and then either save or update it
+          const newPostObject = {
             user_id: localStorage.getItem('rare_user_id'),
             title: titleRef.current.value,
             category_id: categoryRef.current.value,
@@ -37,17 +60,20 @@ export const PostForm = (props) => {
             content: contentRef.current.value,
             publish_status: true,
             approve_status: true,
-            publication_time: publicationRef.current.valueAsNumber,
-            creation_time: Date.now()
+            publication_time: publicationRef.current.valueAsNumber
+          }
 
-        })
-        .then((newPost) => props.history.push(`/posts/${newPost.id}`))
+          if(isEditMode) {
+            updatePost(props.match.params.postId, newPostObject)
+              .then(() => props.history.push(`/posts/${props.match.params.postId}`))
+          }
+          else {
+            newPostObject.creation_time = Date.now()
+            createPost(newPostObject)
+              .then((newPost) => props.history.push(`/posts/${newPost.id}`))
+          }
+        }
     }
-    }
-
-    useEffect(()=>{
-        getCategories()
-    },[])
 
     return (
         <Form>
@@ -68,7 +94,7 @@ export const PostForm = (props) => {
             </FormGroup>
             <FormGroup>
                 <Form.Label>Publish Date:</Form.Label>
-                <Form.Control type="date" ref={publicationRef}/> 
+                <Form.Control type="date" ref={publicationRef} disabled={isEditMode} /> 
             </FormGroup>
             <FormGroup controlId ="text">
                 <Form.Label>Image</Form.Label>

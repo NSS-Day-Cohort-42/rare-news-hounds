@@ -41,6 +41,17 @@ export const PostProvider = props => {
         return newPost
       });
   };
+
+  const updatePost = (id, post) => {
+    return fetch(`http://localhost:8088/posts/${id}`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(post)
+    })
+  }
+
   const deletePost = id => {
     return fetch(`http://localhost:8088/posts/${id}`, {
       method: "DELETE"
@@ -56,6 +67,7 @@ export const PostProvider = props => {
         getPostsByUserId,
         deletePost,
         createPost,
+        updatePost,
         getPostsByCategoryId
       }}
     >
