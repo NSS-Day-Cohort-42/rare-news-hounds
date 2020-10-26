@@ -1,22 +1,9 @@
-.postDetail,
-.postDetail--col-left,
-.postDetail--col-right {
+.postDetail__header--row {
     display: flex;
-    align-items: center;
-    flex-direction: column
-}
-
-.postDetail--header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.postDetail {
     justify-content: space-between;
-    align-items: center;
 }
 
+/* these are borrowed from PostListItem */
 .postDetail p {
     margin-bottom: 0;
 }

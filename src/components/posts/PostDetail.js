@@ -29,19 +29,21 @@ export default (props) => {
 
   return (
     <div className="postDetail">
-      <div className="postDetail--header">
-        <div className="postListItem--col-left">
-          <p className="postDetail__title">{post.title}</p>
-          <p className="postDetail__date">{date}</p>
-          <p className="postDetail__username">{post.user.username}</p>
-          <p className="postDetail__category">{post.category.name}</p>
-        </div>
-        <div className="postDetail--col-right">
+      <div className="postDetail__header">
+        <div className="postDetail__header--row"> 
+          <div> 
+            <p className="postDetail__title">{post.title}</p>
+            <p className="postDetail__username">{post.user.username}</p>
+          </div>
           <div className="postDetail__authorOptions">
             {currentUser === post.user_id && (
               <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />
             )}
           </div>
+        </div>
+        <div className="postDetail__header--row">
+          <p className="postDetail__date">{date}</p>
+          <p className="postDetail__category">{post.category.name}</p>
         </div>
       </div>
       <div className="postDetail__headerimage">
