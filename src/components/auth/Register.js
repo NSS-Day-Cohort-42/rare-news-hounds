@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import { Link } from "react-router-dom"
 import "./Auth.css"
+import Button from "react-bootstrap/Button"
 
 export const Register = (props) => {
     const firstName = useRef()
@@ -81,7 +82,7 @@ export const Register = (props) => {
                 <fieldset style={{
                     textAlign: "center"
                 }}>
-                     <button className="btn btn-1" type="submit">Register</button>
+                     <Button className="btn btn-1" type="submit">Register</Button>
               </fieldset>
             </form>
             <section className="link--register">
