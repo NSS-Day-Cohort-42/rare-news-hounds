@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
+import EditPostButton from "./EditPostButton"
 import { PostContext } from "./PostProvider"
 import "./UserPostListItem.css"
 
@@ -23,6 +24,7 @@ export const UserPostListItem = props => {
       <div className="userPostListItem--col-right">
         <p className="userPostListItem__category">{category.name}</p>
         <ConfirmableDeleteButton onDelete={() => handleDelete(id)} />
+        <EditPostButton postId={id} />
       </div>
     </div>
   )
