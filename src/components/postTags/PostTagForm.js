@@ -4,6 +4,7 @@ import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup"
 import ToggleButton from "react-bootstrap/ToggleButton"
 import { PostTagContext } from "./PostTagProvider"
 import Button from "react-bootstrap/esm/Button"
+import "./PostTagForm.css"
 
 export const PostTagForm = ({postId, endEditTags}) => {
 	const { tags, getTags } = useContext(TagContext)
@@ -65,7 +66,7 @@ export const PostTagForm = ({postId, endEditTags}) => {
 					})					
 				}
 			</ToggleButtonGroup>
-				<div>
+				<div className='post_tag_controls'>
 					<Button variant='secondary'
 					onClick={endEditTags}
 					>Cancel</Button>
