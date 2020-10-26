@@ -50,7 +50,6 @@ export const PostProvider = props => {
       },
       body: JSON.stringify(post)
     })
-      .then(res => res.json())
   }
 
   const deletePost = id => {
