@@ -24,9 +24,13 @@ export const PostTagList = ({postId}) => {
             <div>
                 {
                     thisPostTags.map( postTag => { 
-                        return ( <Badge pill variant="primary">
+                        return ( 
+												<Badge pill 
+												variant="primary"
+												key={postTag.id}
+												>
                         {postTag.tag.name}
-                      </Badge> )
+                      	</Badge> )
                     })                  
                 }
             </div>
