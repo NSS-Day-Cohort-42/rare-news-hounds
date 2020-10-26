@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
-
+import Button from "react-bootstrap/Button"
 
 export const Login = () => {
     const email = useRef()
@@ -56,7 +56,7 @@ export const Login = () => {
                     <fieldset style={{
                         textAlign:"center"
                     }}>
-                          <button className="btn btn-1 " type="submit">Sign In</button>
+                          <Button className="btn btn-1 " type="submit">Sign In</Button>
                     </fieldset>
                 </form>
             </section>

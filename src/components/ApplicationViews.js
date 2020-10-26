@@ -1,10 +1,11 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { CategoryProvider } from "./categories/CategoryProvider";
-import CategoryForm from "./categories/CategoryForm";
-import CategoryList from "./categories/CategoryList";
-import { PostProvider } from "./posts/PostProvider";
-import { UserPostList } from "./posts/UserPostList";
+import React from "react"
+import { Route, Redirect } from "react-router-dom"
+import { CategoryProvider } from "./categories/CategoryProvider"
+import CategoryForm from "./categories/CategoryForm"
+import CategoryList from "./categories/CategoryList"
+import { PostForm } from "./posts/postForm"
+import { PostProvider } from "./posts/PostProvider"
+import { UserPostList} from "./posts/UserPostList"
 import TagForm from "./tags/TagForm";
 import TagList from "./tags/TagList";
 import { TagProvider } from "./tags/TagProvider";
@@ -23,25 +24,32 @@ export const ApplicationViews = () => {
         }}
       />
 
-      <main
-        style={{
-          margin: "5rem 2rem",
-          lineHeight: "1.75rem",
-        }}
-      >
+      <main style={{
+            margin: "5rem 2rem",
+            lineHeight: "1.75rem"
+        }}>
         <PostProvider>
+          <CategoryProvider>
+            <Route path="/posts/create" component={PostForm} />
+          </CategoryProvider>
+        </PostProvider>
+        <PostProvider>
+          <CategoryProvider>
           <Route exact path="/" component={PostList} />
+          </CategoryProvider>
         </PostProvider>
 
 				<PostTagProvider>
 					<TagProvider>
 						<PostProvider>
-							<Route path="/my-posts" component={UserPostList} />
-							<Route
-								exact
-								path="/posts/:postId(\d+)"
-								render={(props) => <PostDetail {...props} />}
-							/>
+							<CategoryProvider>
+								<Route path="/my-posts" component={UserPostList} />
+								<Route
+									exact
+									path="/posts/:postId(\d+)"
+									render={(props) => <PostDetail {...props} />}
+								/>
+							</CategoryProvider>
 						</PostProvider>
 					</TagProvider>
 				</PostTagProvider>
