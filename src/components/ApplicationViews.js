@@ -24,10 +24,7 @@ export const ApplicationViews = () => {
         }}
       />
 
-      <main style={{
-            margin: "5rem 2rem",
-            lineHeight: "1.75rem"
-        }}>
+      <main className="container">
         <PostProvider>
           <CategoryProvider>
             <Route path="/posts/create" component={PostForm} />
