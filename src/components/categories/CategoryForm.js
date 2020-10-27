@@ -5,15 +5,22 @@ import NewCategoryButton from "./NewCategoryButton";
 
 export default (props) => {
   const { createCategory, categories } = useContext(CategoryContext);
-  const categoryNames = categories.map((c) => c.name);
+  const categoryNames = categories.map((c) => c.name.toLowerCase());
   const categoryRef = useRef("");
   const handleSubmitButtonPress = (e) => {
-    if (categoryRef.current.value) e.preventDefault();
-    const newCategory = {
-      name: categoryRef.current.value,
-    };
-    createCategory(newCategory);
-    categoryRef.current.value = "";
+    if (
+      !categoryNames.includes(categoryRef.current.value.toLowerCase().trim()) &&
+      categoryRef.current.value.trim().length
+    ) {
+      e.preventDefault();
+      const newCategory = {
+        name: categoryRef.current.value,
+      };
+      createCategory(newCategory);
+      categoryRef.current.value = "";
+    } else {
+      alert("Please enter a valid category name");
+    }
   };
 
   return (
@@ -27,8 +34,7 @@ export default (props) => {
             ref={categoryRef}
           />
         </FormGroup>
-              <NewCategoryButton action={handleSubmitButtonPress} />
-              <section>{categoryNames.map(cn => <div>{cn}</div> )}</section>
+        <NewCategoryButton action={handleSubmitButtonPress} />
       </Form>
     </>
   );
