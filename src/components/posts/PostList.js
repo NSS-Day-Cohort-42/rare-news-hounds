@@ -5,7 +5,6 @@ import { PostContext } from "./PostProvider"
 import { PostListItem } from "./PostListItem"
 import CategoryDropDown from "./CategoryDropDown"
 import "./PostList.css"
-import "./PostListItem.css"
 
 export const PostList = props => {
     const { getPosts, posts } = useContext(PostContext)
