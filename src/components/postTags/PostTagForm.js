@@ -10,13 +10,16 @@ export const PostTagForm = ({postId, endEditTags}) => {
 	const { tags, getTags } = useContext(TagContext)
 	const { getPostTagsByPostId, addPostTag, deletePostTag } = useContext(PostTagContext)
 	const [ thisPostTags, setThisPostTags ] = useState([]) 
-	const [ selectedPostTags, setSelectedPostTags ] = useState([]) 
+  const [ selectedPostTags, setSelectedPostTags ] = useState([]) 
+  const [ isSubmitting, setIsSubmitting ] = useState(false)
 
 	const handleChange = (val) => {
 		setSelectedPostTags(val)
 	}
 
 	const savePostTags = () => {
+    setIsSubmitting(true)
+
     // Iterate through the selected tag ids and save any tags that weren't initially selected.
     const addPostTagPromises = selectedPostTags
       .filter(selectedTagId => !thisPostTags.some(pt => pt.tag_id === selectedTagId))
@@ -36,6 +39,7 @@ export const PostTagForm = ({postId, endEditTags}) => {
 
     const allPromises = [ ...addPostTagPromises, ...deletePostTagPromises ]
     Promise.all(allPromises)
+      .then(() => setIsSubmitting(false))
       .then(endEditTags)
 	}
 
@@ -64,9 +68,10 @@ export const PostTagForm = ({postId, endEditTags}) => {
 			</ToggleButtonGroup>
 				<div className='post_tag_controls'>
 					<Button variant='secondary'
-					onClick={endEditTags}
+            onClick={endEditTags}
+            disabled={isSubmitting}
 					>Cancel</Button>
-					<Button onClick={savePostTags}>Save</Button>
+					<Button onClick={savePostTags} disabled={isSubmitting}>Save</Button>
 				</div>
 			</div>
 		</>
