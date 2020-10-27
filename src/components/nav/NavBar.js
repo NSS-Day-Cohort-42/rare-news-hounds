@@ -7,7 +7,7 @@ import Logo from "./rare.jpeg"
 
 export const NavBar = () => {
     return (
-      <Navbar expand="lg">
+      <Navbar expand="md">
         <Navbar.Brand as={Link} to="/">
           <img className="navbar__logo" src={Logo} alt="Rare Publishing Platform" />
         </Navbar.Brand>
