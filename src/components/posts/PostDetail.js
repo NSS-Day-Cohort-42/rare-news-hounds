@@ -4,6 +4,7 @@ import { Image, Row } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
 import { PostTagManager } from "../postTags/PostTagManager"
+import EditPostButton from "./EditPostButton";
 import "./PostDetail.css";
 
 export default (props) => {
@@ -38,7 +39,10 @@ export default (props) => {
           </div>
           <div className="postDetail__authorOptions">
             {currentUser === post.user_id && (
+              <>
               <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />
+              <EditPostButton postId={post.id} />
+              </>
             )}
           </div>
         </div>
