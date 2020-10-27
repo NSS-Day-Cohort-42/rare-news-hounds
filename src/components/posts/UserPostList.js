@@ -8,10 +8,13 @@ import "./PostList.css"
 export const UserPostList = props => {
   const { posts, getPostsByUserId } = useContext(PostContext)
 
-  useEffect(() => {
-    getPostsByUserId(localStorage.getItem('rare_user_id'))
-  }, [])
+  posts.sort((a,b) => b.creation_time - a.creation_time)
 
+
+  useEffect(() => {
+    getPostsByUserId(localStorage.getItem('rare_user_id')) 
+  }, [])
+ 
   return (
     <div className="postList">
       <h1 className="text-center my-4">My Posts</h1>
