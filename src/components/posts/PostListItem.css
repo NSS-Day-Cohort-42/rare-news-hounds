@@ -9,6 +9,7 @@
 .postListItem {
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
 }
 
 .postListItem p {
@@ -18,7 +19,6 @@
 .postListItem__title {
   font-size: 1.5rem;
   font-weight: bold;
-  margin-right: 0.5rem;
 }
 
 .postListItem__author {

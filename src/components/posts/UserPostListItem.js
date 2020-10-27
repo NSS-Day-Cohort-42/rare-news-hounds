@@ -18,11 +18,11 @@ export const UserPostListItem = props => {
   return (
     <div className="postListItem">
       <div className="postListItem--col-left">
-        <p className="postListItem__title">{title}</p>
-        <p className="postListItem__author">{user.first_name} {user.last_name}</p>
+        <p className="postListItem__title mr-2">{title}</p>
+        <p className="postListItem__author mr-1">{user.first_name} {user.last_name}</p>
       </div>
       <div className="postListItem--col-right">
-        <p className="postListItem__category">{category.name}</p>
+        <p className="postListItem__category mr-1">{category.name}</p>
         <ConfirmableDeleteButton onDelete={() => handleDelete(id)} />
         <EditPostButton postId={id} />
       </div>

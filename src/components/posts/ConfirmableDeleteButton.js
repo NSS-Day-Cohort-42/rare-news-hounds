@@ -22,7 +22,7 @@ export const ConfirmableDeleteButton = props => {
 
   const renderConfirmDeleteButtons = () => (
     <>
-      <Button variant="secondary" onClick={() => setIsDeleting(false)}>
+      <Button className="mr-1" variant="secondary" onClick={() => setIsDeleting(false)}>
         Cancel
       </Button>
 
@@ -37,7 +37,7 @@ export const ConfirmableDeleteButton = props => {
   // is rendered within a Link, and if the default event behavior was allowed, clicking on the delete button
   // in that context would cause the user to navigate to that Link's "to" prop
   return (
-    <div className="confirmableDeleteButtonContainer" onClick={e => e.preventDefault()}>
+    <div className="confirmableDeleteButtonContainer mx-2" onClick={e => e.preventDefault()}>
       { isDeleting ? renderConfirmDeleteButtons() : renderInitialDeleteButton() }
     </div>
   )
