@@ -1,8 +1,3 @@
-.postList a,
-.postList a:hover {
-  text-decoration: none;
-}
-
 .postListItem,
 .postListItem--col-left,
 .postListItem--col-right {

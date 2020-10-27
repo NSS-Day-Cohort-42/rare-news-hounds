@@ -4,20 +4,16 @@ import ListGroup from "react-bootstrap/ListGroup"
 import { PostContext } from "./PostProvider"
 import { PostListItem } from "./PostListItem"
 import CategoryDropDown from "./CategoryDropDown"
-
+import "./PostList.css"
+import "./PostListItem.css"
 
 export const PostList = props => {
     const { getPosts, posts } = useContext(PostContext)
 
-    
-
-    // Initialization effect hook -> Go get animal data
+    // Initialization effect hook -> Go get post data
     useEffect(() => {
         getPosts()
     }, [])
-
-  
-    
 
     return (
         <div className="postList">

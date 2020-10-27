@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import ListGroup from "react-bootstrap/ListGroup"
 import { PostContext } from "./PostProvider"
 import { UserPostListItem } from "./UserPostListItem"
+import "./PostList.css"
 
 export const UserPostList = props => {
   const { posts, getPostsByUserId } = useContext(PostContext)
