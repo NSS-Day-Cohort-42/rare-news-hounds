@@ -28,16 +28,11 @@ export default (props) => {
       <Row>
         <Col sm="10">
           <FormGroup>
-            <Row>
-              <Form.Label column sm="1" className="text-right">Tag</Form.Label>
-              <Col sm="11">
-                <Form.Control
-                  type="text"
-                  placeholder="Enter a new tag name"
-                  ref={tagRef}
-                />
-              </Col>
-            </Row>
+            <Form.Control
+              type="text"
+              placeholder="Enter a new tag name"
+              ref={tagRef}
+            />
           </FormGroup>
         </Col>
 

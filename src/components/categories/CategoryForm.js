@@ -28,16 +28,11 @@ export default (props) => {
       <Row>
         <Col sm="10">
           <FormGroup>
-            <Row>
-              <Form.Label column sm="1" className="text-right">Category</Form.Label>
-              <Col sm="11">
-                <Form.Control
-                  type="text"
-                  placeholder="Enter a new category name"
-                  ref={categoryRef}
-                />
-              </Col>
-            </Row>
+            <Form.Control
+              type="text"
+              placeholder="Enter a new category name"
+              ref={categoryRef}
+            />
           </FormGroup>
         </Col>
 
