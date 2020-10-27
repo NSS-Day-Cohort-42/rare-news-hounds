@@ -1,31 +1,12 @@
-# Rare: The Publishing Platform for the Discerning Writer
+# Rare: The Puplishing Platform for the Discerning Doggo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a learning project. Our goals were to practice full stack development by creating a react client and python-sql back end. This project was completed in a 6 day Agile-SCRUM sprint.
 
-## Utilities
+## Installation Instructions 
+Requirements:
+NPM (https://github.com/NSS-Day-Cohort-42/rare-server-news-hounds)
 
-In the `utils` directory, there is a **`HumanDate`** component that you can use anywhere in your application to display a human-friendly date instead of the unfriendly format that is stored in the API database.
-
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
+1. In the terminal, run `git clone https://github.com/NSS-Day-Cohort-42/rare-news-hounds.git`
+1. Run `npm install`
+1. Run `npm start`
+1. This will bring up a browser window showing the react app, but you won't be able to log into the site or access data without running the database side of this project. To download and start the server, go to https://github.com/NSS-Day-Cohort-42/rare-server-news-hounds, and follow the readme there.
