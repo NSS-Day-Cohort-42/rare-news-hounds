@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Image, Row } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
+import { PostTagManager } from "../postTags/PostTagManager"
 import "./PostDetail.css";
 
 export default (props) => {
@@ -50,6 +51,7 @@ export default (props) => {
         <Image src={post.image} fluid />
       </div>
       <p className="postDetail__content">{post.content}</p>
+			<PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id}/>
     </div>
   );
 };
