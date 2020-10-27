@@ -78,7 +78,7 @@ export const PostForm = (props) => {
 
     return (
         <Form>
-            <h1 className="text-center">
+            <h1 className="text-center my-4">
               { isEditMode ? "Edit Post" : "Create New Post" }
             </h1>
             <FormGroup controlId ="title">
