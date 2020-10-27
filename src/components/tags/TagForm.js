@@ -8,11 +8,11 @@ export default (props) => {
   const tagNames = tags.map((t) => t.name.toLowerCase());
   const tagRef = useRef("");
   const handleSubmitButtonPress = (e) => {
+    e.preventDefault();
     if (
       !tagNames.includes(tagRef.current.value.toLowerCase().trim()) &&
       tagRef.current.value.trim().length
     ) {
-      e.preventDefault();
       const newTag = {
         name: tagRef.current.value,
       };
@@ -24,7 +24,7 @@ export default (props) => {
   };
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmitButtonPress}>
       <FormGroup>
         <Form.Label>Tag</Form.Label>
         <Form.Control
@@ -33,7 +33,7 @@ export default (props) => {
           ref={tagRef}
         />
       </FormGroup>
-      <NewTagButton action={handleSubmitButtonPress} />
+      <NewTagButton />
     </Form>
   );
 };

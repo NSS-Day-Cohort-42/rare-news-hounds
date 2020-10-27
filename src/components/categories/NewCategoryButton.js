@@ -1,9 +1,9 @@
 import React from "react"
 import { Button } from "react-bootstrap"
 
-export default (props) => {
+export default () => {
     return (
-        <Button onClick={props.action}>
+        <Button type="submit">
             Add Category
         </Button>
     )

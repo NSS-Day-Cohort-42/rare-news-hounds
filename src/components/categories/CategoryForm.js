@@ -8,11 +8,11 @@ export default (props) => {
   const categoryNames = categories.map((c) => c.name.toLowerCase());
   const categoryRef = useRef("");
   const handleSubmitButtonPress = (e) => {
+    e.preventDefault();
     if (
       !categoryNames.includes(categoryRef.current.value.toLowerCase().trim()) &&
       categoryRef.current.value.trim().length
     ) {
-      e.preventDefault();
       const newCategory = {
         name: categoryRef.current.value,
       };
@@ -25,7 +25,7 @@ export default (props) => {
 
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSubmitButtonPress}>
         <FormGroup>
           <Form.Label>Category</Form.Label>
           <Form.Control
@@ -34,7 +34,7 @@ export default (props) => {
             ref={categoryRef}
           />
         </FormGroup>
-        <NewCategoryButton action={handleSubmitButtonPress} />
+        <NewCategoryButton />
       </Form>
     </>
   );
