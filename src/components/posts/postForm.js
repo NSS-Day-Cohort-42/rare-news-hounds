@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { CategoryContext } from "../categories/CategoryProvider";
 import { PostContext } from "./PostProvider";
 import CancelEditButton from "./CancelEditButton";
+import { Row } from "react-bootstrap";
 
 export const PostForm = (props) => {
     const {createPost, updatePost, getPostById} = useContext(PostContext)
@@ -108,12 +109,16 @@ export const PostForm = (props) => {
                 <Form.Label>Content</Form.Label>
                 <Form.Control as="textarea" rows={3} placeholder="Enter post..." ref={contentRef} />
             </FormGroup>
-            <Button type="submit" 
-            onClick={e=> {
-                e.preventDefault()
-                constructNewPost()
-            }}>Save Post</Button>
-            {isEditMode && <CancelEditButton action={props}/>}
+            <Row className="justify-content-end">
+                {isEditMode && <CancelEditButton action={props}/>}
+                <Button variant="success" 
+                    type="submit" 
+                    className="ml-2"
+                    onClick={e=> {
+                        e.preventDefault()
+                        constructNewPost()
+                    }}>Save Post</Button>
+            </Row>
         </Form>    
     )
 
