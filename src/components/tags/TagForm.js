@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import { Form, FormGroup } from "react-bootstrap";
+import { Form, FormGroup, Row, Col } from "react-bootstrap";
 import { TagContext } from "./TagProvider";
 import NewTagButton from "./NewTagButton";
 
@@ -25,15 +25,21 @@ export default (props) => {
 
   return (
     <Form onSubmit={handleSubmitButtonPress}>
-      <FormGroup>
-        <Form.Label>Tag</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter a new tag name"
-          ref={tagRef}
-        />
-      </FormGroup>
-      <NewTagButton />
+      <Row>
+        <Col sm="10">
+          <FormGroup>
+            <Form.Control
+              type="text"
+              placeholder="Enter a new tag name"
+              ref={tagRef}
+            />
+          </FormGroup>
+        </Col>
+
+        <Col sm="2">
+          <NewTagButton />
+        </Col>
+      </Row>
     </Form>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import { Form, FormGroup } from "react-bootstrap";
+import { Form, FormGroup, Row, Col } from "react-bootstrap";
 import { CategoryContext } from "./CategoryProvider";
 import NewCategoryButton from "./NewCategoryButton";
 
@@ -24,18 +24,22 @@ export default (props) => {
   };
 
   return (
-    <>
-      <Form onSubmit={handleSubmitButtonPress}>
-        <FormGroup>
-          <Form.Label>Category</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter a new category name"
-            ref={categoryRef}
-          />
-        </FormGroup>
-        <NewCategoryButton />
-      </Form>
-    </>
+    <Form onSubmit={handleSubmitButtonPress}>
+      <Row>
+        <Col sm="10">
+          <FormGroup>
+            <Form.Control
+              type="text"
+              placeholder="Enter a new category name"
+              ref={categoryRef}
+            />
+          </FormGroup>
+        </Col>
+
+        <Col sm="2">
+          <NewCategoryButton />
+        </Col>
+      </Row>
+    </Form>
   );
 };
