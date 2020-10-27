@@ -86,7 +86,7 @@ export const PostForm = (props) => {
                 <Form.Control type="text" placeholder="Enter Title" ref={titleRef} />
             </FormGroup>
             <FormGroup controlId="categorySelect">
-            <Form.Label>Categories</Form.Label>
+            <Form.Label>Category</Form.Label>
                 <Form.Control as="select" ref={categoryRef}>
                 <option value ="0">Select a category</option>
                 {categories.map(c => (
@@ -97,7 +97,7 @@ export const PostForm = (props) => {
                 </Form.Control>
             </FormGroup>
             <FormGroup>
-                <Form.Label>Publish Date:</Form.Label>
+                <Form.Label>Publish Date</Form.Label>
                 <Form.Control type="date" ref={publicationRef} disabled={isEditMode} /> 
             </FormGroup>
             <FormGroup controlId ="text">
