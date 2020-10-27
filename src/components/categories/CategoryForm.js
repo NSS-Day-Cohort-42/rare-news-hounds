@@ -4,24 +4,32 @@ import { CategoryContext } from "./CategoryProvider";
 import NewCategoryButton from "./NewCategoryButton";
 
 export default (props) => {
-    const {createCategory} = useContext(CategoryContext)
-    const categoryRef = useRef("")  
-    const handleSubmitButtonPress = (e) => {
-        e.preventDefault()
-        const newCategory = {
-            name: categoryRef.current.value
-        }
-        createCategory(newCategory)
-        categoryRef.current.value = ""
-    }    
+  const { createCategory, categories } = useContext(CategoryContext);
+  const categoryNames = categories.map((c) => c.name);
+  const categoryRef = useRef("");
+  const handleSubmitButtonPress = (e) => {
+    if (categoryRef.current.value) e.preventDefault();
+    const newCategory = {
+      name: categoryRef.current.value,
+    };
+    createCategory(newCategory);
+    categoryRef.current.value = "";
+  };
 
-return (
-  <Form>
-    <FormGroup>
-      <Form.Label>Category</Form.Label>
-          <Form.Control type="text" placeholder="Enter a new category name" ref={categoryRef}/>
+  return (
+    <>
+      <Form>
+        <FormGroup>
+          <Form.Label>Category</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter a new category name"
+            ref={categoryRef}
+          />
         </FormGroup>
-        <NewCategoryButton action={handleSubmitButtonPress} />
-    </Form>
-)
+              <NewCategoryButton action={handleSubmitButtonPress} />
+              <section>{categoryNames.map(cn => <div>{cn}</div> )}</section>
+      </Form>
+    </>
+  );
 };

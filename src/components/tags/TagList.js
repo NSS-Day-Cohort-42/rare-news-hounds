@@ -12,8 +12,8 @@ export default (props) => {
   return (
     <>
       <article>
-        {tags.map((c) => (
-          <Tag tag={c} key={c.id} />
+        {tags.map((t) => (
+          <Tag tag={t} key={t.id} />
         ))}
       </article>
     </>
