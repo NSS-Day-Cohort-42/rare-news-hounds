@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
 import "./NavBar.css"
-import Logo from "./rare.jpeg"
+import Logo from "./newshound.jpg"
 
 export const NavBar = () => {
     return (
