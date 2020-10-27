@@ -5,6 +5,7 @@ import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
 import { CategoryContext } from "../categories/CategoryProvider";
 import { PostContext } from "./PostProvider";
+import CancelEditButton from "./CancelEditButton";
 
 export const PostForm = (props) => {
     const {createPost, updatePost, getPostById} = useContext(PostContext)
@@ -109,6 +110,7 @@ export const PostForm = (props) => {
                 e.preventDefault()
                 constructNewPost()
             }}>Save Post</Button>
+            {isEditMode && <CancelEditButton action={props}/>}
         </Form>    
     )
 
