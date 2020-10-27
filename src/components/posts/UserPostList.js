@@ -7,7 +7,7 @@ import { UserPostListItem } from "./UserPostListItem"
 export const UserPostList = props => {
   const { posts, getPostsByUserId } = useContext(PostContext)
 
-  const sortPostsByCreation = posts.sort((a,b) => b.creation_time - a.creation_time)
+  posts.sort((a,b) => b.creation_time - a.creation_time)
 
 
   useEffect(() => {

@@ -10,7 +10,7 @@ export const PostList = props => {
     const { getPosts, posts } = useContext(PostContext)
 
     
-    const sortPostsByCreation = posts.sort((a,b) => b.creation_time - a.creation_time)
+    posts.sort((a,b) => b.creation_time - a.creation_time)
 
     // Initialization effect hook -> Go get animal data
     useEffect(() => {
