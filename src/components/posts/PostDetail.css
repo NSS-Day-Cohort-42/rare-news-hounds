@@ -18,6 +18,10 @@
     margin: 10px;
 }
 
+.postDetail__category {
+  font-size: 1.5rem;
+}
+
 .btn-primary {
     margin-left: 10px;
 }

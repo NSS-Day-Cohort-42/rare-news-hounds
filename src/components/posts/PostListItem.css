@@ -27,6 +27,10 @@
   text-transform: uppercase;
 }
 
+.postListItem__category {
+  font-size: 1.25rem;
+}
+
 .postListItem__author,
 .postListItem__category,
 .postListItem .confirmableDeleteButtonContainer {

@@ -1,4 +1,5 @@
 import React from "react"
+import Badge from "react-bootstrap/Badge"
 import "./PostListItem.css"
 
 export const PostListItem = props => {
@@ -12,7 +13,11 @@ export const PostListItem = props => {
         <p className="postListItem__author mr-1">{user.first_name} {user.last_name}</p>
       </div>
       <div className="postListItem--col-right">
-        <p className="postListItem__category">{category.name}</p>
+        <p className="postListItem__category">
+          <Badge variant="info">
+            {category.name}
+          </Badge>
+        </p>
       </div>
     </div>
   )
