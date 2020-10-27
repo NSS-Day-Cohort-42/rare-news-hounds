@@ -16,7 +16,9 @@ NPM (https://github.com/NSS-Day-Cohort-42/rare-server-news-hounds)
 1. This will bring up a browser window showing the react app, but you won't be able to log into the site or access data without running the database side of this project. To download and start the server, go to https://github.com/NSS-Day-Cohort-42/rare-server-news-hounds, and follow the readme there.
 1. Once you are running the sample database, create a new user, and log in to view the site. 🦮 Good Boy!!!🦮 Give yourself a treat!🦮 
 
-## Site Screenshots
+## User Experience
 
+Here is a quick overview of the user experience! Users can create posts, filter them by category, and add tags.
 
+![screen capture](src/screencapture/RareFilteringAndTagging.gif)
 
