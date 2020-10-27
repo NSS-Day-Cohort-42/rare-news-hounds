@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useRef} from "react"
-import { Form, FormGroup } from "react-bootstrap";
+import { Form, FormGroup, Row, Col } from "react-bootstrap";
 import { CategoryContext } from "../categories/CategoryProvider";
 import { PostContext } from "./PostProvider";
 
@@ -22,8 +22,9 @@ export default (props) => {
     }
 
     return (
-        <FormGroup controlId="categorySelect">
-        <Form.Label>Filter categories</Form.Label>
+        <FormGroup as={Row} controlId="categorySelect">
+          <Form.Label column sm="8" className="text-right">Category:</Form.Label>
+          <Col sm="4">
             <Form.Control as="select" ref={categoryRef} onChange={evt => {
                 evt.preventDefault()
                 filterByCategory(categoryRef.current.value)
@@ -35,6 +36,7 @@ export default (props) => {
                 </option>
             ))}
             </Form.Control>
+          </Col>
         </FormGroup>
     )
 }

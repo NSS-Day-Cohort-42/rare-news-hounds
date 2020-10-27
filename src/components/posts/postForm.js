@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { CategoryContext } from "../categories/CategoryProvider";
 import { PostContext } from "./PostProvider";
 import CancelEditButton from "./CancelEditButton";
+import { Row } from "react-bootstrap";
 
 export const PostForm = (props) => {
     const {createPost, updatePost, getPostById} = useContext(PostContext)
@@ -78,12 +79,15 @@ export const PostForm = (props) => {
 
     return (
         <Form>
+            <h1 className="text-center my-4">
+              { isEditMode ? "Edit Post" : "Create New Post" }
+            </h1>
             <FormGroup controlId ="title">
                 <Form.Label>Title</Form.Label>
                 <Form.Control type="text" placeholder="Enter Title" ref={titleRef} />
             </FormGroup>
             <FormGroup controlId="categorySelect">
-            <Form.Label>Categories</Form.Label>
+            <Form.Label>Category</Form.Label>
                 <Form.Control as="select" ref={categoryRef}>
                 <option value ="0">Select a category</option>
                 {categories.map(c => (
@@ -94,7 +98,7 @@ export const PostForm = (props) => {
                 </Form.Control>
             </FormGroup>
             <FormGroup>
-                <Form.Label>Publish Date:</Form.Label>
+                <Form.Label>Publish Date</Form.Label>
                 <Form.Control type="date" ref={publicationRef} disabled={isEditMode} /> 
             </FormGroup>
             <FormGroup controlId ="text">
@@ -105,12 +109,16 @@ export const PostForm = (props) => {
                 <Form.Label>Content</Form.Label>
                 <Form.Control as="textarea" rows={3} placeholder="Enter post..." ref={contentRef} />
             </FormGroup>
-            <Button type="submit" 
-            onClick={e=> {
-                e.preventDefault()
-                constructNewPost()
-            }}>Save Post</Button>
-            {isEditMode && <CancelEditButton action={props}/>}
+            <Row className="justify-content-end">
+                {isEditMode && <CancelEditButton action={props}/>}
+                <Button variant="success" 
+                    type="submit" 
+                    className="ml-2"
+                    onClick={e=> {
+                        e.preventDefault()
+                        constructNewPost()
+                    }}>Save Post</Button>
+            </Row>
         </Form>    
     )
 

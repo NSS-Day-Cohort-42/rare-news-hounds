@@ -1,0 +1,4 @@
+.post_tag_controls {
+	display: flex;
+	justify-content: flex-end;
+}

@@ -1,0 +1,4 @@
+.postList a,
+.postList a:hover {
+  text-decoration: none;
+}

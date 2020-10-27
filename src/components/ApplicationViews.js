@@ -11,6 +11,7 @@ import TagList from "./tags/TagList";
 import { TagProvider } from "./tags/TagProvider";
 import PostDetail from "./posts/PostDetail";
 import { PostList } from "./posts/PostList";
+import { PostTagProvider } from "./postTags/PostTagProvider";
 
 export const ApplicationViews = () => {
   return (
@@ -23,10 +24,7 @@ export const ApplicationViews = () => {
         }}
       />
 
-      <main style={{
-            margin: "5rem 2rem",
-            lineHeight: "1.75rem"
-        }}>
+      <main className="container">
         <PostProvider>
           <CategoryProvider>
             <Route path="/posts/create" component={PostForm} />
@@ -39,18 +37,25 @@ export const ApplicationViews = () => {
           <Route exact path="/" component={PostList} />
           </CategoryProvider>
         </PostProvider>
-        <CategoryProvider>
-        <PostProvider>
-          <Route path="/my-posts" component={UserPostList} />
-          <Route
-            exact
-            path="/posts/:postId(\d+)"
-            render={(props) => <PostDetail {...props} />}
-          />
-        </PostProvider>
-        </CategoryProvider>
+
+				<PostTagProvider>
+					<TagProvider>
+						<PostProvider>
+							<CategoryProvider>
+								<Route path="/my-posts" component={UserPostList} />
+								<Route
+									exact
+									path="/posts/:postId(\d+)"
+									render={(props) => <PostDetail {...props} />}
+								/>
+							</CategoryProvider>
+						</PostProvider>
+					</TagProvider>
+				</PostTagProvider>
+
         <CategoryProvider>
           <Route path="/categories">
+            <h1 className="text-center my-4">Categories</h1>
             <CategoryForm />
             <CategoryList />
           </Route>
@@ -58,6 +63,7 @@ export const ApplicationViews = () => {
 
         <TagProvider>
           <Route path="/tags">
+            <h1 className="text-center my-4">Tags</h1>
             <TagForm />
             <TagList />
           </Route>

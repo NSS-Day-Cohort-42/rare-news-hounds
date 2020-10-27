@@ -3,11 +3,13 @@
 .postListItem--col-right {
   display: flex;
   align-items: center;
+  line-height: 1;
 }
 
 .postListItem {
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
 }
 
 .postListItem p {
@@ -17,4 +19,20 @@
 .postListItem__title {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.postListItem__author {
+  align-self: flex-end;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.postListItem__category {
+  font-size: 1.25rem;
+}
+
+.postListItem__author,
+.postListItem__category,
+.postListItem .confirmableDeleteButtonContainer {
+  color: #333;
 }
