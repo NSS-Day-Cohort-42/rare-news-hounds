@@ -55,6 +55,7 @@ export const ApplicationViews = () => {
 
         <CategoryProvider>
           <Route path="/categories">
+            <h1 className="text-center">Categories</h1>
             <CategoryForm />
             <CategoryList />
           </Route>
@@ -62,6 +63,7 @@ export const ApplicationViews = () => {
 
         <TagProvider>
           <Route path="/tags">
+            <h1 className="text-center">Tags</h1>
             <TagForm />
             <TagList />
           </Route>

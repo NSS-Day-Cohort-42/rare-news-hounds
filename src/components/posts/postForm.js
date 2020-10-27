@@ -78,6 +78,9 @@ export const PostForm = (props) => {
 
     return (
         <Form>
+            <h1 className="text-center">
+              { isEditMode ? "Edit Post" : "Create New Post" }
+            </h1>
             <FormGroup controlId ="title">
                 <Form.Label>Title</Form.Label>
                 <Form.Control type="text" placeholder="Enter Title" ref={titleRef} />

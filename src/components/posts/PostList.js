@@ -16,6 +16,7 @@ export const PostList = props => {
 
     return (
         <div className="postList">
+          <h1 className="text-center">All Posts</h1>
           <CategoryDropDown action={props}/>
           <ListGroup>
             { posts.map(post => (
