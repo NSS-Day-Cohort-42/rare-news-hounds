@@ -9,7 +9,11 @@ import "./PostList.css"
 export const PostList = props => {
     const { getPosts, posts } = useContext(PostContext)
 
+
+    posts.sort((a,b) => b.creation_time - a.creation_time)
+
     // Initialization effect hook -> Go get post data
+
     useEffect(() => {
         getPosts()
     }, [])
