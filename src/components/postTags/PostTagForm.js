@@ -17,30 +17,26 @@ export const PostTagForm = ({postId, endEditTags}) => {
 	}
 
 	const savePostTags = () => {
-		
-		// Iterate through the selected tag ids and save any tags that weren't initially selected.
-		selectedPostTags.forEach( selectedTagId => {
-			const matchingPostTag = thisPostTags.find( pt => pt.tag_id === selectedTagId)
-			if (matchingPostTag === undefined) {
-				const newPostTag = {
-					post_id : postId,
-					tag_id : selectedTagId
-				}
-				addPostTag(newPostTag)
-			}
-		})
+    // Iterate through the selected tag ids and save any tags that weren't initially selected.
+    const addPostTagPromises = selectedPostTags
+      .filter(selectedTagId => !thisPostTags.some(pt => pt.tag_id === selectedTagId))
+      .map(selectedTagId => {
+        const newPostTag = {
+          post_id: postId,
+          tag_id: selectedTagId
+        };
 
-		// Iterate through the post tags that were initially selected, and delete the ones that were removed.
-		thisPostTags.forEach( pt => {
-			const matchingSelection = selectedPostTags.find( selectedTagId => selectedTagId === pt.tag_id )
-			if (matchingSelection === undefined) {
-				deletePostTag(pt.id)
-			}
+        return addPostTag(newPostTag)
+      })
 
-	})
-	endEditTags()
+    // Iterate through the post tags that were initially selected, and delete the ones that were removed.
+    const deletePostTagPromises = thisPostTags
+      .filter(pt => !selectedPostTags.some(selectedTagId => selectedTagId === pt.tag_id))
+      .map(pt => deletePostTag(pt.id))
 
-
+    const allPromises = [ ...addPostTagPromises, ...deletePostTagPromises ]
+    Promise.all(allPromises)
+      .then(endEditTags)
 	}
 
 	useEffect( () => {
