@@ -27,7 +27,7 @@ export const PostList = props => {
               <ListGroup.Item key={post.id} as={Link} to={`/posts/${post.id}`}>
                 <PostListItem post={post} />
               </ListGroup.Item>
-            ))}
+            )).reverse()}
           </ListGroup>
         </div>
       )

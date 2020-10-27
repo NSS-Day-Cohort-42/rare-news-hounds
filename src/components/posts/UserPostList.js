@@ -10,7 +10,7 @@ export const UserPostList = props => {
   useEffect(() => {
     getPostsByUserId(localStorage.getItem('rare_user_id'))
   }, [])
-
+ 
   return (
     <div className="userPostList">
       <ListGroup>
@@ -18,7 +18,7 @@ export const UserPostList = props => {
           <ListGroup.Item key={post.id} as={Link} to={`/posts/${post.id}`}>
             <UserPostListItem post={post} />
           </ListGroup.Item>
-        ))}
+        )).reverse()}
       </ListGroup>
     </div>
   )
