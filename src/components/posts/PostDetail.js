@@ -7,7 +7,6 @@ import { PostTagManager } from "../postTags/PostTagManager";
 import EditPostButton from "./EditPostButton";
 import { CommentList } from "../comments/CommentList";
 import "./PostDetail.css";
-import { CommentContext } from "../comments/CommentProvider";
 import CommentForm from "../comments/CommentForm";
 
 export default (props) => {

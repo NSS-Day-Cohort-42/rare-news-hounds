@@ -8,7 +8,6 @@ export default ({postId}) => {
     // be useful soon for default text
     const [comment, setComment] = useState({ content: "" })
     const { createComment } = useContext(CommentContext)
-    const commentRef = useRef("")
 
     const handleTextareaChange = (e) => {
         const stateComment = Object.assign({}, comment)
@@ -35,7 +34,7 @@ export default ({postId}) => {
     
     return (
         <Form>
-            <Form.Control as="textarea" onChange={handleTextareaChange} value={comment.content} name='content' ref={commentRef}>
+            <Form.Control as="textarea" onChange={handleTextareaChange} value={comment.content} name='content'>
             </Form.Control>
             <Button type="submit" onClick={handleSubmitCommentClick}>WOOF</Button>
         </Form>
