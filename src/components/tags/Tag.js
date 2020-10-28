@@ -1,9 +1,12 @@
 import React from "react";
+import Badge from "react-bootstrap/Badge"
 
 export default ({ tag }) => {
   return (
-    <section>
-      <div>{tag.name}</div>
-    </section>
+    <h3>
+      <Badge pill variant="primary" className="m-1">
+        {tag.name}
+      </Badge> 
+    </h3>
   );
 };

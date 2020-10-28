@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useContext, useState, useEffect } from "react";
-import { Image, Row } from "react-bootstrap";
+import { Image, Badge } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
 import { PostTagManager } from "../postTags/PostTagManager"
@@ -48,14 +48,18 @@ export default (props) => {
         </div>
         <div className="postDetail__header--row">
           <p className="postDetail__date">{date}</p>
-          <p className="postDetail__category">{post.category.name}</p>
+          <p className="postDetail__category">
+            <Badge variant="info">
+              {post.category.name}
+            </Badge>
+          </p>
         </div>
       </div>
       <div className="postDetail__headerimage">
         <Image src={post.image} fluid />
       </div>
       <p className="postDetail__content">{post.content}</p>
-			<PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id}/>
+      { post.id && <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id}/> }
     </div>
   );
 };

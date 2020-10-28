@@ -24,10 +24,7 @@ export const ApplicationViews = () => {
         }}
       />
 
-      <main style={{
-            margin: "5rem 2rem",
-            lineHeight: "1.75rem"
-        }}>
+      <main className="container">
         <PostProvider>
           <CategoryProvider>
             <Route path="/posts/create" component={PostForm} />
@@ -58,6 +55,7 @@ export const ApplicationViews = () => {
 
         <CategoryProvider>
           <Route path="/categories">
+            <h1 className="text-center my-4">Categories</h1>
             <CategoryForm />
             <CategoryList />
           </Route>
@@ -65,6 +63,7 @@ export const ApplicationViews = () => {
 
         <TagProvider>
           <Route path="/tags">
+            <h1 className="text-center my-4">Tags</h1>
             <TagForm />
             <TagList />
           </Route>
