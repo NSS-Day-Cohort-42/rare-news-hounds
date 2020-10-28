@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Category from "./Category";
 import { CategoryContext } from "./CategoryProvider";
-import { Button, Container, Col} from "react-bootstrap";
+import { Button, Container, Col, ListGroup} from "react-bootstrap";
 import { ConfirmableDeleteButton } from "../posts/ConfirmableDeleteButton";
 // import "./Category.css"
 
@@ -29,24 +29,21 @@ export default (props) => {
     <>
       <article>
         <h2 className="my-4 text-center">Existing Categories</h2>
-        <Container fluid>
-
           {categories.map((c) => (
-            <>
-            <Row className="">
-              <Col>
-            <Category category={c} key={c.id} />
-            </Col>
-            
-            <Col className="d-flex justify-content-end mb-3">
-              <ConfirmableDeleteButton />
-              <Button classname="mb-1">Edit</Button>
-            </Col>
-            </Row>
-            </>
+            <ListGroup>
+              <ListGroup.Item className="mb-2">
+              <Row>
+                <Col className="mt-2">
+              <Category category={c} key={c.id} />
+              </Col>
+              <Col className="d-flex justify-content-end m-2">
+                <ConfirmableDeleteButton />
+                <Button>Edit</Button>
+              </Col>
+              </Row>
+              </ListGroup.Item>
+            </ListGroup>
           ))}
-
-        </Container>
       </article>
     </>
   );
