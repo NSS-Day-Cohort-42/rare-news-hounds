@@ -3,10 +3,10 @@ import React, { useContext, useState, useEffect } from "react";
 import { Image, Badge } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
-import { PostTagManager } from "../postTags/PostTagManager"
+import { PostTagManager } from "../postTags/PostTagManager";
 import EditPostButton from "./EditPostButton";
-import "./PostDetail.css";
 import { CommentList } from "../comments/CommentList";
+import "./PostDetail.css";
 
 export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
@@ -27,22 +27,23 @@ export default (props) => {
 
   useEffect(() => {
     const postId = parseInt(props.match.params.postId);
-    getPostById(postId).then(setPost);
+    getPostById(postId)
+      .then(setPost)
   }, []);
 
   return (
     <div className="postDetail">
       <div className="postDetail__header">
-        <div className="postDetail__header--row"> 
-          <div> 
+        <div className="postDetail__header--row">
+          <div>
             <p className="postDetail__title">{post.title}</p>
             <p className="postDetail__username">{post.user.username}</p>
           </div>
           <div className="postDetail__authorOptions">
             {currentUser === post.user_id && (
               <>
-              <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />
-              <EditPostButton postId={post.id} />
+                <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />
+                <EditPostButton postId={post.id} />
               </>
             )}
           </div>
@@ -50,9 +51,7 @@ export default (props) => {
         <div className="postDetail__header--row">
           <p className="postDetail__date">{date}</p>
           <p className="postDetail__category">
-            <Badge variant="info">
-              {post.category.name}
-            </Badge>
+            <Badge variant="info">{post.category.name}</Badge>
           </p>
         </div>
       </div>
