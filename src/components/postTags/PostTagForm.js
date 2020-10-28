@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
 import { TagContext } from "../tags/TagProvider"
-import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup"
-import ToggleButton from "react-bootstrap/ToggleButton"
 import { PostTagContext } from "./PostTagProvider"
 import Button from "react-bootstrap/esm/Button"
 import "./PostTagForm.css"
@@ -13,8 +11,21 @@ export const PostTagForm = ({postId, endEditTags}) => {
   const [ selectedPostTags, setSelectedPostTags ] = useState([]) 
   const [ isSubmitting, setIsSubmitting ] = useState(false)
 
-	const handleChange = (val) => {
-		setSelectedPostTags(val)
+	const handleChange = (changedTagId) => {
+		let newSelectedPostTags = []
+		//check if the tag is already in the list of selected tags
+		if (selectedPostTags.some(tagId => tagId === changedTagId )) {
+			// Remove the id of the tag from the list of selected tags
+			newSelectedPostTags = selectedPostTags.filter(tagId => tagId !== changedTagId)
+		}
+		else {
+			// Add the tag to the list of selected tags
+			selectedPostTags.push(changedTagId)
+			// Copy the selected tags array to a new variable so that state will update correctly
+			newSelectedPostTags = selectedPostTags.slice()
+		}
+		// Set component state, which will cause the component to re-render
+		setSelectedPostTags(newSelectedPostTags)
 	}
 
 	const savePostTags = () => {
@@ -48,6 +59,8 @@ export const PostTagForm = ({postId, endEditTags}) => {
       .then(endEditTags)
 	}
 
+
+	
 	useEffect( () => {
 		getTags()
 		getPostTagsByPostId(postId)
@@ -59,26 +72,37 @@ export const PostTagForm = ({postId, endEditTags}) => {
 
 	return (
 		<>
-			<div>
-			<ToggleButtonGroup 
-			type="checkbox" 
-			value={selectedPostTags} 
-			className="mb-2"
-			onChange={handleChange}>
+			
 				{
 					tags.map( tag => {
-						return ( <ToggleButton value={tag.id} key={tag.id}>{tag.name}</ToggleButton> )
+						const tagSelected = selectedPostTags.some(tagId => tagId === tag.id)
+						return ( 
+						<Button 
+						style={{margin:"0 10px"}}
+						size='sm' 
+						variant={ 
+							tagSelected
+							? 'primary'
+							: 'secondary'
+							}
+							disabled={isSubmitting}
+							key={tag.id}
+							onClick={evt => handleChange(tag.id)}
+						>
+							{tag.name}
+						</Button>)
 					})					
 				}
-			</ToggleButtonGroup>
 				<div className='post_tag_controls'>
 					<Button variant='secondary'
             onClick={endEditTags}
-            disabled={isSubmitting}
-					>Cancel</Button>
+						disabled={isSubmitting}
+						>
+							Cancel
+						</Button>
 					<Button onClick={savePostTags} disabled={isSubmitting}>Save</Button>
 				</div>
-			</div>
+			
 		</>
 	)
 
