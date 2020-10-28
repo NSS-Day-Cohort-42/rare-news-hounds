@@ -2,9 +2,9 @@ import React, { useContext, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Category from "./Category";
 import { CategoryContext } from "./CategoryProvider";
-import { Button, Container, Col, ListGroup} from "react-bootstrap";
+import { Button, Col, ListGroup} from "react-bootstrap";
 import { ConfirmableDeleteButton } from "../posts/ConfirmableDeleteButton";
-// import "./Category.css"
+
 
 export default (props) => {
   const { categories, getCategories } = useContext(CategoryContext);
