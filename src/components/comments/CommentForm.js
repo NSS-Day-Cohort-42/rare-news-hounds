@@ -3,7 +3,8 @@ import { Button, Form } from "react-bootstrap"
 import { CommentContext } from "./CommentProvider"
 
 export default ({postId}) => {
-    const [comment, setComment] = useState({})
+    const [comment, setComment] = useState({ content: "" })
+    const [isWriting, setIsWriting] = useState(false)
     const { createComment } = useContext(CommentContext)
     const commentRef = useRef("")
 
@@ -15,15 +16,21 @@ export default ({postId}) => {
     
     const handleSubmitCommentClick = (e) => {
         e.preventDefault()
-        const newComment = {
-            content: comment.content,
-            post_id: postId,
-            timestamp: Date.now(),
-            user_id: parseInt(localStorage.getItem("rare_user_id"))
+        if (comment.content.trim().length) {
+            const newComment = {
+                content: comment.content,
+                post_id: postId,
+                timestamp: Date.now(),
+                user_id: parseInt(localStorage.getItem("rare_user_id"))
+            }
+            createComment(newComment)
+            const clearedComment = Object.assign({}, comment)
+            clearedComment.content = ""
+            setComment(clearedComment)
         }
-        createComment(newComment)
-        comment.content = ""
-    }
+        else alert('Please enter a doggone MESSAGE')
+    } 
+    
     return (
         <Form>
             <Form.Control as="textarea" onChange={handleTextareaChange} value={comment.content} name='content' ref={commentRef}>
