@@ -10,37 +10,42 @@ export const PostTagForm = ({postId, endEditTags}) => {
 	const { tags, getTags } = useContext(TagContext)
 	const { getPostTagsByPostId, addPostTag, deletePostTag } = useContext(PostTagContext)
 	const [ thisPostTags, setThisPostTags ] = useState([]) 
-	const [ selectedPostTags, setSelectedPostTags ] = useState([]) 
+  const [ selectedPostTags, setSelectedPostTags ] = useState([]) 
+  const [ isSubmitting, setIsSubmitting ] = useState(false)
 
 	const handleChange = (val) => {
 		setSelectedPostTags(val)
 	}
 
 	const savePostTags = () => {
-		
-		// Iterate through the selected tag ids and save any tags that weren't initially selected.
-		selectedPostTags.forEach( selectedTagId => {
-			const matchingPostTag = thisPostTags.find( pt => pt.tag_id === selectedTagId)
-			if (matchingPostTag === undefined) {
-				const newPostTag = {
-					post_id : postId,
-					tag_id : selectedTagId
-				}
-				addPostTag(newPostTag)
-			}
-		})
+    setIsSubmitting(true)
 
-		// Iterate through the post tags that were initially selected, and delete the ones that were removed.
-		thisPostTags.forEach( pt => {
-			const matchingSelection = selectedPostTags.find( selectedTagId => selectedTagId === pt.tag_id )
-			if (matchingSelection === undefined) {
-				deletePostTag(pt.id)
-			}
+    // Filter down the currently-selected postTags in the form to only those that were not initially selected 
+    const postTagsToAdd = selectedPostTags.filter(selectedTagId => !thisPostTags.some(pt => pt.tag_id === selectedTagId))
 
-	})
-	endEditTags()
+    // then call addPostTag for each of those, and store the resulting Promises in an array
+    const addPostTagPromises = postTagsToAdd
+      .map(selectedTagId => {
+        const newPostTag = {
+          post_id: postId,
+          tag_id: selectedTagId
+        };
 
+        return addPostTag(newPostTag)
+      })
 
+    // Filter down the initial postTags to determine which ones are no longer selected (i.e., were "deselected" by the user)
+    const postTagsToDelete = thisPostTags.filter(pt => !selectedPostTags.some(selectedTagId => selectedTagId === pt.tag_id))
+
+    // then call deletePostTag for each of those, and store the resulting Promises in an array
+    const deletePostTagPromises = postTagsToDelete
+      .map(pt => deletePostTag(pt.id))
+
+    // finally, combine the promises from the two arrays and, when all resolve, call "endEditTags" function
+    const allPromises = [ ...addPostTagPromises, ...deletePostTagPromises ]
+    Promise.all(allPromises)
+      .then(() => setIsSubmitting(false))
+      .then(endEditTags)
 	}
 
 	useEffect( () => {
@@ -68,9 +73,10 @@ export const PostTagForm = ({postId, endEditTags}) => {
 			</ToggleButtonGroup>
 				<div className='post_tag_controls'>
 					<Button variant='secondary'
-					onClick={endEditTags}
+            onClick={endEditTags}
+            disabled={isSubmitting}
 					>Cancel</Button>
-					<Button onClick={savePostTags}>Save</Button>
+					<Button onClick={savePostTags} disabled={isSubmitting}>Save</Button>
 				</div>
 			</div>
 		</>
