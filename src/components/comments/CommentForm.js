@@ -1,12 +1,10 @@
-import React, { useContext, useState, useRef } from "react"
+import React, { useContext, useState } from "react"
 import { Button, Form } from "react-bootstrap"
 import { CommentContext } from "./CommentProvider"
 
 
 export default ({postId}) => {
-    // the delcaration of content value for the state comment object is unnecessary at the current moment but will possibly
-    // be useful soon for default text
-    const [comment, setComment] = useState({ content: "" })
+    const [comment, setComment] = useState({})
     const { createComment } = useContext(CommentContext)
 
     const handleTextareaChange = (e) => {
@@ -34,7 +32,7 @@ export default ({postId}) => {
     
     return (
         <Form>
-            <Form.Control as="textarea" onChange={handleTextareaChange} value={comment.content} name='content'>
+            <Form.Control as="textarea" onChange={handleTextareaChange} value={comment.content} name='content' placeholder="Who's a good boyyyy?">
             </Form.Control>
             <Button type="submit" onClick={handleSubmitCommentClick}>WOOF</Button>
         </Form>
