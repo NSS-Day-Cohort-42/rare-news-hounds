@@ -1,11 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import { TagContext } from "../tags/TagProvider"
-import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup"
-import ToggleButton from "react-bootstrap/ToggleButton"
 import { PostTagContext } from "./PostTagProvider"
 import Button from "react-bootstrap/esm/Button"
 import "./PostTagForm.css"
-import { Badge } from "react-bootstrap"
 
 export const PostTagForm = ({postId, endEditTags}) => {
 	const { tags, getTags } = useContext(TagContext)
