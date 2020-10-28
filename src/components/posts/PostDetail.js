@@ -6,6 +6,7 @@ import { PostContext } from "./PostProvider";
 import { PostTagManager } from "../postTags/PostTagManager"
 import EditPostButton from "./EditPostButton";
 import "./PostDetail.css";
+import { CommentList } from "../comments/CommentList";
 
 export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
@@ -60,6 +61,8 @@ export default (props) => {
       </div>
       <p className="postDetail__content">{post.content}</p>
 			<PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id}/>
+
+      <CommentList postId={post.id} />
     </div>
   );
 };
