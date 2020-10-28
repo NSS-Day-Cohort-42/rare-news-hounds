@@ -3,6 +3,8 @@ import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
 import EditPostButton from "./EditPostButton"
 import { PostContext } from "./PostProvider"
 import Badge from "react-bootstrap/Badge"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 import "./PostListItem.css"
 
 export const UserPostListItem = props => {
@@ -17,20 +19,21 @@ export const UserPostListItem = props => {
   }
 
   return (
-    <div className="postListItem">
-      <div className="postListItem--col-left">
-        <p className="postListItem__title mr-2">{title}</p>
-        <p className="postListItem__author mr-1">{user.first_name} {user.last_name}</p>
-      </div>
-      <div className="postListItem--col-right">
-        <p className="postListItem__category mr-1">
-          <Badge variant="info">
-            {category.name}
+    <Row className="align-items-center">
+      <Col sm="7">
+        <p className="postListItem__title my-1 mr-2 font-weight-bold">{title}</p>
+        <p className="postListItem__author text-uppercase my-1 mr-1">{user.first_name} {user.last_name}</p>
+      </Col>
+      <Col sm="5">
+        <Row className="justify-content-end align-items-center">
+          <Badge variant="info" className="postListItem__category">
+            <span className="postListItem__categoryName">{category.name}</span>
           </Badge>
-        </p>
-        <ConfirmableDeleteButton onDelete={() => handleDelete(id)} />
-        <EditPostButton postId={id} />
-      </div>
-    </div>
+
+          <ConfirmableDeleteButton onDelete={() => handleDelete(id)} />
+          <EditPostButton postId={id} />
+        </Row>
+      </Col>
+    </Row>
   )
 }
