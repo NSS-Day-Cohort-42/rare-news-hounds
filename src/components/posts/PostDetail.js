@@ -7,6 +7,7 @@ import { PostTagManager } from "../postTags/PostTagManager";
 import EditPostButton from "./EditPostButton";
 import "./PostDetail.css";
 import { CommentContext } from "../comments/CommentProvider";
+import CommentForm from "../comments/CommentForm";
 
 export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
@@ -30,9 +31,6 @@ export default (props) => {
     const postId = parseInt(props.match.params.postId);
     getPostById(postId)
       .then(setPost)
-      .then(() => getCommentsByPostId(postId)).then(() => {
-        console.log(comments)
-      });
   }, []);
 
   return (
@@ -64,6 +62,9 @@ export default (props) => {
       </div>
       <p className="postDetail__content">{post.content}</p>
       { post.id && <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id}/> }
+      <div className="postDetail__commentForm">
+        <CommentForm/>
+      </div>
     </div>
   );
 };
