@@ -16,13 +16,18 @@ export const PostTagForm = ({postId, endEditTags}) => {
 
 	const handleChange = (changedTagId) => {
 		let newSelectedPostTags = []
+		//check if the tag is already in the list of selected tags
 		if (selectedPostTags.some(tagId => tagId === changedTagId )) {
+			// Remove the id of the tag from the list of selected tags
 			newSelectedPostTags = selectedPostTags.filter(tagId => tagId !== changedTagId)
 		}
 		else {
+			// Add the tag to the list of selected tags
 			selectedPostTags.push(changedTagId)
+			// Copy the selected tags array to a new variable so that state will update correctly
 			newSelectedPostTags = selectedPostTags.slice()
 		}
+		// Set component state, which will cause the component to re-render
 		setSelectedPostTags(newSelectedPostTags)
 	}
 
