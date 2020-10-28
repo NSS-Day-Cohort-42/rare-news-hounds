@@ -21,7 +21,7 @@ export const PostTagForm = ({postId, endEditTags}) => {
 		}
 		else {
 			selectedPostTags.push(changedTagId)
-			newSelectedPostTags = selectedPostTags
+			newSelectedPostTags = selectedPostTags.slice()
 		}
 		setSelectedPostTags(newSelectedPostTags)
 	}
@@ -73,17 +73,17 @@ export const PostTagForm = ({postId, endEditTags}) => {
 			
 				{
 					tags.map( tag => {
+						const tagSelected = selectedPostTags.some(tagId => tagId === tag.id)
 						return ( 
 						<Button pill 
 						variant={ 
-							selectedPostTags.some(tagId => tagId === tag.id)
+							tagSelected
 							? 'primary'
 							: 'secondary'
 							}
-							onClick={endEditTags}
 							disabled={isSubmitting}
-						key={tag.id}
-						onClick={evt => handleChange(tag.id)}
+							key={tag.id}
+							onClick={evt => handleChange(tag.id)}
 						>
 							{tag.name}
 						</Button>)
