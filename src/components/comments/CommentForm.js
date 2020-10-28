@@ -1,17 +1,26 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { Button, Form } from "react-bootstrap"
+import { CommentContext } from "./CommentProvider"
 
-export default () => {
+export default ({postId}) => {
     const [comment, setComment] = useState({})
+    const {createComment} = useContext(CommentContext)
 
     const handleTextareaChange = (e) => {
-        const newComment = Object.assign({}, comment)
-        newComment[e.target.name] = e.target.value
+        const stateComment = Object.assign({}, comment)
+        stateComment[e.target.name] = e.target.value
+        setComment(stateComment)
     }
     
     const handleSubmitCommentClick = (e) => {
         e.preventDefault()
-        alert(comment)
+        const newComment = {
+            content: comment.content,
+            post_id: postId,
+            timestamp: Date.now(),
+            user_id: parseInt(localStorage.getItem("rare_user_id"))
+        }
+        createComment(newComment)
     }
     return (
         <Form>

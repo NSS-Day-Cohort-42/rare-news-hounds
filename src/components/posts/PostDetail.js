@@ -63,7 +63,7 @@ export default (props) => {
       <p className="postDetail__content">{post.content}</p>
       { post.id && <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id}/> }
       <div className="postDetail__commentForm">
-        <CommentForm/>
+        <CommentForm postId={post.id}/>
       </div>
     </div>
   );
