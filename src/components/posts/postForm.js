@@ -40,7 +40,7 @@ export const PostForm = (props) => {
         "YYYY-MM-DD"
       );
     }
-    debugger
+
     const constructNewPost = () => {
         if (titleRef.current.value === "") {
             window.alert("Please fill in a title")
