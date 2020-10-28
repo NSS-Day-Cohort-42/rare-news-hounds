@@ -2,9 +2,24 @@ import React, { useContext, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Category from "./Category";
 import { CategoryContext } from "./CategoryProvider";
+import { Button, Container, Col, ListGroup} from "react-bootstrap";
+import { ConfirmableDeleteButton } from "../posts/ConfirmableDeleteButton";
+// import "./Category.css"
 
 export default (props) => {
   const { categories, getCategories } = useContext(CategoryContext);
+
+  categories.sort((a,b)=> {
+   const nameA = a.name.toUpperCase();
+   const nameB = b.name.toUpperCase();
+    if (nameA < nameB){
+      return -1
+    }
+    if (nameA > nameB) {
+      return 1
+    }
+    return 0
+  })
 
   useEffect(() => {
     getCategories();
@@ -14,11 +29,21 @@ export default (props) => {
     <>
       <article>
         <h2 className="my-4 text-center">Existing Categories</h2>
-        <Row className="justify-content-center">
           {categories.map((c) => (
-            <Category category={c} key={c.id} />
+            <ListGroup>
+              <ListGroup.Item className="mb-2">
+              <Row>
+                <Col className="mt-2">
+              <Category category={c} key={c.id} />
+              </Col>
+              <Col className="d-flex justify-content-end m-2">
+                <ConfirmableDeleteButton />
+                <Button>Edit</Button>
+              </Col>
+              </Row>
+              </ListGroup.Item>
+            </ListGroup>
           ))}
-        </Row>
       </article>
     </>
   );
