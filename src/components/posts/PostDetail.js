@@ -7,6 +7,7 @@ import { PostTagManager } from "../postTags/PostTagManager";
 import EditPostButton from "./EditPostButton";
 import { CommentList } from "../comments/CommentList";
 import "./PostDetail.css";
+import CommentForm from "../comments/CommentForm";
 
 export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
@@ -59,11 +60,11 @@ export default (props) => {
         <Image src={post.image} fluid />
       </div>
       <p className="postDetail__content">{post.content}</p>
-
       { post.id && 
         <>
-          <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id}/> 
-          <CommentList postId={post.id} />
+        <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id} /> 
+        <CommentForm postId={post.id} />
+        <CommentList postId={post.id} />
         </>
       }
     </div>
