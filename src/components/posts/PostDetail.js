@@ -5,13 +5,13 @@ import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
 import { PostTagManager } from "../postTags/PostTagManager";
 import EditPostButton from "./EditPostButton";
+import { CommentList } from "../comments/CommentList";
 import "./PostDetail.css";
 import { CommentContext } from "../comments/CommentProvider";
 import CommentForm from "../comments/CommentForm";
 
 export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
-  const { comments, getCommentsByPostId } = useContext(CommentContext);
   const [post, setPost] = useState({ category: {}, user: {} });
   const currentUser = parseInt(localStorage.getItem("rare_user_id"));
   const date = moment(post.publication_time + 86400000).format(
@@ -61,10 +61,13 @@ export default (props) => {
         <Image src={post.image} fluid />
       </div>
       <p className="postDetail__content">{post.content}</p>
-      { post.id && <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id}/> }
-      <div className="postDetail__commentForm">
-        <CommentForm postId={post.id}/>
-      </div>
+      { post.id && 
+        <>
+        <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id} /> 
+        <CommentForm postId={post.id} />
+        <CommentList postId={post.id} />
+        </>
+      }
     </div>
   );
 };

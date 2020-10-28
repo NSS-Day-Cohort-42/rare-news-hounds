@@ -10,7 +10,7 @@ export const CommentProvider = (props) => {
       .then((res) => res.json())
       .then(setComments);
   };
-
+    
   const createComment = (newComment) => {
     return fetch(`http://localhost:8088/comments`, {
       method: "POST",
@@ -21,8 +21,15 @@ export const CommentProvider = (props) => {
     }).then(getCommentsByPostId(newComment.post_id));
   };
 
+  // delete the comment with the given id, then fetch comments for given post id and update state
+  const deleteComment = (comment_id, post_id) => {
+    return fetch(`http://localhost:8088/comments/${comment_id}`, {
+      method: "DELETE"
+    })
+      .then(() => getCommentsByPostId(post_id))
+  }
   return (
-    <CommentContext.Provider value={{ comments, getCommentsByPostId, createComment }}>
+    <CommentContext.Provider value={{ comments, getCommentsByPostId, createComment, deleteComment }}>
       {props.children}
     </CommentContext.Provider>
   );
