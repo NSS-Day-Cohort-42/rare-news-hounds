@@ -5,6 +5,7 @@ import ToggleButton from "react-bootstrap/ToggleButton"
 import { PostTagContext } from "./PostTagProvider"
 import Button from "react-bootstrap/esm/Button"
 import "./PostTagForm.css"
+import { Badge } from "react-bootstrap"
 
 export const PostTagForm = ({postId, endEditTags}) => {
 	const { tags, getTags } = useContext(TagContext)
@@ -13,8 +14,16 @@ export const PostTagForm = ({postId, endEditTags}) => {
   const [ selectedPostTags, setSelectedPostTags ] = useState([]) 
   const [ isSubmitting, setIsSubmitting ] = useState(false)
 
-	const handleChange = (val) => {
-		setSelectedPostTags(val)
+	const handleChange = (changedTagId) => {
+		let newSelectedPostTags = []
+		if (selectedPostTags.some(tagId => tagId === changedTagId )) {
+			newSelectedPostTags = selectedPostTags.filter(tagId => tagId !== changedTagId)
+		}
+		else {
+			selectedPostTags.push(changedTagId)
+			newSelectedPostTags = selectedPostTags
+		}
+		setSelectedPostTags(newSelectedPostTags)
 	}
 
 	const savePostTags = () => {
@@ -48,6 +57,8 @@ export const PostTagForm = ({postId, endEditTags}) => {
       .then(endEditTags)
 	}
 
+
+	
 	useEffect( () => {
 		getTags()
 		getPostTagsByPostId(postId)
@@ -59,26 +70,35 @@ export const PostTagForm = ({postId, endEditTags}) => {
 
 	return (
 		<>
-			<div>
-			<ToggleButtonGroup 
-			type="checkbox" 
-			value={selectedPostTags} 
-			className="mb-2"
-			onChange={handleChange}>
+			
 				{
 					tags.map( tag => {
-						return ( <ToggleButton value={tag.id} key={tag.id}>{tag.name}</ToggleButton> )
+						return ( 
+						<Button pill 
+						variant={ 
+							selectedPostTags.some(tagId => tagId === tag.id)
+							? 'primary'
+							: 'secondary'
+							}
+							onClick={endEditTags}
+							disabled={isSubmitting}
+						key={tag.id}
+						onClick={evt => handleChange(tag.id)}
+						>
+							{tag.name}
+						</Button>)
 					})					
 				}
-			</ToggleButtonGroup>
 				<div className='post_tag_controls'>
 					<Button variant='secondary'
             onClick={endEditTags}
-            disabled={isSubmitting}
-					>Cancel</Button>
+						disabled={isSubmitting}
+						>
+							Cancel
+						</Button>
 					<Button onClick={savePostTags} disabled={isSubmitting}>Save</Button>
 				</div>
-			</div>
+			
 		</>
 	)
 
