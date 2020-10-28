@@ -10,7 +10,7 @@ import { CommentContext } from "../comments/CommentProvider";
 
 export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
-  const { getCommentsByPostId } = useContext(CommentContext);
+  const { comments, getCommentsByPostId } = useContext(CommentContext);
   const [post, setPost] = useState({ category: {}, user: {} });
   const currentUser = parseInt(localStorage.getItem("rare_user_id"));
   const date = moment(post.publication_time + 86400000).format(
@@ -30,7 +30,9 @@ export default (props) => {
     const postId = parseInt(props.match.params.postId);
     getPostById(postId)
       .then(setPost)
-      .then(() => getCommentsByPostId(postId));
+      .then(() => getCommentsByPostId(postId)).then(() => {
+        console.log(comments)
+      });
   }, []);
 
   return (
