@@ -2,9 +2,11 @@ import React, { useContext, useState, useRef } from "react"
 import { Button, Form } from "react-bootstrap"
 import { CommentContext } from "./CommentProvider"
 
+
 export default ({postId}) => {
+    // the delcaration of content value for the state comment object is unnecessary at the current moment but will possibly
+    // be useful soon for default text
     const [comment, setComment] = useState({ content: "" })
-    const [isWriting, setIsWriting] = useState(false)
     const { createComment } = useContext(CommentContext)
     const commentRef = useRef("")
 
