@@ -80,7 +80,9 @@ export const PostTagForm = ({postId, endEditTags}) => {
 					tags.map( tag => {
 						const tagSelected = selectedPostTags.some(tagId => tagId === tag.id)
 						return ( 
-						<Button pill 
+						<Button 
+						style={{margin:"0 10px"}}
+						size='sm' 
 						variant={ 
 							tagSelected
 							? 'primary'
