@@ -20,9 +20,11 @@ export const PostTagForm = ({postId, endEditTags}) => {
 	const savePostTags = () => {
     setIsSubmitting(true)
 
-    // Iterate through the selected tag ids and save any tags that weren't initially selected.
-    const addPostTagPromises = selectedPostTags
-      .filter(selectedTagId => !thisPostTags.some(pt => pt.tag_id === selectedTagId))
+    // Filter down the currently-selected postTags in the form to only those that were not initially selected 
+    const postTagsToAdd = selectedPostTags.filter(selectedTagId => !thisPostTags.some(pt => pt.tag_id === selectedTagId))
+
+    // then call addPostTag for each of those, and store the resulting Promises in an array
+    const addPostTagPromises = postTagsToAdd
       .map(selectedTagId => {
         const newPostTag = {
           post_id: postId,
@@ -32,11 +34,14 @@ export const PostTagForm = ({postId, endEditTags}) => {
         return addPostTag(newPostTag)
       })
 
-    // Iterate through the post tags that were initially selected, and delete the ones that were removed.
-    const deletePostTagPromises = thisPostTags
-      .filter(pt => !selectedPostTags.some(selectedTagId => selectedTagId === pt.tag_id))
+    // Filter down the initial postTags to determine which ones are no longer selected (i.e., were "deselected" by the user)
+    const postTagsToDelete = thisPostTags.filter(pt => !selectedPostTags.some(selectedTagId => selectedTagId === pt.tag_id))
+
+    // then call deletePostTag for each of those, and store the resulting Promises in an array
+    const deletePostTagPromises = postTagsToDelete
       .map(pt => deletePostTag(pt.id))
 
+    // finally, combine the promises from the two arrays and, when all resolve, call "endEditTags" function
     const allPromises = [ ...addPostTagPromises, ...deletePostTagPromises ]
     Promise.all(allPromises)
       .then(() => setIsSubmitting(false))
