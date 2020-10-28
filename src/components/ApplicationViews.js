@@ -1,17 +1,18 @@
-import React from "react"
-import { Route, Redirect } from "react-router-dom"
-import { CategoryProvider } from "./categories/CategoryProvider"
-import CategoryForm from "./categories/CategoryForm"
-import CategoryList from "./categories/CategoryList"
-import { PostForm } from "./posts/postForm"
-import { PostProvider } from "./posts/PostProvider"
-import { UserPostList} from "./posts/UserPostList"
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { CategoryProvider } from "./categories/CategoryProvider";
+import CategoryForm from "./categories/CategoryForm";
+import CategoryList from "./categories/CategoryList";
+import { PostForm } from "./posts/postForm";
+import { PostProvider } from "./posts/PostProvider";
+import { UserPostList } from "./posts/UserPostList";
 import TagForm from "./tags/TagForm";
 import TagList from "./tags/TagList";
 import { TagProvider } from "./tags/TagProvider";
 import PostDetail from "./posts/PostDetail";
 import { PostList } from "./posts/PostList";
 import { PostTagProvider } from "./postTags/PostTagProvider";
+import { CommentProvider } from "./comments/CommentProvider";
 
 export const ApplicationViews = () => {
   return (
@@ -34,24 +35,26 @@ export const ApplicationViews = () => {
         </PostProvider>
         <PostProvider>
           <CategoryProvider>
-          <Route exact path="/" component={PostList} />
+            <Route exact path="/" component={PostList} />
           </CategoryProvider>
         </PostProvider>
 
-				<PostTagProvider>
-					<TagProvider>
-						<PostProvider>
-							<CategoryProvider>
-								<Route path="/my-posts" component={UserPostList} />
-								<Route
-									exact
-									path="/posts/:postId(\d+)"
-									render={(props) => <PostDetail {...props} />}
-								/>
-							</CategoryProvider>
-						</PostProvider>
-					</TagProvider>
-				</PostTagProvider>
+        <PostTagProvider>
+          <TagProvider>
+            <PostProvider>
+              <CategoryProvider>
+                <CommentProvider>
+                  <Route path="/my-posts" component={UserPostList} />
+                  <Route
+                    exact
+                    path="/posts/:postId(\d+)"
+                    render={(props) => <PostDetail {...props} />}
+                  />
+                </CommentProvider>
+              </CategoryProvider>
+            </PostProvider>
+          </TagProvider>
+        </PostTagProvider>
 
         <CategoryProvider>
           <Route path="/categories">
