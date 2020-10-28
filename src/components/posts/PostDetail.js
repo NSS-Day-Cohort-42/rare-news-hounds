@@ -59,7 +59,7 @@ export default (props) => {
         <Image src={post.image} fluid />
       </div>
       <p className="postDetail__content">{post.content}</p>
-			<PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id}/>
+      { post.id && <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id}/> }
     </div>
   );
 };
