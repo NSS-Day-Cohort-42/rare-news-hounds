@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react"
 import { TagContext } from "../tags/TagProvider"
 import { PostTagContext } from "./PostTagProvider"
 import Button from "react-bootstrap/esm/Button"
-import "./PostTagForm.css"
 import { Col } from "react-bootstrap"
 
 export const PostTagForm = ({postId, endEditTags}) => {
@@ -94,7 +93,7 @@ export const PostTagForm = ({postId, endEditTags}) => {
 						</Button>)
 					})					
 				}
-				<Col sm="12" className='post_tag_controls my-3 d-flex justify-content-center'>
+				<Col sm="12" className='my-3 d-flex justify-content-center'>
 					<Button variant='light'
             onClick={endEditTags}
             disabled={isSubmitting}

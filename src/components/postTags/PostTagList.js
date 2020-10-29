@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react"
 import { TagContext } from "../tags/TagProvider"
 import { PostTagContext } from "./PostTagProvider"
 import Badge from 'react-bootstrap/Badge'
-import "./PostTagForm.css"
 
 export const PostTagList = ({postId}) => {
     const { getPostTagsByPostId } = useContext(PostTagContext)
