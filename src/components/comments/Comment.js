@@ -11,7 +11,7 @@ export const Comment = props => {
   const { deleteComment } = useContext(CommentContext)
 
   return (
-    <Row>
+    <Row className="w-100">
       <Col sm="8">
         <p className="font-weight-bold">{user.username}</p>
         <p>{content}</p>
