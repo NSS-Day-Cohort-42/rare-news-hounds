@@ -13,7 +13,7 @@ export const CommentList = props => {
   }, [])
 
   return (
-    <div className="w-100 commentList" style={{ maxHeight: '250px', overflowY: 'scroll' }}>
+    <div className="commentList" style={{ maxHeight: '250px', overflowY: 'scroll' }}>
       <ListGroup>
         {
           comments.map(c => (

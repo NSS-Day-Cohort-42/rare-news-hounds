@@ -37,7 +37,6 @@ export default (props) => {
       <Row >
         <Col xl="8" lg="7" sm="12">
           <h2 className="postDetail__title font-weight-bold">{post.title}</h2>
-          <p className="postDetail__username">{post.user.username}</p>
         </Col>
         <Col xl="4" lg="5" sm="12">
           {currentUser === post.user_id && (
@@ -51,6 +50,7 @@ export default (props) => {
 
       <Row className="justify-content-between">
         <Col>
+          <p className="postDetail__username">{post.user.username}</p>
           <p className="postDetail__date">{date}</p>
         </Col>
         <Col className="d-flex justify-content-end">
@@ -72,12 +72,16 @@ export default (props) => {
           <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id} /> 
 
           <h3 className="text-center my-3">Comments</h3>
-          <Row className="w-50 mx-auto my-4">
-            <CommentList postId={post.id} />
+          <Row className="my-4">
+            <Col lg="6" sm="10" className="mx-auto">
+              <CommentList postId={post.id} />
+            </Col>
           </Row>
 
-          <Row className="w-50 m-auto">
-            <CommentForm postId={post.id} />
+          <Row>
+            <Col lg="6" sm="10" className="mx-auto">
+              <CommentForm postId={post.id} />
+            </Col>
           </Row>
         </>
       }
