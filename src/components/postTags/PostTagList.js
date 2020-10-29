@@ -22,7 +22,8 @@ export const PostTagList = ({postId}) => {
                     thisPostTags.map( postTag => { 
                         return ( 
 												<Badge pill 
-												variant="primary"
+                        variant="primary"
+                        className="mx-1"
 												key={postTag.id}
 												>
                         {postTag.tag.name}

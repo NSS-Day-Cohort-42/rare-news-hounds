@@ -69,15 +69,13 @@ export default (props) => {
 
       { post.id && 
         <>
-          <Row>
-            <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id} /> 
-          </Row>
+          <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id} /> 
 
           <h3 className="text-center my-3">Comments</h3>
           <Row className="w-50 mx-auto my-4">
             <CommentList postId={post.id} />
           </Row>
-          
+
           <Row className="w-50 m-auto">
             <CommentForm postId={post.id} />
           </Row>

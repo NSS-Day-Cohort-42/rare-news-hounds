@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button } from "react-bootstrap"
+import { Button, Row } from "react-bootstrap"
 import { PostTagForm } from "./PostTagForm"
 import { PostTagList } from "./PostTagList"
 
@@ -13,15 +13,21 @@ export const PostTagManager = ({postId, isPostAuthor}) => {
 		<>
 		{
 			isEditing 
-			? <PostTagForm endEditTags={endEditTags} postId={postId}/>
+			? <Row className="justify-content-center my-2">
+          <PostTagForm endEditTags={endEditTags} postId={postId}/>
+        </Row>
 			: <>
-			<PostTagList postId={postId}/>
+        <Row className="justify-content-center my-2">
+          <PostTagList postId={postId}/>
+        </Row>
 			{
 			isPostAuthor
-			? <Button 
-					onClick={startEditTags} >
-					Manage Tags
-				</Button>
+      ? <Row className="justify-content-center my-2">
+          <Button 
+            onClick={startEditTags} >
+            Manage Tags
+          </Button>
+        </Row>
 			: '' 
 			}
 			</>
