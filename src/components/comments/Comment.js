@@ -14,7 +14,7 @@ export const Comment = props => {
     <Row className="w-100">
       <Col sm="auto">
         <p className="font-weight-bold">{user.username}</p>
-        <p>{content}</p>
+        <p style={{ wordWrap: 'break-word' }}>{content}</p>
       </Col>
       {
         parseInt(localStorage.getItem("rare_user_id")) === user_id && (
