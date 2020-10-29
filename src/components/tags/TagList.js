@@ -37,7 +37,7 @@ export default (props) => {
 							<Tag tag={t} key={t.id} />
 						</Col>
 						<Col className="d-flex justify-content-end m-2">
-							<ConfirmableDeleteButton />
+							<ConfirmableDeleteButton onDelete={() => alert('delete not implemented')} />
 							<Button>Edit</Button>
 						</Col>
 						</Row>
