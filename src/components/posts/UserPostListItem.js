@@ -21,7 +21,7 @@ export const UserPostListItem = props => {
   return (
     <Row className="align-items-center">
       <Col sm="7">
-        <p className="postListItem__title my-1 mr-2 font-weight-bold">{title}</p>
+        <p className="postListItem__title text-primary my-1 mr-2 font-weight-bold">{title}</p>
         <p className="postListItem__author text-uppercase my-1 mr-1">{user.first_name} {user.last_name}</p>
       </Col>
       <Col sm="5">

@@ -11,7 +11,7 @@ export const PostListItem = props => {
   return (
     <Row className="align-items-center">
       <Col sm="10">
-          <p className="postListItem__title my-1 mr-2 font-weight-bold">{title}</p>
+          <p className="postListItem__title text-primary my-1 mr-2 font-weight-bold">{title}</p>
           <p className="postListItem__author text-uppercase my-1 mr-1">{user.first_name} {user.last_name}</p>
       </Col>
       <Col sm="2" className="d-flex justify-content-end">

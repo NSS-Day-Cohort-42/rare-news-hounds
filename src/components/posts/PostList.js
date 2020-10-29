@@ -4,16 +4,13 @@ import ListGroup from "react-bootstrap/ListGroup"
 import { PostContext } from "./PostProvider"
 import { PostListItem } from "./PostListItem"
 import CategoryDropDown from "./CategoryDropDown"
-import "./PostList.css"
 
 export const PostList = props => {
     const { getPosts, posts } = useContext(PostContext)
 
-
     posts.sort((a,b) => b.creation_time - a.creation_time)
 
     // Initialization effect hook -> Go get post data
-
     useEffect(() => {
         getPosts()
     }, [])
@@ -24,7 +21,7 @@ export const PostList = props => {
           <CategoryDropDown action={props}/>
           <ListGroup>
             { posts.map(post => (
-              <ListGroup.Item key={post.id} as={Link} to={`/posts/${post.id}`}>
+              <ListGroup.Item action key={post.id} as={Link} to={`/posts/${post.id}`}>
                 <PostListItem post={post} />
               </ListGroup.Item>
             ))}
