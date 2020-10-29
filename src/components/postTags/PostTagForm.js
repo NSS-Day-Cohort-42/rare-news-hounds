@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { TagContext } from "../tags/TagProvider"
 import { PostTagContext } from "./PostTagProvider"
 import Button from "react-bootstrap/esm/Button"
-import "./PostTagForm.css"
+import { Col } from "react-bootstrap"
 
 export const PostTagForm = ({postId, endEditTags}) => {
 	const { tags, getTags } = useContext(TagContext)
@@ -77,8 +77,8 @@ export const PostTagForm = ({postId, endEditTags}) => {
 					tags.map( tag => {
 						const tagSelected = selectedPostTags.some(tagId => tagId === tag.id)
 						return ( 
-						<Button 
-						style={{margin:"0 10px"}}
+            <Button 
+            className="m-2"
 						size='sm' 
 						variant={ 
 							tagSelected
@@ -93,15 +93,16 @@ export const PostTagForm = ({postId, endEditTags}) => {
 						</Button>)
 					})					
 				}
-				<div className='post_tag_controls'>
-					<Button variant='secondary'
+				<Col sm="12" className='my-3 d-flex justify-content-center'>
+					<Button variant='light'
             onClick={endEditTags}
-						disabled={isSubmitting}
+            disabled={isSubmitting}
+            className="mx-2"
 						>
 							Cancel
 						</Button>
-					<Button onClick={savePostTags} disabled={isSubmitting}>Save</Button>
-				</div>
+					<Button className="mx-2" onClick={savePostTags} disabled={isSubmitting}>Save</Button>
+				</Col>
 			
 		</>
 	)

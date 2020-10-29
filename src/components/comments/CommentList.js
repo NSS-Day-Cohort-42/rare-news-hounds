@@ -13,9 +13,8 @@ export const CommentList = props => {
   }, [])
 
   return (
-    <div>
-      <h3 className="text-center my-3">Comments</h3>
-      <ListGroup className="w-75 mx-auto">
+    <div className="commentList" style={{ maxHeight: '250px', overflowY: 'scroll' }}>
+      <ListGroup>
         {
           comments.map(c => (
             <ListGroup.Item key={c.id}>

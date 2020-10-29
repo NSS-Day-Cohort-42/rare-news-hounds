@@ -11,14 +11,14 @@ export const Comment = props => {
   const { deleteComment } = useContext(CommentContext)
 
   return (
-    <Row>
-      <Col sm="8">
+    <Row className="w-100">
+      <Col sm="auto">
         <p className="font-weight-bold">{user.username}</p>
-        <p>{content}</p>
+        <p style={{ wordWrap: 'break-word' }}>{content}</p>
       </Col>
       {
         parseInt(localStorage.getItem("rare_user_id")) === user_id && (
-          <Col sm="4">
+          <Col md="12" lg="auto" className="ml-auto">
             <ConfirmableDeleteButton onDelete={() => deleteComment(id, post_id) } />
           </Col>
         )

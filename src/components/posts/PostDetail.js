@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useContext, useState, useEffect } from "react";
-import { Image, Badge } from "react-bootstrap";
+import { Image, Badge, Row, Col } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
 import { PostTagManager } from "../postTags/PostTagManager";
@@ -34,37 +34,55 @@ export default (props) => {
 
   return (
     <div className="postDetail">
-      <div className="postDetail__header">
-        <div className="postDetail__header--row">
-          <div>
-            <p className="postDetail__title">{post.title}</p>
-            <p className="postDetail__username">{post.user.username}</p>
-          </div>
-          <div className="postDetail__authorOptions">
-            {currentUser === post.user_id && (
-              <>
-                <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />
-                <EditPostButton postId={post.id} />
-              </>
-            )}
-          </div>
-        </div>
-        <div className="postDetail__header--row">
+      <Row >
+        <Col xl="8" lg="7" sm="12">
+          <h2 className="postDetail__title font-weight-bold">{post.title}</h2>
+        </Col>
+        <Col xl="4" lg="5" sm="12">
+          {currentUser === post.user_id && (
+            <Row className="justify-content-end">
+              <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />
+              <EditPostButton postId={post.id} />
+            </Row>
+          )}
+        </Col>
+      </Row>
+
+      <Row className="justify-content-between">
+        <Col>
+          <p className="postDetail__username">{post.user.username}</p>
           <p className="postDetail__date">{date}</p>
+        </Col>
+        <Col className="d-flex justify-content-end">
           <p className="postDetail__category">
             <Badge variant="info">{post.category.name}</Badge>
           </p>
-        </div>
-      </div>
-      <div className="postDetail__headerimage">
+        </Col>
+      </Row>
+
+      <Row className="justify-content-center my-4">
         <Image src={post.image} fluid />
-      </div>
-      <p className="postDetail__content">{post.content}</p>
+      </Row>
+      <Row className="justify-content-center my-4">
+        <p className="postDetail__content w-75">{post.content}</p>
+      </Row>
+
       { post.id && 
         <>
-        <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id} /> 
-        <CommentForm postId={post.id} />
-        <CommentList postId={post.id} />
+          <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id} /> 
+
+          <h3 className="text-center my-3">Comments</h3>
+          <Row className="my-4">
+            <Col lg="6" sm="10" className="mx-auto">
+              <CommentList postId={post.id} />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col lg="6" sm="10" className="mx-auto">
+              <CommentForm postId={post.id} />
+            </Col>
+          </Row>
         </>
       }
     </div>

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react"
-import { Button, Form } from "react-bootstrap"
+import { Button, Form, Row } from "react-bootstrap"
 import { CommentContext } from "./CommentProvider"
 
 
@@ -34,7 +34,7 @@ export default ({postId}) => {
         <Form>
             <Form.Control as="textarea" onChange={handleTextareaChange} value={comment.content} name='content' placeholder="Who's a good boyyyy?">
             </Form.Control>
-            <Button type="submit" onClick={handleSubmitCommentClick}>WOOF</Button>
+            <Button className="d-block ml-auto my-2" type="submit" onClick={handleSubmitCommentClick}>WOOF</Button>
         </Form>
     )
 }
