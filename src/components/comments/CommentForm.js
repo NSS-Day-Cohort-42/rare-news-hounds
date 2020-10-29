@@ -34,7 +34,7 @@ export default ({postId}) => {
         <Form className="w-100">
             <Form.Control as="textarea" onChange={handleTextareaChange} value={comment.content} name='content' placeholder="Who's a good boyyyy?">
             </Form.Control>
-            <Button style={{ display: 'block', marginLeft: 'auto' }} type="submit" onClick={handleSubmitCommentClick}>WOOF</Button>
+            <Button className="d-block ml-auto my-2" type="submit" onClick={handleSubmitCommentClick}>WOOF</Button>
         </Form>
     )
 }
