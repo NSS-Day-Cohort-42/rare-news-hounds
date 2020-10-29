@@ -14,8 +14,8 @@ export const PostListItem = props => {
           <p className="postListItem__title my-1 mr-2 font-weight-bold">{title}</p>
           <p className="postListItem__author text-uppercase my-1 mr-1">{user.first_name} {user.last_name}</p>
       </Col>
-      <Col sm="2">
-        <Badge variant="info" >
+      <Col sm="2" className="d-flex justify-content-end">
+        <Badge variant="info">
           <span className="postListItem__categoryName">{category.name}</span>
         </Badge>
       </Col>
