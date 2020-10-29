@@ -4,7 +4,7 @@ import { CommentContext } from "./CommentProvider"
 
 
 export default ({postId}) => {
-    const [comment, setComment] = useState({})
+    const [comment, setComment] = useState({content: ""})
     const { createComment } = useContext(CommentContext)
 
     const handleTextareaChange = (e) => {
