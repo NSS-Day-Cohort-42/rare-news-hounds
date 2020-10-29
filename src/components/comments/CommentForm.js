@@ -15,7 +15,7 @@ export default ({postId}) => {
     
     const handleSubmitCommentClick = (e) => {
         e.preventDefault()
-        if (comment.content.trim().length) {
+        if (comment.content && comment.content.trim().length) {
             const newComment = {
                 content: comment.content,
                 post_id: postId,
