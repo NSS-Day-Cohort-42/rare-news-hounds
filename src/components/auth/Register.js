@@ -125,6 +125,7 @@ export const Register = props => {
 
             <Form.Control type="text"
               className="my-2"
+              maxLength={100}
               name="profile_image_url"
               placeholder="Profile Pic URL"
               onChange={handleFormChange}
@@ -133,6 +134,7 @@ export const Register = props => {
             <Form.Control as="textarea"
               className="my-2"
               rows={4}
+              maxLength={300}
               name="bio"
               placeholder="Bio"
               onChange={handleFormChange}
