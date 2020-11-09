@@ -14,7 +14,7 @@ export const Rare = () => (
                     <ApplicationViews />
                 </>
             } else {
-                return <Redirect to="/login" />
+                return <Redirect to="/register" />
             }
         }} />
 
