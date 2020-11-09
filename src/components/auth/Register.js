@@ -23,8 +23,8 @@ export const Register = props => {
         email,
         username,
         password,
-        profile_image_url,
-        bio
+        profile_image_url: profile_image_url || '',
+        bio: bio || ''
       }
 
       return fetch("http://localhost:8000/register", {
@@ -61,6 +61,7 @@ export const Register = props => {
               height={250} />
 
             <Form.Control type="text" 
+              required
               className="my-2"
               name="first_name"
               placeholder="First Name" 
@@ -68,6 +69,7 @@ export const Register = props => {
               value={formValues.first_name || ''} />
 
             <Form.Control type="text"
+              required
               className="my-2"
               name="last_name"
               placeholder="Last Name"
@@ -75,6 +77,7 @@ export const Register = props => {
               value={formValues.last_name || ''}  />
 
             <Form.Control type="email"
+              required
               className="my-2"
               name="email"
               placeholder="Email"
@@ -84,6 +87,7 @@ export const Register = props => {
 
           <Col sm="12" md="5" className="d-flex flex-column align-items-center justify-content-between">
             <Form.Control type="text"
+              required
               className="my-2"
               name="username"
               placeholder="Username"
@@ -91,6 +95,7 @@ export const Register = props => {
               value={formValues.username || ''}  />
 
             <Form.Control type="password"
+              required
               className="my-2"
               name="password"
               placeholder="Password"
@@ -98,6 +103,7 @@ export const Register = props => {
               value={formValues.password || ''}  />
 
             <Form.Control type="password"
+              required
               className="my-2"
               name="verifyPassword"
               placeholder="Verify Password"
