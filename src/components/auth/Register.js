@@ -1,49 +1,5 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-<<<<<<< HEAD
-import "./Auth.css"
-import Button from "react-bootstrap/Button"
-
-export const Register = (props) => {
-    const firstName = useRef()
-    const lastName = useRef()
-    const username = useRef()
-    const email = useRef()
-    const password = useRef()
-    const verifyPassword = useRef()
-    const passwordDialog = useRef()
-
-    const handleRegister = (e) => {
-        e.preventDefault()
-
-        if (password.current.value === verifyPassword.current.value) {
-            const newUser = {
-                "username": username.current.value,
-                "first_name": firstName.current.value,
-                "last_name": lastName.current.value,
-                "email": email.current.value,
-                "password": password.current.value
-            }
-
-            return fetch("http://localhost:8000/users", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(newUser)
-            })
-                .then(res => res.json())
-                .then(res => {
-                    
-                        localStorage.setItem("rare_user_id", res.id)
-                        props.history.push("/")
-                    
-                })
-        } else {
-            passwordDialog.current.showModal()
-        }
-=======
 import { Col, Image, Form, Button, Row } from "react-bootstrap"
 
 export const Register = props => {
@@ -101,7 +57,6 @@ export const Register = props => {
     }
     else {
       alert("Your passwords do not match, my man.")
->>>>>>> main
     }
   }
 
