@@ -38,7 +38,7 @@ export const Register = props => {
         .then(res => res.json())
         .then(res => {
           localStorage.setItem("rare_user_token", res.token)
-          localStorage.setItem("rare_user_id", res.id)
+          localStorage.setItem("rare_user_id", res.user_id)
           props.history.push("/")
         })
     }
@@ -48,27 +48,34 @@ export const Register = props => {
   }
 
   return (
-    <main>
+    <main style={{ padding: '2rem' }}>
       <h1 className="text-center">Rare</h1>
       <Form onSubmit={handleFormSubmit}>
         <Row className="justify-content-around" style={{ minHeight: '450px' }}>
 
           <Col sm="12" md="5" className="d-flex flex-column align-items-center justify-content-between">
-            <Image src={formValues.profile_image_url || "imagePlaceholder.png"} width={250} height={250} />
+            <Image 
+              className="my-2"
+              src={formValues.profile_image_url || "imagePlaceholder.png"} 
+              width={250} 
+              height={250} />
 
             <Form.Control type="text" 
+              className="my-2"
               name="first_name"
               placeholder="First Name" 
               onChange={handleFormChange} 
               value={formValues.first_name || ''} />
 
             <Form.Control type="text"
+              className="my-2"
               name="last_name"
               placeholder="Last Name"
               onChange={handleFormChange}
               value={formValues.last_name || ''}  />
 
             <Form.Control type="email"
+              className="my-2"
               name="email"
               placeholder="Email"
               onChange={handleFormChange}
@@ -77,30 +84,35 @@ export const Register = props => {
 
           <Col sm="12" md="5" className="d-flex flex-column align-items-center justify-content-between">
             <Form.Control type="text"
+              className="my-2"
               name="username"
               placeholder="Username"
               onChange={handleFormChange}
               value={formValues.username || ''}  />
 
             <Form.Control type="password"
+              className="my-2"
               name="password"
               placeholder="Password"
               onChange={handleFormChange}
               value={formValues.password || ''}  />
 
             <Form.Control type="password"
+              className="my-2"
               name="verifyPassword"
               placeholder="Verify Password"
               onChange={handleFormChange}
               value={formValues.verifyPassword || ''}  />
 
             <Form.Control type="text"
+              className="my-2"
               name="profile_image_url"
               placeholder="Profile Pic URL"
               onChange={handleFormChange}
               value={formValues.profile_image_url || ''}  />
 
             <Form.Control as="textarea"
+              className="my-2"
               rows={4}
               name="bio"
               placeholder="Bio"
@@ -109,9 +121,12 @@ export const Register = props => {
           </Col>
         </Row>
 
-        <Button type="submit" variant="success" className="d-block mx-auto">Register</Button>
+        <Button type="submit" variant="success" className="d-block mx-auto my-4 w-25">Register</Button>
       </Form>
-      <Link to="/login">Already Have an account? Click here to log in!</Link>
+
+      <Row className="justify-content-center">
+        <Link to="/login">Already Have an account? Click here to log in!</Link>
+      </Row>
     </main>
   )
 }
