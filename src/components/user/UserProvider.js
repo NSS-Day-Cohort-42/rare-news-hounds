@@ -6,13 +6,13 @@ export const UserProvider = (props) => {
   const [ users, setUsers ] = useState([])
 
   const getUsers = () => {
-    return fetch("http://localhost:8088/users")
+    return fetch("http://localhost:8000/users")
       .then(res => res.json())
       .then(setUsers)
   }
 
   const addUser = user => {
-    return fetch("http://localhost:8088/users", {
+    return fetch("http://localhost:8000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

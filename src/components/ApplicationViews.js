@@ -20,7 +20,7 @@ export const ApplicationViews = () => {
       <Route
         path="/logout"
         render={() => {
-          localStorage.removeItem("rare_user_id");
+          localStorage.removeItem("token");
           return <Redirect to="/login" />;
         }}
       />
