@@ -5,18 +5,29 @@ import { Col, Image, Form, Button, Row } from "react-bootstrap"
 export const Register = props => {
   const [ formValues, setFormValues ] = useState({})
 
+  /**
+   * Handle a controlled form input change. Update formValues in state to reflect new form state.
+   * @param {Event} e Event object for form control onChange
+   */
   const handleFormChange = e => {
     const updatedFormValues = Object.assign({}, formValues)
     updatedFormValues[e.target.name] = e.target.value
     setFormValues(updatedFormValues)
   }
 
+  /**
+   * Handle the register form submit. Verify that the passwords match, then post the new user to the API.
+   * @param {Event} e Event object for form submission.
+   */
   const handleFormSubmit = e => {
     e.preventDefault()
 
+    // grab all of the values off the formValues state object for each form input
     const { first_name, last_name, email, username, password, verifyPassword, profile_image_url, bio } = formValues
 
     if(password === verifyPassword) {
+      // Create an object for the new user... all fields are required except for profile_image_url and bio in the form,
+      // so just set those to empty string manually if still undefined at this point
       const newUser = {
         first_name,
         last_name,
@@ -37,6 +48,8 @@ export const Register = props => {
       })
         .then(res => res.json())
         .then(res => {
+          // After successful POST to /register, response will contain auth token and RareUser id, set those in localStorage
+          // and redirect us on to the app with those values set
           localStorage.setItem("rare_user_token", res.token)
           localStorage.setItem("rare_user_id", res.user_id)
           props.history.push("/")
