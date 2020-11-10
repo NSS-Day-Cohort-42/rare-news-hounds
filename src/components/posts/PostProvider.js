@@ -17,7 +17,13 @@ export const PostProvider = (props) => {
   };
 
   const getPostById = (postId) => {
-    return fetch(`http://localhost:8000/posts/${postId}`).then((res) =>
+    return fetch(`http://localhost:8000/posts/${postId}`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
+        "Content-Type": "application/json",   
+      }
+    })
+    .then((res) =>
       res.json()
     );
   };
