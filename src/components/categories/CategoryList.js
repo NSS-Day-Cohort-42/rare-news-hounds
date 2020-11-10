@@ -36,10 +36,14 @@ export default (props) => {
               <Category category={c} key={c.id} />
               </Col>
               <Col className="d-flex justify-content-end m-2">
-                <ConfirmableDeleteButton 
-                  prompt="Are you sure you want to delete this category?" 
-                  onDelete={() => deleteCategory(c.id)} />
-                <Button>Edit</Button>
+                { c.label !== 'Uncategorized' && 
+                  <>
+                    <ConfirmableDeleteButton 
+                      prompt="Are you sure you want to delete this category?" 
+                      onDelete={() => deleteCategory(c.id)} />
+                    <Button>Edit</Button>
+                  </>
+                }
               </Col>
               </Row>
               </ListGroup.Item>
