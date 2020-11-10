@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useContext, useState, useEffect } from "react";
-import { Image, Badge, Row, Col } from "react-bootstrap";
+import { Image, Badge, Row, Col, Button } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
 import { PostTagManager } from "../postTags/PostTagManager";
@@ -13,7 +13,7 @@ export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
   const [post, setPost] = useState({ category: {}, user: {} });
   const currentUser = parseInt(localStorage.getItem("rare_user_id"));
-  const date = moment(post.publication_time + 86400000).format(
+  const date = moment(post.publication_time).format(
     "dddd, MMMM Do YYYY"
   );
   const handleDeleteButtonClick = () => {
@@ -55,7 +55,7 @@ export default (props) => {
         </Col>
         <Col className="d-flex justify-content-end">
           <p className="postDetail__category">
-            <Badge variant="info">{post.category.name}</Badge>
+            <Badge variant="info">{post.category.label}</Badge>
           </p>
         </Col>
       </Row>
@@ -64,27 +64,15 @@ export default (props) => {
         <Image src={post.image} fluid />
       </Row>
       <Row className="justify-content-center my-4">
+      <Button variant="secondary"
+      type="submit"
+      className="ml-2"
+      onClick={e=> props.history.push(`posts/${post.id}/comments`)}
+      >View Comments</Button>
+      </Row>
+      <Row className="justify-content-center my-4">
         <p className="postDetail__content w-75">{post.content}</p>
       </Row>
-
-      { post.id && 
-        <>
-          <PostTagManager postId={post.id} isPostAuthor={currentUser === post.user_id} /> 
-
-          <h3 className="text-center my-3">Comments</h3>
-          <Row className="my-4">
-            <Col lg="6" sm="10" className="mx-auto">
-              <CommentList postId={post.id} />
-            </Col>
-          </Row>
-
-          <Row>
-            <Col lg="6" sm="10" className="mx-auto">
-              <CommentForm postId={post.id} />
-            </Col>
-          </Row>
-        </>
-      }
     </div>
   );
 };
