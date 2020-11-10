@@ -29,25 +29,34 @@ export default (props) => {
     <>
       <article>
           {categories.map((c) => (
-            <ListGroup key={c.id}>
-              <ListGroup.Item className="mb-2">
-              <Row>
-                <Col className="mt-2">
-              <Category category={c} key={c.id} />
-              </Col>
-              <Col className="d-flex justify-content-end m-2">
+            <Row className="align-items-center">
+              <Col xs="3">
                 { c.label !== 'Uncategorized' && 
-                  <>
-                    <ConfirmableDeleteButton 
-                      prompt="Are you sure you want to delete this category?" 
-                      onDelete={() => deleteCategory(c.id)} />
-                    <Button>Edit</Button>
-                  </>
+                  <Row>
+                    <Col xs="6">
+                      <Button className="border-0 bg-white text-dark" onClick={() => alert('edit not implemented')}>
+                        <i className="material-icons md-36">settings</i>
+                      </Button>
+                    </Col>
+
+                    <Col xs="6">
+                      <ConfirmableDeleteButton 
+                        prompt="Are you sure you want to delete this category?" 
+                        onDelete={() => deleteCategory(c.id)} />
+                    </Col>
+                  </Row>
                 }
               </Col>
-              </Row>
-              </ListGroup.Item>
-            </ListGroup>
+
+              <Col xs="9">
+                <ListGroup key={c.id}>
+                  <ListGroup.Item className="mb-2">
+                  <Category category={c} key={c.id} />
+      
+                  </ListGroup.Item>
+                </ListGroup>
+              </Col>
+            </Row>
           ))}
       </article>
     </>

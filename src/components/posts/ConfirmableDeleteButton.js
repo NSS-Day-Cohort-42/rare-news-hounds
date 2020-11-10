@@ -26,9 +26,9 @@ export const ConfirmableDeleteButton = props => {
   // is rendered within a Link, and if the default event behavior was allowed, clicking on the delete button
   // in that context would cause the user to navigate to that Link's "to" prop
   return <>
-    <div className="confirmableDeleteButtonContainer d-flex justify-content-end mx-2" onClick={e => e.preventDefault()}>
-        <Button variant="danger" onClick={() => setIsDeleting(true)}>
-          Delete
+    <div onClick={e => e.preventDefault()}>
+        <Button className="border-0 bg-white text-dark" onClick={() => setIsDeleting(true)}>
+          <i className="material-icons md-36">delete</i>
         </Button>
     </div>
 
