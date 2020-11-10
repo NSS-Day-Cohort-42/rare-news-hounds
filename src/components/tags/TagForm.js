@@ -1,27 +1,31 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Form, FormGroup, Row, Col } from "react-bootstrap";
 import { TagContext } from "./TagProvider";
 import NewTagButton from "./NewTagButton";
 
 export default (props) => {
   const { createTag, tags } = useContext(TagContext);
-  const tagNames = tags.map((t) => t.name.toLowerCase());
-  const tagRef = useRef("");
+  const [tag, setTag] = useState({label: ""})
+  const tagNames = tags.map((t) => t.label.toLowerCase());
+
   const handleSubmitButtonPress = (e) => {
     e.preventDefault();
     if (
-      !tagNames.includes(tagRef.current.value.toLowerCase().trim()) &&
-      tagRef.current.value.trim().length
+      !tagNames.includes(tag.label.toLowerCase().trim()) &&
+      tag.label.trim().length
     ) {
-      const newTag = {
-        name: tagRef.current.value,
-      };
-      createTag(newTag);
-      tagRef.current.value = "";
+      createTag(tag);
+      tag.label = "";
     } else {
       alert("Please enter a valid tag name");
     }
   };
+
+  const handleControlledInputChange = (e) => {
+    const newTag = Object.assign({}, tag)
+    newTag[e.target.name] = e.target.value
+    setTag(newTag)
+  }
 
   return (
     <Form onSubmit={handleSubmitButtonPress}>
@@ -31,7 +35,9 @@ export default (props) => {
             <Form.Control
               type="text"
               placeholder="Enter a new tag name"
-              ref={tagRef}
+              name="label"
+              value={tag.label}
+              onChange={handleControlledInputChange}
             />
           </FormGroup>
         </Col>
