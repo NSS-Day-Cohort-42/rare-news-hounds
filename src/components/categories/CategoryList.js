@@ -3,11 +3,11 @@ import Row from "react-bootstrap/Row";
 import Category from "./Category";
 import { CategoryContext } from "./CategoryProvider";
 import { Button, Col, ListGroup} from "react-bootstrap";
+import { MdSettings } from "react-icons/md";
 import { ConfirmableDeleteButton } from "../posts/ConfirmableDeleteButton";
 
-
 export default (props) => {
-  const { categories, getCategories } = useContext(CategoryContext);
+  const { categories, getCategories, deleteCategory } = useContext(CategoryContext);
 
   categories.sort((a,b)=> {
    const labelA = a.label.toUpperCase();
@@ -29,19 +29,34 @@ export default (props) => {
     <>
       <article>
           {categories.map((c) => (
-            <ListGroup key={c.id}>
-              <ListGroup.Item className="mb-2">
-              <Row>
-                <Col className="mt-2">
-              <Category category={c} key={c.id} />
+            <Row key={c.id} className="align-items-center">
+              <Col xs="3">
+                { c.label !== 'Uncategorized' && 
+                  <Row>
+                    <Col xs="6">
+                      <Button className="border-0 bg-white text-dark" onClick={() => alert('edit not implemented')}>
+                        <MdSettings style={{ fontSize: '36px' }} />
+                      </Button>
+                    </Col>
+
+                    <Col xs="6">
+                      <ConfirmableDeleteButton 
+                        prompt="Are you sure you want to delete this category?" 
+                        onDelete={() => deleteCategory(c.id)} />
+                    </Col>
+                  </Row>
+                }
               </Col>
-              <Col className="d-flex justify-content-end m-2">
-                <ConfirmableDeleteButton />
-                <Button>Edit</Button>
+
+              <Col xs="9">
+                <ListGroup key={c.id}>
+                  <ListGroup.Item className="mb-2">
+                  <Category category={c} />
+      
+                  </ListGroup.Item>
+                </ListGroup>
               </Col>
-              </Row>
-              </ListGroup.Item>
-            </ListGroup>
+            </Row>
           ))}
       </article>
     </>
