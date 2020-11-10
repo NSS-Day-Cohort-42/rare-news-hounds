@@ -6,9 +6,14 @@ import "./ConfirmableDeleteButton.css"
 /**
  * ConfirmableDeleteButton component - renders as a "Delete" button that, when clicked, renders a react-bootstrap Modal prompting the user to confirm if they truly want to delete the thing.
  * 
- * Pass a function implementing whatever you want to happen when the user confirms deletion as props.onDelete.
+ * PROPS:
+ *  onDelete <function> - A function that implements whatever you want to happen when the user confirms delete
+ *  prompt (optional) <String> - The text to display as the confirmation text in the modal. 
+ *    default value (if nothing passed in props) is "Are you sure you want to delete this item?"
  */
 export const ConfirmableDeleteButton = props => {
+  const confirmDeletePrompt = props.prompt || "Are you sure you want to delete this item?"
+
   const [ isDeleting, setIsDeleting ] = useState(false)
 
   const handleConfirmDelete = () => {
@@ -32,7 +37,7 @@ export const ConfirmableDeleteButton = props => {
         <Modal.Title>Confirm Delete</Modal.Title>
         <Modal.Body>
           <Row>
-            <p>{props.prompt || "Are you sure you want to delete this item?"}</p>
+            <p>{confirmDeletePrompt}</p>
           </Row>
           <Row>
             <Button className="mr-1" variant="secondary" onClick={() => setIsDeleting(false)}>
