@@ -4,15 +4,19 @@ export const PostTagContext = createContext();
 
 export const PostTagProvider = (props) => {
   const getPostTagsByPostId = (postId) => {
-    return fetch(
-      `http://localhost:8000/post_tags?post_id=${postId}`
-    ).then((res) => res.json());
+    return fetch(`http://localhost:8000/posttags?post_id=${postId}`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
+        "Content-Type": "application/json",
+      }
+    }).then((res) => res.json());
   };
 
   const addPostTag = (postTag) => {
-    return fetch("http://localhost:8000/post_tags", {
+    return fetch("http://localhost:8000/posttags", {
       method: "POST",
       headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(postTag),
@@ -20,8 +24,12 @@ export const PostTagProvider = (props) => {
   };
 
   const deletePostTag = (postTagId) => {
-    return fetch(`http://localhost:8000/post_tags/${postTagId}`, {
+    return fetch(`http://localhost:8000/posttags/${postTagId}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
+        "Content-Type": "application/json",
+      },
     });
   };
 
