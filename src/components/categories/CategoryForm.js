@@ -5,16 +5,17 @@ import NewCategoryButton from "./NewCategoryButton";
 
 export default (props) => {
   const { createCategory, categories } = useContext(CategoryContext);
-  const categoryNames = categories.map((c) => c.name.toLowerCase());
+  const categoryLabels = categories.map((c) => c.label.toLowerCase());
   const categoryRef = useRef("");
+
   const handleSubmitButtonPress = (e) => {
     e.preventDefault();
     if (
-      !categoryNames.includes(categoryRef.current.value.toLowerCase().trim()) &&
+      !categoryLabels.includes(categoryRef.current.value.toLowerCase().trim()) &&
       categoryRef.current.value.trim().length
     ) {
       const newCategory = {
-        name: categoryRef.current.value,
+        label: categoryRef.current.value,
       };
       createCategory(newCategory);
       categoryRef.current.value = "";
