@@ -3,8 +3,8 @@ import Row from "react-bootstrap/Row";
 import Category from "./Category";
 import { CategoryContext } from "./CategoryProvider";
 import { Button, Col, ListGroup} from "react-bootstrap";
+import { MdSettings } from "react-icons/md";
 import { ConfirmableDeleteButton } from "../posts/ConfirmableDeleteButton";
-
 
 export default (props) => {
   const { categories, getCategories, deleteCategory } = useContext(CategoryContext);
@@ -35,7 +35,7 @@ export default (props) => {
                   <Row>
                     <Col xs="6">
                       <Button className="border-0 bg-white text-dark" onClick={() => alert('edit not implemented')}>
-                        <i className="material-icons md-36">settings</i>
+                        <MdSettings style={{ fontSize: '36px' }} />
                       </Button>
                     </Col>
 

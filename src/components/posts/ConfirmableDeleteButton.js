@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Modal, Button, Row } from "react-bootstrap"
+import { MdDelete } from "react-icons/md"
 
 import "./ConfirmableDeleteButton.css"
 
@@ -28,7 +29,7 @@ export const ConfirmableDeleteButton = props => {
   return <>
     <div onClick={e => e.preventDefault()}>
         <Button className="border-0 bg-white text-dark" onClick={() => setIsDeleting(true)}>
-          <i className="material-icons md-36">delete</i>
+          <MdDelete style={{ fontSize: '36px' }} />
         </Button>
     </div>
 
