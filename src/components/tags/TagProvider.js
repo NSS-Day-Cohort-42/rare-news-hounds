@@ -27,12 +27,23 @@ export const TagProvider = (props) => {
     }).then(getTags);
   };
 
+  const deleteTag = (tagid) => {
+    return fetch(`http://localhost:8000/tags/${tagid}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
+        "Content-Type": "application/json",
+      }
+    }).then(() => getTags())
+  }
+
   return (
     <TagContext.Provider
       value={{
         tags,
         getTags,
         createTag,
+        deleteTag
       }}
     >
       {props.children}
