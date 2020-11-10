@@ -5,7 +5,7 @@ export default ({ tag }) => {
   return (
     <h3>
       <Badge pill variant="primary" className="m-1">
-        {tag.name}
+        {tag.label}
       </Badge> 
     </h3>
   );
