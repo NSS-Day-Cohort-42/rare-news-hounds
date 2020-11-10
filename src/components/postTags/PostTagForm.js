@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+ import React, { useContext, useEffect, useState } from "react"
 import { TagContext } from "../tags/TagProvider"
 import { PostTagContext } from "./PostTagProvider"
 import Button from "react-bootstrap/esm/Button"
@@ -89,7 +89,7 @@ export const PostTagForm = ({postId, endEditTags}) => {
 							key={tag.id}
 							onClick={evt => handleChange(tag.id)}
 						>
-							{tag.name}
+							{tag.label}
 						</Button>)
 					})					
 				}
