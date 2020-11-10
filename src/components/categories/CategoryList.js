@@ -10,12 +10,12 @@ export default (props) => {
   const { categories, getCategories } = useContext(CategoryContext);
 
   categories.sort((a,b)=> {
-   const nameA = a.name.toUpperCase();
-   const nameB = b.name.toUpperCase();
-    if (nameA < nameB){
+   const labelA = a.label.toUpperCase();
+   const labelB = b.label.toUpperCase();
+    if (labelA < labelB){
       return -1
     }
-    if (nameA > nameB) {
+    if (labelA > labelB) {
       return 1
     }
     return 0
@@ -28,9 +28,8 @@ export default (props) => {
   return (
     <>
       <article>
-        <h2 className="my-4 text-center">Existing Categories</h2>
           {categories.map((c) => (
-            <ListGroup>
+            <ListGroup key={c.id}>
               <ListGroup.Item className="mb-2">
               <Row>
                 <Col className="mt-2">

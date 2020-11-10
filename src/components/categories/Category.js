@@ -5,7 +5,7 @@ export default ({ category }) => {
   return (
       <h3>
         <Badge pill variant="info" className="m-1">
-          {category.name}
+          {category.label}
         </Badge> 
       </h3>
   );
