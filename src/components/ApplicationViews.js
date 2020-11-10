@@ -21,6 +21,7 @@ export const ApplicationViews = () => {
         path="/logout"
         render={() => {
           localStorage.removeItem("rare_user_id");
+          localStorage.removeItem("rare_user_token");
           return <Redirect to="/login" />;
         }}
       />
