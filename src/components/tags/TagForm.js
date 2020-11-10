@@ -5,7 +5,7 @@ import NewTagButton from "./NewTagButton";
 
 export default (props) => {
   const { createTag, tags } = useContext(TagContext);
-  const tagNames = tags.map((t) => t.name.toLowerCase());
+  const tagNames = tags.map((t) => t.label.toLowerCase());
   const tagRef = useRef("");
   const handleSubmitButtonPress = (e) => {
     e.preventDefault();
@@ -14,7 +14,7 @@ export default (props) => {
       tagRef.current.value.trim().length
     ) {
       const newTag = {
-        name: tagRef.current.value,
+        label: tagRef.current.value,
       };
       createTag(newTag);
       tagRef.current.value = "";

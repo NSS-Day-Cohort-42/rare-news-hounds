@@ -10,8 +10,8 @@ export default (props) => {
   const { tags, getTags } = useContext(TagContext);
 
 	tags.sort((a,b)=> {
-		const nameA = a.name.toUpperCase();
-		const nameB = b.name.toUpperCase();
+		const nameA = a.label.toUpperCase();
+		const nameB = b.label.toUpperCase();
 		 if (nameA < nameB){
 			 return -1
 		 }
