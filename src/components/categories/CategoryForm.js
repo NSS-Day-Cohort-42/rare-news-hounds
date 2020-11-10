@@ -25,21 +25,18 @@ export default (props) => {
   };
 
   return (
-    <Form onSubmit={handleSubmitButtonPress}>
-      <Row>
-        <Col sm="10">
+    <Form onSubmit={handleSubmitButtonPress} className="my-4">
+      <Row className="flex-column">
           <FormGroup>
             <Form.Control
+              className="w-75 mx-auto"
               type="text"
-              placeholder="Enter a new category name"
+              placeholder="Add text"
               ref={categoryRef}
             />
           </FormGroup>
-        </Col>
 
-        <Col sm="2">
           <NewCategoryButton />
-        </Col>
       </Row>
     </Form>
   );

@@ -28,7 +28,6 @@ export default (props) => {
   return (
     <>
       <article>
-        <h2 className="my-4 text-center">Existing Categories</h2>
           {categories.map((c) => (
             <ListGroup key={c.id}>
               <ListGroup.Item className="mb-2">
