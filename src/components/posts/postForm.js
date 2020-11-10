@@ -34,7 +34,7 @@ export const PostForm = (props) => {
       imageRef.current.value = post.image_url
       contentRef.current.value = post.content
 
-      // HTML date inputs take their value in the format YYYY-MM-DD
+      
      
     }
 
