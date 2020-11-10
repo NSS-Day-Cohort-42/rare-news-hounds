@@ -4,7 +4,7 @@ import "./Auth.css";
 import Button from "react-bootstrap/Button";
 
 export const Login = () => {
-  const email = useRef();
+  const username = useRef();
   const password = useRef();
   const invalidDialog = useRef();
   const history = useHistory();
@@ -19,14 +19,15 @@ export const Login = () => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        email: email.current.value,
+        username: username.current.value,
         password: password.current.value,
       }),
     })
       .then((res) => res.json())
       .then((res) => {
         if (res.valid) {
-          localStorage.setItem("rare_user_id", res.token);
+          localStorage.setItem("rare_user_token", res.token)
+          localStorage.setItem("rare_user_id", res.user_id)
           history.push("/");
         } else {
           invalidDialog.current.showModal();
@@ -37,7 +38,7 @@ export const Login = () => {
   return (
     <main className="container--login">
       <dialog className="dialog dialog--auth" ref={invalidDialog}>
-        <div>Email or password was not valid.</div>
+        <div>username or password was not valid.</div>
         <button
           className="button--close"
           onClick={(e) => invalidDialog.current.close()}
@@ -50,14 +51,14 @@ export const Login = () => {
           <h1>News Hounds</h1>
           <h2>Please sign in</h2>
           <fieldset>
-            <label htmlFor="inputEmail"> Email address </label>
+            <label htmlFor="inputUsername"> Username </label>
             <input
-              ref={email}
-              type="email"
-              id="email"
+              ref={username}
+              type="username"
+              id="username"
               className="form-control"
               defaultValue="me@me.com"
-              placeholder="Email address"
+              placeholder="username"
               required
               autoFocus
             />
