@@ -29,7 +29,7 @@ export default (props) => {
     <>
       <article>
           {categories.map((c) => (
-            <Row className="align-items-center">
+            <Row key={c.id} className="align-items-center">
               <Col xs="3">
                 { c.label !== 'Uncategorized' && 
                   <Row>
@@ -51,7 +51,7 @@ export default (props) => {
               <Col xs="9">
                 <ListGroup key={c.id}>
                   <ListGroup.Item className="mb-2">
-                  <Category category={c} key={c.id} />
+                  <Category category={c} />
       
                   </ListGroup.Item>
                 </ListGroup>
