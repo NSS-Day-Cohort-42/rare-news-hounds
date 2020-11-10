@@ -67,7 +67,7 @@ export default (props) => {
       <Button variant="secondary"
       type="submit"
       className="ml-2"
-      onClick={e=> props.history.push(`posts/${post.id}/comments`)}
+      onClick={e=> props.history.push(`/posts/${post.id}/comments`)}
       >View Comments</Button>
       </Row>
       <Row className="justify-content-center my-4">
