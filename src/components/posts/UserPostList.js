@@ -7,7 +7,7 @@ import { UserPostListItem } from "./UserPostListItem"
 export const UserPostList = props => {
   const { posts, getPostsByUserId } = useContext(PostContext)
 
-  posts.sort((a,b) => b.creation_time - a.creation_time)
+  posts.sort((a,b) => a.publication_date - b.publication_date)
 
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const UserPostList = props => {
           <ListGroup.Item action key={post.id} as={Link} to={`/posts/${post.id}`}>
             <UserPostListItem post={post} />
           </ListGroup.Item>
-        ))}
+        )).reverse()}
       </ListGroup>
     </div>
   )

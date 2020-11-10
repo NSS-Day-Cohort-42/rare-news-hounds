@@ -13,6 +13,7 @@ import PostDetail from "./posts/PostDetail";
 import { PostList } from "./posts/PostList";
 import { PostTagProvider } from "./postTags/PostTagProvider";
 import { CommentProvider } from "./comments/CommentProvider";
+import { CategoryManager } from "./categories/CategoryManager";
 
 export const ApplicationViews = () => {
   return (
@@ -20,7 +21,9 @@ export const ApplicationViews = () => {
       <Route
         path="/logout"
         render={() => {
+          // Removes the user Id and Token from local storage and redirects the user back to log in
           localStorage.removeItem("rare_user_id");
+          localStorage.removeItem("rare_user_token");
           return <Redirect to="/login" />;
         }}
       />
@@ -58,9 +61,7 @@ export const ApplicationViews = () => {
 
         <CategoryProvider>
           <Route path="/categories">
-            <h1 className="text-center my-4">Categories</h1>
-            <CategoryForm />
-            <CategoryList />
+            <CategoryManager />
           </Route>
         </CategoryProvider>
 

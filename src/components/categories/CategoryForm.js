@@ -5,16 +5,17 @@ import NewCategoryButton from "./NewCategoryButton";
 
 export default (props) => {
   const { createCategory, categories } = useContext(CategoryContext);
-  const categoryNames = categories.map((c) => c.name.toLowerCase());
+  const categoryLabels = categories.map((c) => c.label.toLowerCase());
   const categoryRef = useRef("");
+
   const handleSubmitButtonPress = (e) => {
     e.preventDefault();
     if (
-      !categoryNames.includes(categoryRef.current.value.toLowerCase().trim()) &&
+      !categoryLabels.includes(categoryRef.current.value.toLowerCase().trim()) &&
       categoryRef.current.value.trim().length
     ) {
       const newCategory = {
-        name: categoryRef.current.value,
+        label: categoryRef.current.value,
       };
       createCategory(newCategory);
       categoryRef.current.value = "";
@@ -24,21 +25,18 @@ export default (props) => {
   };
 
   return (
-    <Form onSubmit={handleSubmitButtonPress}>
-      <Row>
-        <Col sm="10">
+    <Form onSubmit={handleSubmitButtonPress} className="my-4">
+      <Row className="flex-column">
           <FormGroup>
             <Form.Control
+              className="w-75 mx-auto"
               type="text"
-              placeholder="Enter a new category name"
+              placeholder="Add text"
               ref={categoryRef}
             />
           </FormGroup>
-        </Col>
 
-        <Col sm="2">
           <NewCategoryButton />
-        </Col>
       </Row>
     </Form>
   );
