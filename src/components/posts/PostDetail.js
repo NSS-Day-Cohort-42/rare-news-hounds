@@ -73,7 +73,7 @@ export default (props) => {
       <Row className="justify-content-center my-4">
         <p className="postDetail__content w-75">{post.content}</p>
       </Row>
-      {post.id && <PostTagManager postId={post.id} isPostAuthor={true} />}
+      {post.id && <PostTagManager postId={props.match.params.postId} isPostAuthor={true} />}
     </div>
   );
 };

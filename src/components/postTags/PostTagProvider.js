@@ -4,7 +4,7 @@ export const PostTagContext = createContext();
 
 export const PostTagProvider = (props) => {
   const getPostTagsByPostId = (postId) => {
-    return fetch(`http://localhost:8000/posttags?post_id=${postId}`, {
+    return fetch(`http://localhost:8000/posttags?postId=${postId}`, {
       headers: {
         Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
         "Content-Type": "application/json",
