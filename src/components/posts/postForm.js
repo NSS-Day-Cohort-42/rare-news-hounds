@@ -25,11 +25,7 @@ export const PostForm = (props) => {
         getCategories().then(() => {
           if(isEditMode) {
             getPostById(props.match.params.postId)
-              .then(post => {
-                populateFormValues(post)
-                const initiallySelectedPostTagIds = post.tags.map(tag => tag.id)
-                setSelectedPostTagIds(initiallySelectedPostTagIds)
-              })
+              .then(populateFormValues)
           }
         })
     },[])
@@ -40,8 +36,8 @@ export const PostForm = (props) => {
       imageRef.current.value = post.image_url
       contentRef.current.value = post.content
 
-      
-     
+      const initiallySelectedPostTagIds = post.tags.map(tag => tag.id)
+      setSelectedPostTagIds(initiallySelectedPostTagIds)
     }
 
     const onTogglePostTag = (changedTagId) => {
