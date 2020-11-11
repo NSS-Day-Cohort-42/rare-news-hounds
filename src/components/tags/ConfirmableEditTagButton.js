@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Modal, Button, Row } from "react-bootstrap";
 import { BsGearFill } from "react-icons/bs";
 import "../posts/ConfirmableDeleteButton.css";
@@ -14,20 +14,15 @@ import { TagContext } from "./TagProvider";
  */
 export const ConfirmableEditTagButton = (props) => {
   const { updateTag } = useContext(TagContext);
+  const labelRef = useRef("");
 
   const confirmEditPrompt = props.prompt || "Edit this Tag";
 
   const [isEditing, setIsEditing] = useState(false);
-  const [tag, setTag] = useState({ label: props.tag.label, id: props.tag.id });
-
-  const handleControlledInputChange = (e) => {
-    const newTag = Object.assign({}, tag);
-    newTag[e.target.name] = e.target.value;
-    setTag(newTag);
-  };
 
   const handleConfirmUpdate = () => {
-    updateTag(tag);
+    // updateTag(tag);
+    updateTag({ id: props.tag.id, label: labelRef.current.value });
     setIsEditing(false);
   };
 
@@ -57,8 +52,8 @@ export const ConfirmableEditTagButton = (props) => {
               <input
                 type="text"
                 name="label"
-                value={tag.label}
-                onChange={handleControlledInputChange}
+                ref={labelRef}
+                placeholder={props.tag.label}
               />
             </Row>
             <Row>
