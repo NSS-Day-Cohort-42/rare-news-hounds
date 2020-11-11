@@ -36,7 +36,7 @@ export const PostTagForm = ({ postId, endEditTags }) => {
 
     // Filter down the currently-selected postTags in the form to only those that were not initially selected
     const postTagsToAdd = selectedPostTags.filter(
-      (selectedTagId) => !thisPostTags.some((pt) => pt.tag_id === selectedTagId)
+      (selectedTagId) => !thisPostTags.some((pt) => pt.tag.id === selectedTagId)
     );
 
     // then call addPostTag for each of those, and store the resulting Promises in an array
@@ -52,7 +52,7 @@ export const PostTagForm = ({ postId, endEditTags }) => {
     // Filter down the initial postTags to determine which ones are no longer selected (i.e., were "deselected" by the user)
     const postTagsToDelete = thisPostTags.filter(
       (pt) =>
-        !selectedPostTags.some((selectedTagId) => selectedTagId === pt.tag_id)
+        !selectedPostTags.some((selectedTagId) => selectedTagId === pt.tag.id)
     );
 
     // then call deletePostTag for each of those, and store the resulting Promises in an array
@@ -71,7 +71,7 @@ export const PostTagForm = ({ postId, endEditTags }) => {
     getTags();
     getPostTagsByPostId(postId).then((thisPostTagsInitial) => {
       setThisPostTags(thisPostTagsInitial);
-      setSelectedPostTags(thisPostTagsInitial.map((pt) => pt.tag_id));
+      setSelectedPostTags(thisPostTagsInitial.map((pt) => pt.tag.id));
     });
   }, [postId]);
 
