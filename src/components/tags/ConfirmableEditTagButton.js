@@ -13,7 +13,8 @@ import { TagContext } from "./TagProvider";
  *    default value (if nothing passed in props) is "Are you sure you want to edit this item?"
  */
 export const ConfirmableEditTagButton = (props) => {
-  const { updateTag } = useContext(TagContext);
+  const { updateTag, tags } = useContext(TagContext);
+  const tagNames = tags.map(t => t.label.toLowerCase())
   const labelRef = useRef("");
 
   const confirmEditPrompt = props.prompt || "Edit this Tag";
@@ -21,9 +22,10 @@ export const ConfirmableEditTagButton = (props) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleConfirmUpdate = () => {
-    updateTag({ id: props.tag.id, label: labelRef.current.value });
-    setIsEditing(false);
-  };
+    if (!tagNames.includes(labelRef.current.value.toLowerCase().trim()) && labelRef.current.value.trim().length) {
+      updateTag({ id: props.tag.id, label: labelRef.current.value });
+      setIsEditing(false);
+    } else alert('please enter a valid tag name')};
 
   return (
     <>
