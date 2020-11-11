@@ -3,11 +3,11 @@ import React, { useContext, useState, useEffect } from "react";
 import { Image, Badge, Row, Col, Button } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
-import { PostTagManager } from "../postTags/PostTagManager";
 import EditPostButton from "./EditPostButton";
 import { CommentList } from "../comments/CommentList";
 import "./PostDetail.css";
 import CommentForm from "../comments/CommentForm";
+import { PostTagList } from "../postTags/PostTagList";
 
 export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
@@ -74,10 +74,7 @@ export default (props) => {
         <p className="postDetail__content w-75">{post.content}</p>
       </Row>
       {post.id && (
-        <PostTagManager
-          postId={post.id}
-          isPostAuthor={post.user.id === currentUser ? true : false}
-        />
+        <PostTagList postId={post.id}/>
       )}
     </div>
   );
