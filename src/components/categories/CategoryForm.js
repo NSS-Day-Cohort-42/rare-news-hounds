@@ -3,6 +3,12 @@ import { Form, FormGroup, Row, Col } from "react-bootstrap";
 import { CategoryContext } from "./CategoryProvider";
 import NewCategoryButton from "./NewCategoryButton";
 
+
+
+
+
+
+
 export default (props) => {
   const { createCategory, categories } = useContext(CategoryContext);
   const categoryLabels = categories.map((c) => c.label.toLowerCase());

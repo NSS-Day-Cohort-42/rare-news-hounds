@@ -29,7 +29,6 @@ export const CommentProvider = (props) => {
     });
   };
 
-  // delete the comment with the given id, then fetch comments for given post id and update state
   const deleteComment = (comment_id, post_id) => {
     return fetch(`http://localhost:8000/comments/${comment_id}`, {
       method: "DELETE",

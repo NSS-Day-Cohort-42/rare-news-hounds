@@ -3,10 +3,10 @@ import { Button, Form, Row } from "react-bootstrap"
 import { CommentContext } from "./CommentProvider"
 
 // export const CommentForm = () => {
-    export default function CommentForm  ({ postId })  {
+    export default function CommentForm  (props)  {
         const [comment, setComment] = useState({ content: "" })
         const  { createComment } = useContext(CommentContext)
-
+    
         const handleTextareaChange = (e) => {
             const stateComment = Object.assign({}, comment)
             stateComment[e.target.name] = e.target.value
@@ -16,10 +16,11 @@ import { CommentContext } from "./CommentProvider"
         const handleSubmitCommentClick = (e) => {
             e.preventDefault()
             if (comment.content.trim().length) {
+               
                 const newComment = {
              
                     content: comment.content,
-                    post: postId,
+                    post_id: parseInt(props.match.params.postId),
                     subject: comment.subject,
                     created_on: Date.now(),
                     author: parseInt(localStorage.getItem("rare_user_id"))
@@ -35,7 +36,7 @@ import { CommentContext } from "./CommentProvider"
         return (
             <Form>
                            
-                <Form.Control as="input" onChange={handleTextareaChange} value={comment.subject} name='content' placeholder="subject"/>
+                <Form.Control as="input" onChange={handleTextareaChange} value={comment.subject} name='subject' placeholder="subject"/>
                 <Form.Control as="textarea" onChange={handleTextareaChange} value={comment.content} name='content' placeholder="Who's a good boyyyy?"/>
 
             
