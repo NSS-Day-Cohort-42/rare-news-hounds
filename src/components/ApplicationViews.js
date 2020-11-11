@@ -10,6 +10,8 @@ import { PostList } from "./posts/PostList";
 import { PostTagProvider } from "./postTags/PostTagProvider";
 import { CommentProvider } from "./comments/CommentProvider";
 import { CategoryManager } from "./categories/CategoryManager";
+import { CommentList } from './comments/CommentList'
+import CommentForm from "./comments/CommentForm";
 import { TagManager } from "./tags/TagManager";
 
 export const ApplicationViews = () => {
@@ -49,6 +51,16 @@ export const ApplicationViews = () => {
                     exact
                     path="/posts/:postId(\d+)"
                     render={(props) => <PostDetail {...props} />}
+                  />
+                  <Route
+                    exact
+                    path="/posts/:postId(\d+)/comments"
+                    render={(props) => (
+                      <>
+                        <CommentForm {...props} />
+                        <CommentList {...props} />
+                      </>
+                    )}
                   />
                 </CommentProvider>
               </CategoryProvider>
