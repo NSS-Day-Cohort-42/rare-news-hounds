@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
@@ -6,10 +6,12 @@ import { CategoryContext } from "../categories/CategoryProvider";
 import { PostContext } from "./PostProvider";
 import CancelEditButton from "./CancelEditButton";
 import { Row } from "react-bootstrap";
+import { PostTagForm } from "../postTags/PostTagForm";
 
 export const PostForm = (props) => {
     const {createPost, updatePost, getPostById} = useContext(PostContext)
     const {categories, getCategories} = useContext(CategoryContext)
+    const [ selectedPostTags, setSelectedPostTags ] = useState([])
 
     const titleRef = useRef("")
     const categoryRef = useRef("")
@@ -37,6 +39,24 @@ export const PostForm = (props) => {
       
      
     }
+
+    const onTogglePostTag = (changedTagId) => {
+      let newSelectedPostTags = [];
+      //check if the tag is already in the list of selected tags
+      if (selectedPostTags.some((tagId) => tagId === changedTagId)) {
+        // Remove the id of the tag from the list of selected tags
+        newSelectedPostTags = selectedPostTags.filter(
+          (tagId) => tagId !== changedTagId
+        );
+      } else {
+        // Add the tag to the list of selected tags
+        selectedPostTags.push(changedTagId);
+        // Copy the selected tags array to a new variable so that state will update correctly
+        newSelectedPostTags = selectedPostTags.slice();
+      }
+      // Set component state, which will cause the component to re-render
+      setSelectedPostTags(newSelectedPostTags);
+    };
 
     const constructNewPost = () => {
         if (titleRef.current.value === "") {
@@ -100,6 +120,7 @@ export const PostForm = (props) => {
                 ))}
                 </Form.Control>
             </FormGroup>
+            <PostTagForm selectedPostTags={selectedPostTags} onTogglePostTag={onTogglePostTag} />
             <Row className="justify-content-end">
                 {isEditMode && <CancelEditButton action={props}/>}
                 <Button variant="success" 
