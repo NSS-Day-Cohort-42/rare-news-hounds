@@ -13,10 +13,9 @@ import { TagContext } from "./TagProvider";
  *    default value (if nothing passed in props) is "Are you sure you want to edit this item?"
  */
 export const ConfirmableEditTagButton = (props) => {
-  const {updateTag} = useContext(TagContext)
+  const { updateTag } = useContext(TagContext);
 
-  const confirmEditPrompt =
-    props.prompt || "Edit this Tag";
+  const confirmEditPrompt = props.prompt || "Edit this Tag";
 
   const [isEditing, setIsEditing] = useState(false);
   const [tag, setTag] = useState({ label: props.tag.label, id: props.tag.id });
@@ -53,6 +52,8 @@ export const ConfirmableEditTagButton = (props) => {
           <Modal.Body>
             <Row>
               <p>{confirmEditPrompt}</p>
+            </Row>
+            <Row>
               <input
                 type="text"
                 name="label"
@@ -64,7 +65,10 @@ export const ConfirmableEditTagButton = (props) => {
               <Button
                 className="mr-1"
                 variant="secondary"
-                onClick={() => setIsEditing(false)}
+                onClick={() => {
+                  setTag({ label: props.tag.label, id: props.tag.id});
+                  setIsEditing(false);
+                }}
               >
                 Cancel
               </Button>
