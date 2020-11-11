@@ -66,7 +66,6 @@ export const ConfirmableEditTagButton = (props) => {
                 className="mr-1"
                 variant="secondary"
                 onClick={() => {
-                  setTag({ label: props.tag.label, id: props.tag.id});
                   setIsEditing(false);
                 }}
               >
