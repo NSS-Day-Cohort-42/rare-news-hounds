@@ -1,31 +1,31 @@
 import React, { useContext, useRef, useState } from "react";
 import { Modal, Button, Row } from "react-bootstrap";
 import { BsGearFill } from "react-icons/bs";
-import "./ConfirmableEditTagButton.css";
-import { TagContext } from "./TagProvider";
+import "./ConfirmableEditCategoryButton.css";
+import { CategoryContext } from "./CategoryProvider";
 
 /**
- * ConfirmableEditTagButton component - renders as an "Edit" button that, when clicked, renders a react-bootstrap Modal prompting the user to edit their tag and then confirm that they truly want to edit that tag.
+ * ConfirmableEditCategoryButton component - renders as an "Edit" button that, when clicked, renders a react-bootstrap Modal prompting the user to edit their category and then confirm that they truly want to edit that category.
  *
  * PROPS:
- *  tag <Object> - the tag object, itself. Has a label and id property.
+ *  category <Object> - the category object, itself. Has a label and id property.
  *  prompt (optional) <String> - The text to display as the confirmation text in the modal.
  *    default value (if nothing passed in props) is "Are you sure you want to edit this item?"
  */
-export const ConfirmableEditTagButton = (props) => {
-  const { updateTag, tags } = useContext(TagContext);
-  const tagNames = tags.map(t => t.label.toLowerCase())
+export const ConfirmableEditCategoryButton = (props) => {
+  const { updateCategory, categories } = useContext(CategoryContext);
+  const categoryNames = categories.map(c => c.label.toLowerCase())
   const labelRef = useRef("");
 
-  const confirmEditPrompt = props.prompt || "Edit this Tag";
+  const confirmEditPrompt = props.prompt || "Edit this Category";
 
   const [isEditing, setIsEditing] = useState(false);
 
   const handleConfirmUpdate = () => {
-    if (!tagNames.includes(labelRef.current.value.toLowerCase().trim()) && labelRef.current.value.trim().length) {
-      updateTag({ id: props.tag.id, label: labelRef.current.value });
+    if (!categoryNames.includes(labelRef.current.value.toLowerCase().trim()) && labelRef.current.value.trim().length) {
+      updateCategory({ id: props.category.id, label: labelRef.current.value });
       setIsEditing(false);
-    } else alert('please enter a valid tag name')};
+    } else alert('please enter a valid category name')};
 
   return (
     <>
@@ -53,7 +53,7 @@ export const ConfirmableEditTagButton = (props) => {
                 type="text"
                 name="label"
                 ref={labelRef}
-                defaultValue={props.tag.label}
+                defaultValue={props.category.label}
               />
             </Row>
             <Row>
@@ -67,7 +67,7 @@ export const ConfirmableEditTagButton = (props) => {
                 Cancel
               </Button>
 
-              <Button variant="success" onClick={handleConfirmUpdate}>
+              <Button variant="danger" onClick={handleConfirmUpdate}>
                 Confirm Update
               </Button>
             </Row>

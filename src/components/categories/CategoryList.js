@@ -5,6 +5,7 @@ import { CategoryContext } from "./CategoryProvider";
 import { Button, Col, ListGroup} from "react-bootstrap";
 import { MdSettings } from "react-icons/md";
 import { ConfirmableDeleteButton } from "../posts/ConfirmableDeleteButton";
+import { ConfirmableEditCategoryButton} from "../categories/ConfirmableEditCategoryButton";
 
 export default (props) => {
   const { categories, getCategories, deleteCategory } = useContext(CategoryContext);
@@ -34,9 +35,7 @@ export default (props) => {
                 { c.label !== 'Uncategorized' && 
                   <Row>
                     <Col xs="6">
-                      <Button className="border-0 bg-white text-dark" onClick={() => alert('edit not implemented')}>
-                        <MdSettings style={{ fontSize: '36px' }} />
-                      </Button>
+                    <ConfirmableEditCategoryButton category={c} />
                     </Col>
 
                     <Col xs="6">
