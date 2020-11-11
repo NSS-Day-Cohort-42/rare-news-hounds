@@ -7,7 +7,6 @@ import { UserPostList } from "./posts/UserPostList";
 import { TagProvider } from "./tags/TagProvider";
 import PostDetail from "./posts/PostDetail";
 import { PostList } from "./posts/PostList";
-import { PostTagProvider } from "./postTags/PostTagProvider";
 import { CommentProvider } from "./comments/CommentProvider";
 import { CategoryManager } from "./categories/CategoryManager";
 import { CommentList } from './comments/CommentList'
@@ -30,9 +29,11 @@ export const ApplicationViews = () => {
       <main className="container p-5">
         <PostProvider>
           <CategoryProvider>
-            <Route path="/posts/create" component={PostForm} />
+            <TagProvider>
+              <Route path="/posts/create" component={PostForm} />
 
-            <Route path="/posts/edit/:postId" component={PostForm} />
+              <Route path="/posts/edit/:postId" component={PostForm} />
+            </TagProvider>
           </CategoryProvider>
         </PostProvider>
         <PostProvider>
@@ -41,7 +42,6 @@ export const ApplicationViews = () => {
           </CategoryProvider>
         </PostProvider>
 
-        <PostTagProvider>
           <TagProvider>
             <PostProvider>
               <CategoryProvider>
@@ -66,7 +66,6 @@ export const ApplicationViews = () => {
               </CategoryProvider>
             </PostProvider>
           </TagProvider>
-        </PostTagProvider>
 
         <CategoryProvider>
           <Route path="/categories">
