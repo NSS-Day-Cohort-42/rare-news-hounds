@@ -16,7 +16,7 @@ export const PostListItem = props => {
       </Col>
       <Col sm="2" className="d-flex justify-content-end">
         <Badge variant="info">
-          <span className="postListItem__categoryName">{category.name}</span>
+          <span className="postListItem__categoryName">{category.label}</span>
         </Badge>
       </Col>
     </Row>
