@@ -52,7 +52,7 @@ export default (props) => {
                 <ListGroup.Item className="mb-2">
                   <Row>
                     <Col className="mt-2">
-                      <Tag tag={t} key={t.id} />
+                      <Tag tag={t} />
                     </Col>
                     <Col className="d-flex justify-content-end m-2">
                     </Col>
