@@ -5,17 +5,23 @@ export const CommentContext = React.createContext();
 export const CommentProvider = (props) => {
   const [comments, setComments] = useState([]);
 
+
   const getCommentsByPostId = (post_id) => {
-    return fetch(`http://localhost:8000/comments?post_id=${post_id}`)
-      .then((res) => res.json())
-      .then(setComments);
-  };
+    return fetch(`http://localhost:8000/comments?post_id=${post_id}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
+        }
+    })
+        .then(response => response.json())
+        .then(setComments)
+}
 
   const createComment = (newComment) => {
     return fetch(`http://localhost:8000/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
       },
       body: JSON.stringify(newComment),
     }).then(() => {
@@ -27,6 +33,7 @@ export const CommentProvider = (props) => {
   const deleteComment = (comment_id, post_id) => {
     return fetch(`http://localhost:8000/comments/${comment_id}`, {
       method: "DELETE",
+      "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
     }).then(() => getCommentsByPostId(post_id));
   };
   return (
