@@ -76,7 +76,7 @@ export const PostForm = (props) => {
             category_id: categoryRef.current.value,
             image_url: imageRef.current.value,
             content: contentRef.current.value,
-            postTags: selectedPostTagIds,
+            tagIds: selectedPostTagIds,
             publish_status: true,
             approve_status: true,
             
