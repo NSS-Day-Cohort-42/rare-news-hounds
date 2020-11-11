@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from "react";
+import { ListGroup, Row, Col, Button } from "react-bootstrap";
+
 import Tag from "./Tag";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { TagContext } from "./TagProvider";
-import { ListGroup, Button } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "../posts/ConfirmableDeleteButton";
 import { ConfirmableEditTagButton } from "./ConfirmableEditTagButton";
 
@@ -33,21 +32,36 @@ export default (props) => {
   return (
     <>
       <article className="tags">
-        <h2 className="my-4 text-center">Existing Tags</h2>
         {tags.map((t) => (
-          <ListGroup>
-            <ListGroup.Item className="mb-2">
+          <Row key={t.id} className="align-items-center">
+            <Col xs="3">
               <Row>
-                <Col className="mt-2">
-                  <Tag tag={t} key={t.id} />
-                </Col>
-                <Col className="d-flex justify-content-end m-2">
-                  <ConfirmableDeleteButton onDelete={() => confirmDelete(t.id)} />
+                <Col xs="6">
                   <ConfirmableEditTagButton tag={t} />
                 </Col>
+                <Col xs="6">
+                  <ConfirmableDeleteButton 
+                    prompt="Are you sure you want to delete this tag?"
+                    onDelete={() => confirmDelete(t.id)} />
+                </Col>
               </Row>
-            </ListGroup.Item>
-          </ListGroup>
+            </Col>
+
+            <Col xs="9">
+              <ListGroup>
+                <ListGroup.Item className="mb-2">
+                  <Row>
+                    <Col className="mt-2">
+                      <Tag tag={t} />
+                    </Col>
+                    <Col className="d-flex justify-content-end m-2">
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              </ListGroup>
+            </Col>
+          </Row>
+
         ))}
       </article>
     </>

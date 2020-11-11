@@ -28,23 +28,20 @@ export default (props) => {
   }
 
   return (
-    <Form onSubmit={handleSubmitButtonPress}>
-      <Row>
-        <Col sm="10">
-          <FormGroup>
-            <Form.Control
-              type="text"
-              placeholder="Enter a new tag name"
-              name="label"
-              value={tag.label}
-              onChange={handleControlledInputChange}
-            />
-          </FormGroup>
-        </Col>
+    <Form onSubmit={handleSubmitButtonPress} className="my-4">
+      <Row className="flex-column">
+        <FormGroup>
+          <Form.Control
+            className="w-75 mx-auto"
+            type="text"
+            placeholder="Add text"
+            name="label"
+            value={tag.label}
+            onChange={handleControlledInputChange}
+          />
+        </FormGroup>
 
-        <Col sm="2">
-          <NewTagButton />
-        </Col>
+        <NewTagButton />
       </Row>
     </Form>
   );
