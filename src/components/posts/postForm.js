@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef } from "react"
-import moment from 'moment';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
@@ -16,7 +15,7 @@ export const PostForm = (props) => {
     const categoryRef = useRef("")
     const imageRef = useRef("")
     const contentRef = useRef("")
-    const publicationRef = useRef("")
+    
 
     const isEditMode = props.match.params.hasOwnProperty("postId")
 
@@ -32,13 +31,11 @@ export const PostForm = (props) => {
     const populateFormValues = post => {
       titleRef.current.value = post.title
       categoryRef.current.value = post.category_id
-      imageRef.current.value = post.image
+      imageRef.current.value = post.image_url
       contentRef.current.value = post.content
 
-      // HTML date inputs take their value in the format YYYY-MM-DD
-      publicationRef.current.value = moment(post.publication_time + 86400000).format(
-        "YYYY-MM-DD"
-      );
+      
+     
     }
 
     const constructNewPost = () => {
@@ -46,8 +43,7 @@ export const PostForm = (props) => {
             window.alert("Please fill in a title")
         } else if(categoryRef.current.value === '0') {
             window.alert("Please select a category")
-        } else if (publicationRef.current.value === "") {
-            window.alert("Please select a publication date")
+        
         }/*else if (imageRef.current.value === "") {
             window.alert("Please add an image URL")
         }*/else if (contentRef.current.value === "") {
@@ -58,11 +54,11 @@ export const PostForm = (props) => {
             user_id: localStorage.getItem('rare_user_id'),
             title: titleRef.current.value,
             category_id: categoryRef.current.value,
-            image: imageRef.current.value,
+            image_url: imageRef.current.value,
             content: contentRef.current.value,
             publish_status: true,
             approve_status: true,
-            publication_time: publicationRef.current.valueAsNumber
+            
           }
 
           if(isEditMode) {
@@ -70,7 +66,6 @@ export const PostForm = (props) => {
               .then(() => props.history.push(`/posts/${props.match.params.postId}`))
           }
           else {
-            newPostObject.creation_time = Date.now()
             createPost(newPostObject)
               .then((newPost) => props.history.push(`/posts/${newPost.id}`))
           }
@@ -86,21 +81,6 @@ export const PostForm = (props) => {
                 <Form.Label>Title</Form.Label>
                 <Form.Control type="text" placeholder="Enter Title" ref={titleRef} />
             </FormGroup>
-            <FormGroup controlId="categorySelect">
-            <Form.Label>Category</Form.Label>
-                <Form.Control as="select" ref={categoryRef}>
-                <option value ="0">Select a category</option>
-                {categories.map(c => (
-                    <option key={c.id} value={c.id}>
-                        {c.name}
-                    </option>
-                ))}
-                </Form.Control>
-            </FormGroup>
-            <FormGroup>
-                <Form.Label>Publish Date</Form.Label>
-                <Form.Control type="date" ref={publicationRef} disabled={isEditMode} /> 
-            </FormGroup>
             <FormGroup controlId ="text">
                 <Form.Label>Image</Form.Label>
                 <Form.Control type="text" placeholder="Image Url" ref={imageRef} />
@@ -108,6 +88,17 @@ export const PostForm = (props) => {
             <FormGroup controlId ="text">
                 <Form.Label>Content</Form.Label>
                 <Form.Control as="textarea" rows={3} placeholder="Enter post..." ref={contentRef} />
+            </FormGroup>
+            <FormGroup controlId="categorySelect">
+            <Form.Label>Category</Form.Label>
+                <Form.Control as="select" ref={categoryRef}>
+                <option value ="0">Select a category</option>
+                {categories.map(c => (
+                    <option key={c.id} value={c.id}>
+                        {c.label}
+                    </option>
+                ))}
+                </Form.Control>
             </FormGroup>
             <Row className="justify-content-end">
                 {isEditMode && <CancelEditButton action={props}/>}
