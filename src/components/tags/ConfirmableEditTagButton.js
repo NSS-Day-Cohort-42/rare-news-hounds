@@ -37,11 +37,10 @@ export const ConfirmableEditTagButton = (props) => {
           <BsGearFill style={{ fontSize: "36px" }} />
         </Button>
       </div>
-      {/* Need to change to className to confirmableEditModel */}
       <Modal
         show={isEditing}
         onHide={() => setIsEditing(false)}
-        className="confirmableDeleteModal"
+        className="confirmableEditModal"
       >
         <Modal.Dialog>
           <Modal.Title>Confirm Update</Modal.Title>
