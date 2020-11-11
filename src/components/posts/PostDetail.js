@@ -74,7 +74,7 @@ export default (props) => {
         <p className="postDetail__content w-75">{post.content}</p>
       </Row>
       {post.id && (
-        <PostTagList postId={post.id}/>
+        <PostTagList postTags={post.tags}/>
       )}
     </div>
   );
