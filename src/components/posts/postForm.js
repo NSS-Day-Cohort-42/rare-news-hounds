@@ -11,7 +11,7 @@ import { PostTagForm } from "../postTags/PostTagForm";
 export const PostForm = (props) => {
     const {createPost, updatePost, getPostById} = useContext(PostContext)
     const {categories, getCategories} = useContext(CategoryContext)
-    const [ selectedPostTags, setSelectedPostTags ] = useState([])
+    const [ selectedPostTagIds, setSelectedPostTagIds ] = useState([])
 
     const titleRef = useRef("")
     const categoryRef = useRef("")
@@ -25,7 +25,11 @@ export const PostForm = (props) => {
         getCategories().then(() => {
           if(isEditMode) {
             getPostById(props.match.params.postId)
-              .then(populateFormValues)
+              .then(post => {
+                populateFormValues(post)
+                const initiallySelectedPostTagIds = post.tags.map(tag => tag.id)
+                setSelectedPostTagIds(initiallySelectedPostTagIds)
+              })
           }
         })
     },[])
@@ -41,21 +45,21 @@ export const PostForm = (props) => {
     }
 
     const onTogglePostTag = (changedTagId) => {
-      let newSelectedPostTags = [];
+      let newSelectedPostTagIds = [];
       //check if the tag is already in the list of selected tags
-      if (selectedPostTags.some((tagId) => tagId === changedTagId)) {
+      if (selectedPostTagIds.some((tagId) => tagId === changedTagId)) {
         // Remove the id of the tag from the list of selected tags
-        newSelectedPostTags = selectedPostTags.filter(
+        newSelectedPostTagIds = selectedPostTagIds.filter(
           (tagId) => tagId !== changedTagId
         );
       } else {
         // Add the tag to the list of selected tags
-        selectedPostTags.push(changedTagId);
+        selectedPostTagIds.push(changedTagId);
         // Copy the selected tags array to a new variable so that state will update correctly
-        newSelectedPostTags = selectedPostTags.slice();
+        newSelectedPostTagIds = selectedPostTagIds.slice();
       }
       // Set component state, which will cause the component to re-render
-      setSelectedPostTags(newSelectedPostTags);
+      setSelectedPostTagIds(newSelectedPostTagIds);
     };
 
     const constructNewPost = () => {
@@ -76,7 +80,7 @@ export const PostForm = (props) => {
             category_id: categoryRef.current.value,
             image_url: imageRef.current.value,
             content: contentRef.current.value,
-            postTags: selectedPostTags,
+            postTags: selectedPostTagIds,
             publish_status: true,
             approve_status: true,
             
@@ -121,7 +125,7 @@ export const PostForm = (props) => {
                 ))}
                 </Form.Control>
             </FormGroup>
-            <PostTagForm selectedPostTags={selectedPostTags} onTogglePostTag={onTogglePostTag} />
+            <PostTagForm selectedPostTagIds={selectedPostTagIds} onTogglePostTag={onTogglePostTag} />
             <Row className="justify-content-end">
                 {isEditMode && <CancelEditButton action={props}/>}
                 <Button variant="success" 
