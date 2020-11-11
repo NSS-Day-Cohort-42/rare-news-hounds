@@ -67,7 +67,7 @@ export const ConfirmableEditTagButton = (props) => {
                 Cancel
               </Button>
 
-              <Button variant="danger" onClick={handleConfirmUpdate}>
+              <Button variant="success" onClick={handleConfirmUpdate}>
                 Confirm Update
               </Button>
             </Row>
