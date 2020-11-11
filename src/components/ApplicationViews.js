@@ -1,6 +1,8 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { CategoryProvider } from "./categories/CategoryProvider";
+import CategoryForm from "./categories/CategoryForm";
+import CategoryList from "./categories/CategoryList";
 import { PostForm } from "./posts/postForm";
 import { PostProvider } from "./posts/PostProvider";
 import { UserPostList } from "./posts/UserPostList";
@@ -68,11 +70,13 @@ export const ApplicationViews = () => {
             </PostProvider>
           </TagProvider>
         </PostTagProvider>
+
         <CategoryProvider>
           <Route path="/categories">
             <CategoryManager />
           </Route>
         </CategoryProvider>
+
         <TagProvider>
           <Route path="/tags">
             <h1 className="text-center my-4">Tags</h1>
