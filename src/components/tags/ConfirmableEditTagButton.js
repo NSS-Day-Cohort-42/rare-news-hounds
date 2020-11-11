@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { Modal, Button, Row } from "react-bootstrap";
 import { BsGearFill } from "react-icons/bs";
-import "../posts/ConfirmableDeleteButton.css";
+import "./ConfirmableEditTagButton.css";
 import { TagContext } from "./TagProvider";
 
 /**
@@ -21,7 +21,6 @@ export const ConfirmableEditTagButton = (props) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleConfirmUpdate = () => {
-    // updateTag(tag);
     updateTag({ id: props.tag.id, label: labelRef.current.value });
     setIsEditing(false);
   };
@@ -53,7 +52,7 @@ export const ConfirmableEditTagButton = (props) => {
                 type="text"
                 name="label"
                 ref={labelRef}
-                placeholder={props.tag.label}
+                defaultValue={props.tag.label}
               />
             </Row>
             <Row>

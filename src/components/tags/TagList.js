@@ -32,7 +32,7 @@ export default (props) => {
 
   return (
     <>
-      <article>
+      <article className="tags">
         <h2 className="my-4 text-center">Existing Tags</h2>
         {tags.map((t) => (
           <ListGroup>
