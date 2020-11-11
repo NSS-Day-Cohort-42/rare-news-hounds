@@ -5,7 +5,6 @@ import { CommentContext } from "./CommentProvider"
 
 export const CommentList = props => {
   const { comments, getCommentsByPostId } = useContext(CommentContext)
-  console.log('Here', comments)
   
   useEffect(() => {
     const postId = parseInt(props.match.params.postId);
