@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import { TagContext } from "./TagProvider";
 import { ListGroup, Button } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "../posts/ConfirmableDeleteButton";
+import { ConfirmableEditTagButton } from "./ConfirmableEditTagButton";
 
 export default (props) => {
   const { tags, getTags, deleteTag} = useContext(TagContext);
@@ -42,7 +43,7 @@ export default (props) => {
                 </Col>
                 <Col className="d-flex justify-content-end m-2">
                   <ConfirmableDeleteButton onDelete={() => confirmDelete(t.id)} />
-                  <Button>Edit</Button>
+                  <ConfirmableEditTagButton tag={t} />
                 </Col>
               </Row>
             </ListGroup.Item>
