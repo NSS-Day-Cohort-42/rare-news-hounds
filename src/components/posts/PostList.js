@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { Row, Col, Button, Table } from "react-bootstrap"
 import { MdAdd } from "react-icons/md"
 
@@ -18,6 +18,8 @@ export const PostList = props => {
         getPosts()
     }, [])
 
+    const history = useHistory()
+
     const handleDelete = postId => {
       deletePost(postId)
         .then(getPosts)
@@ -30,7 +32,9 @@ export const PostList = props => {
               <input placeholder="search" />
             </Col>
             <Col className="d-flex justify-content-end">
-              <Button variant="light" className="d-flex align-items-center">
+              <Button variant="light" 
+                className="d-flex align-items-center"
+                onClick={() => history.push('/posts/create')}>
                 Add Post <MdAdd style={{ fontSize: '48px' }} />
               </Button>
             </Col>
