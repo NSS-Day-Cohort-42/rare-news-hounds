@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
-import { Row, Col, Button, Table } from "react-bootstrap"
+import { Row, Button, Table } from "react-bootstrap"
 import { MdAdd } from "react-icons/md"
 
 import { PostContext } from "./PostProvider"
-import CategoryDropDown from "./CategoryDropDown"
 import EditPostButton from "./EditPostButton"
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
 import Category from "../categories/Category"
@@ -29,20 +28,13 @@ export const PostList = props => {
 
     return (
         <div className="postList">
-          <Row className="align-items-center my-4">
-            <Col>
-              <input placeholder="search" />
-            </Col>
-            <Col className="d-flex justify-content-end">
-              <Button variant="light" 
-                className="d-flex align-items-center"
-                onClick={() => history.push('/posts/create')}>
-                Add Post <MdAdd style={{ fontSize: '48px' }} />
-              </Button>
-            </Col>
+          <Row className="align-items-center justify-content-end my-4">
+            <Button variant="light" 
+              className="d-flex align-items-center"
+              onClick={() => history.push('/posts/create')}>
+              Add Post <MdAdd style={{ fontSize: '48px' }} />
+            </Button>
           </Row>
-
-          <CategoryDropDown action={props}/>
 
           <Table bordered hover responsive="md">
             <thead>
