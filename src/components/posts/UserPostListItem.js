@@ -46,24 +46,4 @@ export const UserPostListItem = props => {
       </Row>
     </div>
   )
-
-  // return (
-  //   <Row className="align-items-center">
-  //     <Col sm="7">
-  //       <p className="postListItem__title text-primary my-1 mr-2 font-weight-bold">{title}</p>
-  //       <p className="postListItem__author text-uppercase my-1 mr-1">{user.fullname}</p>
-  //       <p className="postListItem__author text-uppercase my-1 mr-1">{publication_date}</p>
-  //       </Col>
-  //     <Col sm="5">
-  //       <Row className="justify-content-end align-items-center">
-  //         <Badge variant="info" className="postListItem__category">
-  //           <span className="postListItem__categoryName">{category.label}</span>
-  //         </Badge>
-
-  //         <ConfirmableDeleteButton onDelete={() => handleDelete(id)} />
-  //         <EditPostButton postId={id} />
-  //       </Row>
-  //     </Col>
-  //   </Row>
-  // )
 }
