@@ -39,7 +39,7 @@ export const UserPostListItem = props => {
         <Col sm="6" className="d-flex justify-content-end">
           <div>Reactions Placeholder</div>
         </Col>
-        <Col sm="3" className="d-flex justify-content-end">
+        <Col sm="3" className="d-flex justify-content-end" onClick={e => e.preventDefault()}>
           <EditPostButton postId={id} />
           <ConfirmableDeleteButton onDelete={() => handleDelete(id)} />
         </Col>
