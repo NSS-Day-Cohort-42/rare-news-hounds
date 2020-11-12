@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
-import ListGroup from "react-bootstrap/ListGroup"
+import { Row, Col, Button, Table } from "react-bootstrap"
+import { MdAdd } from "react-icons/md"
+
 import { PostContext } from "./PostProvider"
-import { PostListItem } from "./PostListItem"
 import CategoryDropDown from "./CategoryDropDown"
 
 export const PostList = props => {
@@ -17,15 +18,46 @@ export const PostList = props => {
 
     return (
         <div className="postList">
-          <h1 className="text-center my-4">All Posts</h1>
+          <Row className="align-items-center my-4">
+            <Col>
+              <input placeholder="search" />
+            </Col>
+            <Col className="d-flex justify-content-end">
+              <Button variant="light" className="d-flex align-items-center">
+                Add Post <MdAdd style={{ fontSize: '48px' }} />
+              </Button>
+            </Col>
+          </Row>
+
           <CategoryDropDown action={props}/>
-          <ListGroup>
-            { posts.map(post => (
-              <ListGroup.Item action key={post.id} as={Link} to={`/posts/${post.id}`}>
-                <PostListItem post={post} />
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
+
+          <Table bordered hover>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Tags</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                posts.map(post => {
+                  const { title, user, publication_date, category, tags } = post;
+                  return (
+                    <tr>
+                      <td><Link to={`/posts/${post.id}`}>{title}</Link></td>
+                      <td>{user.username}</td>
+                      <td>{publication_date}</td>
+                      <td>{category.label}</td>
+                      <td>{tags.map(t => t.label).join(', ')}</td>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </Table> 
         </div>
       )
     }
