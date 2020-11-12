@@ -5,9 +5,11 @@ import { MdAdd } from "react-icons/md"
 
 import { PostContext } from "./PostProvider"
 import CategoryDropDown from "./CategoryDropDown"
+import EditPostButton from "./EditPostButton"
+import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
 
 export const PostList = props => {
-    const { getPosts, posts } = useContext(PostContext)
+    const { getPosts, deletePost, posts } = useContext(PostContext)
 
     posts.sort((a,b) => b.creation_time - a.creation_time)
 
@@ -15,6 +17,11 @@ export const PostList = props => {
     useEffect(() => {
         getPosts()
     }, [])
+
+    const handleDelete = postId => {
+      deletePost(postId)
+        .then(getPosts)
+    };
 
     return (
         <div className="postList">
@@ -31,9 +38,10 @@ export const PostList = props => {
 
           <CategoryDropDown action={props}/>
 
-          <Table bordered hover>
+          <Table bordered hover responsive="md">
             <thead>
               <tr>
+                <th></th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Date</th>
@@ -46,7 +54,18 @@ export const PostList = props => {
                 posts.map(post => {
                   const { title, user, publication_date, category, tags } = post;
                   return (
-                    <tr>
+                    <tr className="position-relative">
+                      <td>
+                        {
+                          user.id === parseInt(localStorage.getItem('rare_user_id')) &&
+                          <div className="d-flex">
+                            <EditPostButton postId={post.id} />
+                            <ConfirmableDeleteButton 
+                              prompt="Are you sure you want to delete this post?"
+                              onDelete={() => handleDelete(post.id)} />
+                          </div>
+                        }
+                      </td>
                       <td><Link to={`/posts/${post.id}`}>{title}</Link></td>
                       <td>{user.username}</td>
                       <td>{publication_date}</td>
