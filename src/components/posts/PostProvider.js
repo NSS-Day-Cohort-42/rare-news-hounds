@@ -67,6 +67,7 @@ export const PostProvider = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
       },
       body: JSON.stringify(post),
     });
