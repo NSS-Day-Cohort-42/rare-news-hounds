@@ -11,7 +11,7 @@ import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
 export const PostList = props => {
     const { getPosts, deletePost, posts } = useContext(PostContext)
 
-    posts.sort((a,b) => b.creation_time - a.creation_time)
+    posts.sort((a,b) => b.id - a.id)
 
     // Initialization effect hook -> Go get post data
     useEffect(() => {
