@@ -32,7 +32,7 @@ export const PostForm = (props) => {
 
     const populateFormValues = post => {
       titleRef.current.value = post.title
-      categoryRef.current.value = post.category_id
+      categoryRef.current.value = post.category.id
       imageRef.current.value = post.image_url
       contentRef.current.value = post.content
 
