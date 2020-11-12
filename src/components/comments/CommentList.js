@@ -39,7 +39,7 @@ export const CommentList = props => {
                         <ConfirmableDeleteButton
                           prompt="Are you sure you want to delete this comment?"
                           onDelete={() => confirmDelete(c.id, props)} />
-                        <ConfirmableEditCommentButton comment={c} />
+                        <ConfirmableEditCommentButton comment={c} postId={parseInt(props.match.params.postId)}/>
                       
                    </Row>
                   <h4>{c.content}</h4>

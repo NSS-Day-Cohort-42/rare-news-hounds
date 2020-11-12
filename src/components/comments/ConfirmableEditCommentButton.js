@@ -30,7 +30,7 @@ export const ConfirmableEditCommentButton = (props) => {
         id: props.comment.id,
         subject: subjectRef.current.value,
         content: contentRef.current.value,
-      });
+      }, props.postId);
       setIsEditing(false);
     } else alert("please enter valid content for both fields");
   };
