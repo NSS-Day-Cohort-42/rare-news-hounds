@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import { Modal, Button, Row } from "react-bootstrap";
 import { BsGearFill } from "react-icons/bs";
-// import "./ConfirmableEditCommentButton.css";
 import { CommentContext } from "./CommentProvider";
 
 /**
@@ -10,7 +9,7 @@ import { CommentContext } from "./CommentProvider";
  * PROPS:
  *  comment <Object> - the comment object, itself. Has a label and id property.
  *  prompt (optional) <String> - The text to display as the confirmation text in the modal.
- *    default value (if nothing passed in props) is "Are you sure you want to edit this item?"
+ *    default value (if nothing passed in props) is "Edit this Comment"
  */
 export const ConfirmableEditCommentButton = (props) => {
   const { updateComment } = useContext(CommentContext);
