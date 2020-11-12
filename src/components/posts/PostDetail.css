@@ -1,8 +1,42 @@
-/* these are borrowed from PostListItem */
-.postDetail p {
-    margin-bottom: 0;
+.postDetail__Container {
+  border: 2px solid green;
 }
 
 .postDetail__category {
   font-size: 1.5rem;
+}
+
+.justify-content-end {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.button__Container {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+}
+
+.title__Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.postDetail__UserDate {
+  display: flex;
+  flex-direction: row;
+
+}
+.view__Comments {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.userName__class {
+  display: flex;
+  flex-direction: row;
 }

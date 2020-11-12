@@ -30,37 +30,31 @@ export default (props) => {
   }, []);
 
   return (
-    <div className="postDetail">
-      <Row>
-        <Col xl="8" lg="7" sm="12">
+    <div className="postDetail__Container">
+      {currentUser === post.user.id && (
+        <Row className="button__Container">
+          <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />
+          <EditPostButton postId={post.id} />
+        </Row>
+      )}
+      <Row className="title__Container">
+        <div>
           <h2 className="postDetail__title font-weight-bold">{post.title}</h2>
-        </Col>
-        <Col xl="4" lg="5" sm="12">
-          {currentUser === post.user.id && (
-            <Row className="justify-content-end">
-              <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />
-              <EditPostButton postId={post.id} />
-            </Row>
-          )}
-        </Col>
+        </div>
       </Row>
-
       <Row className="justify-content-between">
-        <Col>
-          <p className="postDetail__username">{post.user.username}</p>
-          <p className="postDetail__date">{date}</p>
-        </Col>
         <Col className="d-flex justify-content-end">
           <p className="postDetail__category">
             <Badge variant="info">{post.category.label}</Badge>
           </p>
         </Col>
       </Row>
-
       <Row className="justify-content-center my-4">
         <Image src={post.image} fluid />
       </Row>
-      <Row className="justify-content-center my-4">
+      <p className="userName__class">{post.user.username}</p>
+
+      <div className="view__Comments">
         <Button
           variant="secondary"
           type="submit"
@@ -69,12 +63,14 @@ export default (props) => {
         >
           View Comments
         </Button>
-      </Row>
+ 
+      </div>
+    
       <Row className="justify-content-center my-4">
         <p className="postDetail__content w-75">{post.content}</p>
       </Row>
       {post.id && (
-        <PostTagList postTags={post.tags}/>
+        <PostTagList postTags={post.tags} />
       )}
     </div>
   );
