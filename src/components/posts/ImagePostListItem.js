@@ -5,7 +5,7 @@ import { PostContext } from "./PostProvider"
 import { Row, Col, Image } from "react-bootstrap"
 import "./PostListItem.css"
 
-export const UserPostListItem = props => {
+export const ImagePostListItem = props => {
   const { post } = props
   const { id, title, user, publication_date, image_url } = post
   const readableDate = (new Date(publication_date + 'T00:00:00')).toLocaleDateString('en-Us')
