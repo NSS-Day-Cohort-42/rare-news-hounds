@@ -3,7 +3,6 @@ import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
 import EditPostButton from "./EditPostButton"
 import { PostContext } from "./PostProvider"
 import { Row, Col, Image } from "react-bootstrap"
-import "./PostListItem.css"
 
 export const ImagePostListItem = props => {
   const { post } = props
