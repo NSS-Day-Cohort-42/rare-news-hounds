@@ -32,7 +32,7 @@ export default (props) => {
             <option value ="0">Select a category</option>
             {categories.map(c => (
                 <option key={c.id} value={c.id}>
-                    {c.name}
+                    {c.label}
                 </option>
             ))}
             </Form.Control>
