@@ -8,7 +8,7 @@ export default (props) => {
     return (
         <Button onClick={evt => {
             evt.preventDefault()
-            history.push(`/my-posts`)   
+            history.goBack()   
         }}>
             Cancel
         </Button>
