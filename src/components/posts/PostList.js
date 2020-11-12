@@ -57,6 +57,7 @@ export const PostList = props => {
               {
                 posts.map(post => {
                   const { id, title, user, publication_date, category, tags } = post;
+                  const readableDate = (new Date(publication_date + 'T00:00:00')).toLocaleDateString('en-US')
                   return (
                     <tr key={id} className="position-relative">
                       <td>
@@ -72,7 +73,7 @@ export const PostList = props => {
                       </td>
                       <td><Link to={`/posts/${id}`}>{title}</Link></td>
                       <td>{user.username}</td>
-                      <td>{publication_date}</td>
+                      <td>{readableDate}</td>
                       <td>{category.label}</td>
                       <td>{tags.map(t => t.label).join(', ')}</td>
                     </tr>
