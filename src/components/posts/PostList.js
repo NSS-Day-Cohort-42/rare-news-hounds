@@ -7,6 +7,8 @@ import { PostContext } from "./PostProvider"
 import CategoryDropDown from "./CategoryDropDown"
 import EditPostButton from "./EditPostButton"
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
+import Category from "../categories/Category"
+import Tag from "../tags/Tag"
 
 export const PostList = props => {
     const { getPosts, deletePost, posts } = useContext(PostContext)
@@ -74,8 +76,14 @@ export const PostList = props => {
                       <td><Link to={`/posts/${id}`}>{title}</Link></td>
                       <td>{user.username}</td>
                       <td>{readableDate}</td>
-                      <td>{category.label}</td>
-                      <td>{tags.map(t => t.label).join(', ')}</td>
+                      <td>
+                        <Category category={category} />
+                      </td>
+                      <td>
+                        {tags.map(t => (
+                            <Tag key={t.id} tag={t} />
+                        ))}
+                      </td>
                     </tr>
                   )
                 })
