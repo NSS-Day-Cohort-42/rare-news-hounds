@@ -2,13 +2,12 @@ import React, { useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import ListGroup from "react-bootstrap/ListGroup"
 import { PostContext } from "./PostProvider"
-import { UserPostListItem } from "./UserPostListItem"
+import { ImagePostListItem } from "./ImagePostListItem"
 
 export const UserPostList = props => {
   const { posts, getPostsByUserId } = useContext(PostContext)
 
-  posts.sort((a,b) => a.publication_date - b.publication_date)
-
+  posts.sort((a,b) => b.id - a.id)
 
   useEffect(() => {
     getPostsByUserId(localStorage.getItem('rare_user_id')) 
@@ -20,9 +19,9 @@ export const UserPostList = props => {
       <ListGroup>
         { posts.map(post => (
           <ListGroup.Item action key={post.id} as={Link} to={`/posts/${post.id}`}>
-            <UserPostListItem post={post} />
+            <ImagePostListItem post={post} />
           </ListGroup.Item>
-        )).reverse()}
+        ))}
       </ListGroup>
     </div>
   )

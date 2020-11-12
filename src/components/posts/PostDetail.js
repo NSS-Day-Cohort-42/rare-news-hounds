@@ -50,7 +50,7 @@ export default (props) => {
         </Col>
       </Row>
       <Row className="justify-content-center my-4">
-        <Image src={post.image} fluid />
+        <Image src={post.image_url} fluid />
       </Row>
       <p className="userName__class">{post.user.username}</p>
 

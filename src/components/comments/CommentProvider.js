@@ -32,7 +32,9 @@ export const CommentProvider = (props) => {
   const deleteComment = (comment_id, post_id) => {
     return fetch(`http://localhost:8000/comments/${comment_id}`, {
       method: "DELETE",
-      "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
+      headers: {
+        "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
+      }
     }).then(() => getCommentsByPostId(post_id));
   };
   return (

@@ -22,12 +22,8 @@ export const ConfirmableDeleteButton = props => {
     setIsDeleting(false)
   }
 
-  // this div includes a click handler that calls preventDefault on the event when clicked
-  // this is because one context in which the ConfirmableDeleteButton is used is in the UserPostListItem, which
-  // is rendered within a Link, and if the default event behavior was allowed, clicking on the delete button
-  // in that context would cause the user to navigate to that Link's "to" prop
   return <>
-    <div onClick={e => e.preventDefault()}>
+    <div>
         <Button className="border-0 bg-white text-dark" onClick={() => setIsDeleting(true)}>
           <MdDelete style={{ fontSize: '36px' }} />
         </Button>

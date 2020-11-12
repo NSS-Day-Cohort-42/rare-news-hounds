@@ -50,8 +50,9 @@ export default (props) => {
               <Col xs="9">
                 <ListGroup key={c.id}>
                   <ListGroup.Item className="mb-2">
-                  <Category category={c} />
-      
+                    <h3>
+                      <Category category={c} />
+                    </h3>
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
