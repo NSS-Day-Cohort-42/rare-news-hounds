@@ -58,7 +58,7 @@ export default (props) => {
       </Row>
 
       <Row className="justify-content-center my-4">
-        <Image src={post.image} fluid />
+        <Image src={post.image_url} fluid />
       </Row>
       <Row className="justify-content-center my-4">
         <Button
