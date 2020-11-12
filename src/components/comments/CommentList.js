@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react"
 import { ListGroup, Col, Row } from "react-bootstrap"
 import { CommentContext } from "./CommentProvider"
 import { ConfirmableDeleteButton } from "../posts/ConfirmableDeleteButton"
+import { ConfirmableEditCommentButton } from "./ConfirmableEditCommentButton"
 
 
 export const CommentList = props => {
@@ -38,6 +39,7 @@ export const CommentList = props => {
                         <ConfirmableDeleteButton
                           prompt="Are you sure you want to delete this comment?"
                           onDelete={() => confirmDelete(c.id, props)} />
+                        <ConfirmableEditCommentButton comment={c} />
                       
                    </Row>
                   <h4>{c.content}</h4>
