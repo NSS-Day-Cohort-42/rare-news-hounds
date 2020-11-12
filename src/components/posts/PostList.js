@@ -56,21 +56,21 @@ export const PostList = props => {
             <tbody>
               {
                 posts.map(post => {
-                  const { title, user, publication_date, category, tags } = post;
+                  const { id, title, user, publication_date, category, tags } = post;
                   return (
-                    <tr className="position-relative">
+                    <tr key={id} className="position-relative">
                       <td>
                         {
                           user.id === parseInt(localStorage.getItem('rare_user_id')) &&
                           <div className="d-flex">
-                            <EditPostButton postId={post.id} />
+                            <EditPostButton postId={id} />
                             <ConfirmableDeleteButton 
                               prompt="Are you sure you want to delete this post?"
-                              onDelete={() => handleDelete(post.id)} />
+                              onDelete={() => handleDelete(id)} />
                           </div>
                         }
                       </td>
-                      <td><Link to={`/posts/${post.id}`}>{title}</Link></td>
+                      <td><Link to={`/posts/${id}`}>{title}</Link></td>
                       <td>{user.username}</td>
                       <td>{publication_date}</td>
                       <td>{category.label}</td>
