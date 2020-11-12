@@ -8,7 +8,7 @@ import CategoryDropDown from "./CategoryDropDown"
 export const PostList = props => {
     const { getPosts, posts } = useContext(PostContext)
 
-    posts.sort((a,b) => b.creation_time - a.creation_time)
+    posts.sort((a,b) => b.publication_date - a.publication_date)
 
     // Initialization effect hook -> Go get post data
     useEffect(() => {
