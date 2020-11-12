@@ -20,19 +20,19 @@ export const PostProvider = (props) => {
     return fetch(`http://localhost:8000/posts/${postId}`, {
       headers: {
         Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
-        "Content-Type": "application/json",   
+        "Content-Type": "application/json",
       }
     })
-    .then((res) =>
-      res.json()
-    );
+      .then((res) =>
+        res.json()
+      );
   };
 
   const getPostsByUserId = (userId) => {
     return fetch(`http://localhost:8000/posts?user_id=${userId}`, {
       headers: {
         Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
-        "Content-Type": "application/json",   
+        "Content-Type": "application/json",
       }
     }
     )
@@ -81,6 +81,11 @@ export const PostProvider = (props) => {
   const deletePost = (id) => {
     return fetch(`http://localhost:8000/posts/${id}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
+      },
+
     });
   };
 
