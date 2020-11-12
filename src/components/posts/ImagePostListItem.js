@@ -5,11 +5,10 @@ import { PostContext } from "./PostProvider"
 import { Row, Col, Image } from "react-bootstrap"
 import "./PostListItem.css"
 
-export const UserPostListItem = props => {
+export const ImagePostListItem = props => {
   const { post } = props
   const { id, title, user, publication_date, image_url } = post
   const readableDate = (new Date(publication_date + 'T00:00:00')).toLocaleDateString('en-Us')
-
   const { deletePost, getPostsByUserId } = useContext(PostContext)
 
   const handleDelete = id => {
@@ -39,10 +38,15 @@ export const UserPostListItem = props => {
         <Col sm="6" className="d-flex justify-content-end">
           <div>Reactions Placeholder</div>
         </Col>
-        <Col sm="3" className="d-flex justify-content-end" onClick={e => e.preventDefault()}>
-          <EditPostButton postId={id} />
-          <ConfirmableDeleteButton onDelete={() => handleDelete(id)} />
-        </Col>
+        {
+          // Conditionally render the edit and delete buttons based on whether the viewer is the author)
+          (post.user.id === parseInt(localStorage.getItem('rare_user_id')))
+          ? <Col sm="3" className="d-flex justify-content-end" onClick={e => e.preventDefault()}>
+              <EditPostButton postId={id} />
+              <ConfirmableDeleteButton onDelete={() => handleDelete(id)} />
+            </Col>
+          : <></>
+        }
       </Row>
     </div>
   )
