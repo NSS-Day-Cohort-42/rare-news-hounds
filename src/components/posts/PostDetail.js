@@ -31,29 +31,33 @@ export default (props) => {
 
   return (
     <div className="postDetail__Container">
+ 
+      <Row className="title__Container">
       {currentUser === post.user.id && (
         <Row className="button__Container">
           <ConfirmableDeleteButton onDelete={handleDeleteButtonClick} />
           <EditPostButton postId={post.id} />
         </Row>
       )}
-      <Row className="title__Container">
-        <div>
-          <h2 className="postDetail__title font-weight-bold">{post.title}</h2>
+        <div className="postDetail__title">
+          <h2>{post.title}</h2>
         </div>
       </Row>
-      <Row className="justify-content-between">
-        <Col className="d-flex justify-content-end">
-          <p className="postDetail__category">
-            <Badge variant="info">{post.category.label}</Badge>
-          </p>
-        </Col>
-      </Row>
-      <Row className="justify-content-center my-4">
-        <Image src={post.image_url} fluid />
-      </Row>
+           <div className="category__Container">
+      <Badge variant="info">{post.category.label}</Badge>
+      </div>
+     <div className="postandcategory__Container">
+        <div className="post__Container">
+        {post.id && (
+          <PostTagList className="postTags" postTags={post.tags} />
+         )}
+         </div>
+    
+      </div>
+      <div className="image__Container">
+     <Image className="img-Fluid" src={post.image_url}  />
+      </div>
       <p className="userName__class">{post.user.username}</p>
-
       <div className="view__Comments">
         <Button
           variant="secondary"
@@ -63,15 +67,11 @@ export default (props) => {
         >
           View Comments
         </Button>
- 
       </div>
-    
-      <Row className="justify-content-center my-4">
-        <p className="postDetail__content w-75">{post.content}</p>
+      <Row className="postDetail__Content">
+        <p >{post.content}</p>
       </Row>
-      {post.id && (
-        <PostTagList postTags={post.tags} />
-      )}
+    
     </div>
   );
 };

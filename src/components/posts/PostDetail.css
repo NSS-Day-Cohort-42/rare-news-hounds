@@ -1,16 +1,18 @@
-.postDetail__Container {
-  border: 2px solid green;
-}
-
-.postDetail__category {
-  font-size: 1.5rem;
-}
-
-.justify-content-end {
+.category_Container {
   display: flex;
   flex-direction: row;
-  justify-content: start;
 }
+
+.PostTagList {
+  display: flex;
+  flex-direction: column;
+
+}
+.postDetail__title {
+  display: flex;
+  margin-right: 320px;
+ 
+ }
 
 .button__Container {
   display: flex;
@@ -18,18 +20,18 @@
   align-content: flex-start;
 }
 
-.title__Container {
+.title__Container.row {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
+  flex-direction:row;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
 
 .postDetail__UserDate {
   display: flex;
   flex-direction: row;
-
 }
+
 .view__Comments {
   display: flex;
   flex-direction: row;
@@ -40,3 +42,47 @@
   display: flex;
   flex-direction: row;
 }
+
+.postDetail__Content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.img-Fluid {
+  height: 300px;
+  width: 400px;
+  padding: 5px;
+
+}
+
+.image__Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 600px;
+  margin-left: 220px;
+  
+  
+}
+
+.category__Container {
+  display: flex;
+  flex-direction: row;
+ margin-left: 40rem;
+  padding-top: 5px;
+  
+}
+.post__Container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.postTags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
