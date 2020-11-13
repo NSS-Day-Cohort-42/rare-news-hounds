@@ -21,4 +21,4 @@ NPM (https://github.com/NSS-Day-Cohort-42/rare-server-news-hounds)
 Here is a quick overview of the user experience! Users can create posts, filter them by category, and add tags.
 
 ![screen capture](src/screencapture/RareFilteringAndTagging.gif)
-asdfasdf
+
