@@ -7,10 +7,10 @@ import { Register } from "./auth/Register"
 
 export const Rare = () => (
     <>
-        <Route render={() => {
+        <Route render={(props) => {
             if (localStorage.getItem("rare_user_id")) {
                 return <>
-                    <NavBar />
+                    <NavBar {...props}/>
                     <ApplicationViews />
                 </>
             } else {
