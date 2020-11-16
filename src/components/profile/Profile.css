@@ -1,0 +1,4 @@
+.userProfileContainer {
+    display: flex;
+    flex-direction: row;
+}
