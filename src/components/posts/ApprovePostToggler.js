@@ -1,9 +1,13 @@
 import React, { useContext, useState } from "react"
 import { PostContext } from "./PostProvider"
 
+/**
+ * Component rendering as a checkbox that allows user to toggle the "approved" status of a post
+ */
 export const ApprovePostToggler = props => {
   const { postId, isApproved } = props;
 
+  // state used to disable the input while submitting to avoid double-clicks
   const [ isSubmitting, setIsSubmitting ] = useState(false)
 
   const { updatePostApproval } = useContext(PostContext)
