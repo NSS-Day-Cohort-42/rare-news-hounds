@@ -48,7 +48,10 @@ export const PostList = props => {
                 <th>Date</th>
                 <th>Category</th>
                 <th>Tags</th>
-                { isAdmin && <th>Approved</th> }
+                { 
+                  // conditionally render Approved table header based on truthiness of isAdmin
+                  isAdmin && <th>Approved</th> 
+                }
               </tr>
             </thead>
             <tbody>
@@ -57,7 +60,7 @@ export const PostList = props => {
                   const { id, title, user, publication_date, category, tags } = post;
                   const readableDate = (new Date(publication_date + 'T00:00:00')).toLocaleDateString('en-US')
 
-                  // computer user permissions for delete/edit 
+                  // compute user permissions for delete/edit 
                   // (admin can delete/edit any, author can only delete/edit their own)
                   const canDeleteAndEdit = isAdmin ||
                     user.id === parseInt(localStorage.getItem('rare_user_id')) 
@@ -66,6 +69,7 @@ export const PostList = props => {
                     <tr key={id} className="position-relative">
                       <td>
                         {
+                          // conditionally render edit/delete controls based on truthiness of canDeleteAndEdit
                           canDeleteAndEdit &&
                           <div className="d-flex">
                             <EditPostButton postId={id} />
@@ -87,6 +91,7 @@ export const PostList = props => {
                         ))}
                       </td>
                       {
+                        // conditionally render post approval control based on truthiness of isAdmin
                         isAdmin &&
                         <td>
                           <ApprovePostToggler postId={post.id}
