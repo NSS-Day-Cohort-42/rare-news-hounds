@@ -22,6 +22,7 @@ export const ApplicationViews = () => {
           // Removes the user Id and Token from local storage and redirects the user back to log in
           localStorage.removeItem("rare_user_id");
           localStorage.removeItem("rare_user_token");
+          localStorage.removeItem("is_admin");
           return <Redirect to="/login" />;
         }}
       />
