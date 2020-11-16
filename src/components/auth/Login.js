@@ -28,10 +28,14 @@ export const Login = () => {
         if (res.valid) {
           localStorage.setItem("rare_user_token", res.token)
           localStorage.setItem("rare_user_id", res.user_id)
+          if (res.is_admin) {
+            localStorage.setItem("is_admin", "true")
+          }
           history.push("/");
         } else {
           invalidDialog.current.showModal();
         }
+
       });
   };
 
