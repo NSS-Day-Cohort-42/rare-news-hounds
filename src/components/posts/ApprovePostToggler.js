@@ -25,6 +25,6 @@ export const ApprovePostToggler = props => {
       disabled={isSubmitting}
       name="approve_post" 
       checked={isApproved}
-      onClick={handleToggleApproval} />
+      onChange={handleToggleApproval} />
   )
 }
