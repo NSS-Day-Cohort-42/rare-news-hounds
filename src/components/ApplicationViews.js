@@ -12,6 +12,7 @@ import { CategoryManager } from "./categories/CategoryManager";
 import { CommentList } from './comments/CommentList'
 import CommentForm from "./comments/CommentForm";
 import { TagManager } from "./tags/TagManager";
+import { ProfileList } from "./profile/ProfileList";
 
 export const ApplicationViews = () => {
   return (
@@ -73,6 +74,9 @@ export const ApplicationViews = () => {
             <CategoryManager />
           </Route>
         </CategoryProvider>
+        <Route path="/profileList">
+            <ProfileList />
+          </Route>
 
         <TagProvider>
           <Route path="/tags">
