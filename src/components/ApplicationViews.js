@@ -7,6 +7,7 @@ import { UserPostList } from "./posts/UserPostList";
 import { TagProvider } from "./tags/TagProvider";
 import PostDetail from "./posts/PostDetail";
 import { PostList } from "./posts/PostList";
+import { SubscribedPostList } from "./posts/SubscribedPostList"
 import { CommentProvider } from "./comments/CommentProvider";
 import { CategoryManager } from "./categories/CategoryManager";
 import { CommentList } from "./comments/CommentList";
@@ -41,7 +42,7 @@ export const ApplicationViews = () => {
         </PostProvider>
         <PostProvider>
           <CategoryProvider>
-            <Route exact path="/" component={PostList} />
+            <Route exact path="/" component={SubscribedPostList} />
           </CategoryProvider>
         </PostProvider>
 
