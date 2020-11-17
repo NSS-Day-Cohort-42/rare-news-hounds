@@ -2,13 +2,13 @@ import React, { useContext, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { Row, Button, Table } from "react-bootstrap"
 import { MdAdd } from "react-icons/md"
-
 import { PostContext } from "./PostProvider"
 import EditPostButton from "./EditPostButton"
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
 import { ApprovePostToggler } from "./ApprovePostToggler"
 import Category from "../categories/Category"
 import Tag from "../tags/Tag"
+import SubscribeButton from "../subscriptions/SubscribeButton"
 
 export const PostList = props => {
     const { getPosts, deletePost, posts, getPostsByCategoryId } = useContext(PostContext)
@@ -36,6 +36,7 @@ export const PostList = props => {
 
     return (
         <div className="postList">
+          <SubscribeButton />
           <Row className="align-items-center justify-content-end my-4">
             <Button variant="light" 
               className="d-flex align-items-center"
