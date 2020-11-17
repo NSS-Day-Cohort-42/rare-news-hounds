@@ -5,10 +5,7 @@ import { ProfileContext } from "./ProfileProvider";
 
 export default (props) => {
   const { userId, isActive } = props;
-
-  console.log(isActive)
-
-
+  const { updateProfile } = useContext(ProfileContext)
 
   return (
     <>
@@ -20,7 +17,7 @@ export default (props) => {
         type="checkbox"
         checked={isActive}
         onChange={() => {
-          // TODO: Update state based on change
+          updateProfile(userId, { active: !isActive })
         }}
         value={isActive}
       />
