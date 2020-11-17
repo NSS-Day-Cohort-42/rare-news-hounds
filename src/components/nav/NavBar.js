@@ -19,6 +19,7 @@ export const NavBar = (props) => {
             <Button variant="outline-primary" className="mx-2 my-1" onClick={() => props.history.push("/my-posts")}>My Posts</Button>
             <Button variant="outline-primary" className="mx-2 my-1" onClick={() => props.history.push("/categories")}>Category Manager</Button>
             <Button variant="outline-primary" className="mx-2 my-1" onClick={() => props.history.push("/tags")}>Tag Manager</Button>
+            <Button variant="outline-primary" className="mx-2 my-1" onClick={() => props.history.push("/profiles")}>Profiles</Button>
             <Button variant="outline-primary" className="mx-2 my-1 ml-md-auto" onClick={() => props.history.push("/logout")}>Logout</Button>
           </Nav>
         </Navbar.Collapse>
