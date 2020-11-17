@@ -35,15 +35,14 @@ export const ApplicationViews = () => {
         <PostProvider>
           <CategoryProvider>
             <TagProvider>
+              <Route exact path="/" component={SubscribedPostList} />
+
+              <Route exact path="/posts" component={PostList} />
+
               <Route path="/posts/create" component={PostForm} />
 
               <Route path="/posts/edit/:postId" component={PostForm} />
             </TagProvider>
-          </CategoryProvider>
-        </PostProvider>
-        <PostProvider>
-          <CategoryProvider>
-            <Route exact path="/" component={SubscribedPostList} />
           </CategoryProvider>
         </PostProvider>
 
