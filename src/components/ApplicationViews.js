@@ -83,7 +83,9 @@ export const ApplicationViews = () => {
         </TagProvider>
 
         <ProfileProvider>
-          <Route exact path="/profiles" render={props => <ProfileList {...props} />} /> 
+          <Route exact path="/profiles">
+            <ProfileList />
+          </Route>
         </ProfileProvider>
       </main>
     </>
