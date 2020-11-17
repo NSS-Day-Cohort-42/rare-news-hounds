@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import ProfileStatusToggle from "./ProfileStatusToggle";
 
-export const ProfileList = () => {
+export const ProfileList = (props) => {
   const { profiles, getProfiles } = useContext(ProfileContext);
 
   useEffect(() => {
@@ -18,13 +18,14 @@ export const ProfileList = () => {
           return (
             <tr>
               <td>{profile.username}</td>
-              <td>{profile.is_staff ? "YES STAFF" : "NOT STAFF"}</td>
               <td></td>
               <td>
-                <ProfileStatusToggle
-                  isStaff={profile.is_staff}
-                  userId={profile.id}
-                />
+                { localStorage.getItem("is_admin") &&
+                  <ProfileStatusToggle
+                    isStaff={profile.is_staff}
+                    userId={profile.id}
+                  />
+                }
               </td>
             </tr>
           );
