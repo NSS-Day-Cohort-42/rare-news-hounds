@@ -29,7 +29,6 @@ export const ProfileProvider = (props) => {
   return (
     <ProfileContext.Provider
       value={{
-        ProfileContext,
         getProfiles,
         profiles,
         updateUserRole,
