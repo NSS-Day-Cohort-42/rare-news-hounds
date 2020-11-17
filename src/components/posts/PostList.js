@@ -6,6 +6,7 @@ import { MdAdd } from "react-icons/md"
 import { PostContext } from "./PostProvider"
 import EditPostButton from "./EditPostButton"
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
+import { ApprovePostToggler } from "./ApprovePostToggler"
 import Category from "../categories/Category"
 import Tag from "../tags/Tag"
 
@@ -25,6 +26,8 @@ export const PostList = props => {
       }, [])
 
     const history = useHistory()
+
+    const isAdmin = localStorage.getItem('is_admin')
 
     const handleDelete = postId => {
       deletePost(postId)
@@ -50,6 +53,10 @@ export const PostList = props => {
                 <th>Date</th>
                 <th>Category</th>
                 <th>Tags</th>
+                { 
+                  // conditionally render Approved table header based on truthiness of isAdmin
+                  isAdmin && <th>Approved</th> 
+                }
               </tr>
             </thead>
             <tbody>
@@ -57,11 +64,18 @@ export const PostList = props => {
                 posts.map(post => {
                   const { id, title, user, publication_date, category, tags } = post;
                   const readableDate = (new Date(publication_date + 'T00:00:00')).toLocaleDateString('en-US')
+
+                  // compute user permissions for delete/edit 
+                  // (admin can delete/edit any, author can only delete/edit their own)
+                  const canDeleteAndEdit = isAdmin ||
+                    user.id === parseInt(localStorage.getItem('rare_user_id')) 
+
                   return (
                     <tr key={id} className="position-relative">
                       <td>
                         {
-                          user.id === parseInt(localStorage.getItem('rare_user_id')) &&
+                          // conditionally render edit/delete controls based on truthiness of canDeleteAndEdit
+                          canDeleteAndEdit &&
                           <div className="d-flex">
                             <EditPostButton postId={id} />
                             <ConfirmableDeleteButton 
@@ -81,6 +95,14 @@ export const PostList = props => {
                             <Tag key={t.id} tag={t} />
                         ))}
                       </td>
+                      {
+                        // conditionally render post approval control based on truthiness of isAdmin
+                        isAdmin &&
+                        <td>
+                          <ApprovePostToggler postId={post.id}
+                            isApproved={post.approved} />
+                        </td>
+                      }
                     </tr>
                   )
                 })

@@ -9,10 +9,11 @@ import PostDetail from "./posts/PostDetail";
 import { PostList } from "./posts/PostList";
 import { CommentProvider } from "./comments/CommentProvider";
 import { CategoryManager } from "./categories/CategoryManager";
-import { CommentList } from './comments/CommentList'
+import { CommentList } from "./comments/CommentList";
 import CommentForm from "./comments/CommentForm";
 import { TagManager } from "./tags/TagManager";
-import { ProfileList } from "./profile/ProfileList";
+import { ProfileList } from "./profiles/ProfileList";
+import { ProfileProvider } from "./profiles/ProfileProvider"
 
 
 export const ApplicationViews = () => {
@@ -88,6 +89,12 @@ export const ApplicationViews = () => {
             <TagManager />
           </Route>
         </TagProvider>
+
+        <ProfileProvider>
+          <Route exact path="/profiles">
+            <ProfileList />
+          </Route>
+        </ProfileProvider>
       </main>
     </>
   );

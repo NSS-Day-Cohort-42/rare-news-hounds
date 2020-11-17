@@ -89,6 +89,20 @@ export const PostProvider = (props) => {
     });
   };
 
+  const updatePostApproval = (id, approved) => {
+    const updateObject = { approved }
+
+    return fetch(`http://localhost:8000/posts/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
+      },
+      body: JSON.stringify(updateObject)
+    })
+      .then(getPosts)
+  }
+
   return (
     <PostContext.Provider
       value={{
@@ -100,6 +114,7 @@ export const PostProvider = (props) => {
         createPost,
         updatePost,
         getPostsByCategoryId,
+        updatePostApproval
       }}
     >
       {props.children}
