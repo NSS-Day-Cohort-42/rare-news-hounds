@@ -14,6 +14,7 @@ import CommentForm from "./comments/CommentForm";
 import { TagManager } from "./tags/TagManager";
 import { ProfileList } from "./profile/ProfileList";
 
+
 export const ApplicationViews = () => {
   return (
     <>
@@ -49,10 +50,20 @@ export const ApplicationViews = () => {
               <CategoryProvider>
                 <CommentProvider>
                   <Route path="/my-posts" component={UserPostList} />
+               
+                        
+                  <Route
+                    exact
+                    path="/posts/categories/:categoryId(\d+)"
+                    render={(props) => <PostList {...props} />}
+                    />       
+                  
+             
+                  
                   <Route
                     exact
                     path="/posts/:postId(\d+)"
-                    render={(props) => <PostDetail {...props} />}
+                    render={(props) =>  <PostDetail {...props} />}
                   />
                   <Route
                     exact

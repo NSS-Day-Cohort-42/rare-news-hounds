@@ -41,10 +41,10 @@ export const PostProvider = (props) => {
   };
 
   const getPostsByCategoryId = (categoryId) => {
-    return fetch(`http://localhost:8000/posts?category_id=${categoryId}`, {
+    return fetch(`http://localhost:8000/posts/${categoryId}`, {
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
+        "Authorization": `Token ${localStorage.getItem("rare_user_token")}`,
+        "Content-Type": "application/json"
       }
     })
       .then((res) => res.json())

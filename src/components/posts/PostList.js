@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { Row, Button, Table } from "react-bootstrap"
 import { MdAdd } from "react-icons/md"
-
 import { PostContext } from "./PostProvider"
 import EditPostButton from "./EditPostButton"
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
@@ -10,14 +9,19 @@ import Category from "../categories/Category"
 import Tag from "../tags/Tag"
 
 export const PostList = props => {
-    const { getPosts, deletePost, posts } = useContext(PostContext)
+    const { getPosts, deletePost, posts, getPostsByCategoryId } = useContext(PostContext)
 
     posts.sort((a,b) => b.id - a.id)
 
-    // Initialization effect hook -> Go get post data
-    useEffect(() => {
-        getPosts()
+  
+   const categoryId = parseInt(props.match.params.categoryId)
+ 
+    getPostsByCategoryId(categoryId)
+  
+    useEffect((props) => {
+      getPosts()
     }, [])
+  
 
     const history = useHistory()
 
@@ -26,7 +30,17 @@ export const PostList = props => {
         .then(getPosts)
     };
 
-    return (
+  const byCategory = parseInt(props.match.params.hasOwnProperty("categoryId"))
+    useEffect(()=>{
+        getPosts().then(() => {
+          if(byCategory) {
+            getPostsByCategoryId(props.match.params.categoryId)
+          }
+        })
+    },[])
+
+
+ return (
         <div className="postList">
           <Row className="align-items-center justify-content-end my-4">
             <Button variant="light" 
@@ -85,3 +99,4 @@ export const PostList = props => {
         </div>
       )
     }
+    
