@@ -19,25 +19,25 @@ export const ProfileList = (props) => {
           return (
             <tr>
               <td>{profile.username}</td>
-              <td>
                 {
                   localStorage.getItem("is_admin") &&
-                  <ProfileActiveToggle
-                  isActive={profile.active}
-                  userId={profile.id}
-                  key={profile.id}
-                  />
+                  <>
+                    <td>
+                      <ProfileActiveToggle
+                      isActive={profile.active}
+                      userId={profile.id}
+                      key={profile.id}
+                      />
+                    </td>
+                    <td>
+                      <ProfileStatusToggle
+                      isStaff={profile.is_staff}
+                      userId={profile.id}
+                      isActive={profile.active}
+                      />
+                    </td>
+                  </>
                 }
-              </td>
-              <td>
-                { localStorage.getItem("is_admin") &&
-                  <ProfileStatusToggle
-                    isStaff={profile.is_staff}
-                    userId={profile.id}
-                    isActive={profile.active}
-                  />
-                }
-              </td>
             </tr>
           );
         })}
