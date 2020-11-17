@@ -16,6 +16,7 @@ import { TagManager } from "./tags/TagManager";
 import { ProfileList } from "./profiles/ProfileList";
 import { ProfileProvider } from "./profiles/ProfileProvider"
 
+
 export const ApplicationViews = () => {
   return (
     <>
@@ -53,6 +54,11 @@ export const ApplicationViews = () => {
                 <Route path="/my-posts" component={UserPostList} />
                 <Route
                   exact
+                  path="/posts/categories/:categoryId(\d+)"
+                  render={(props) => <PostList {...props} />}
+                />
+                <Route
+                  exact
                   path="/posts/:postId(\d+)"
                   render={(props) => <PostDetail {...props} />}
                 />
@@ -70,12 +76,14 @@ export const ApplicationViews = () => {
             </CategoryProvider>
           </PostProvider>
         </TagProvider>
-
         <CategoryProvider>
           <Route path="/categories">
             <CategoryManager />
           </Route>
         </CategoryProvider>
+        <Route path="/profileList">
+          <ProfileList />
+        </Route>
 
         <TagProvider>
           <Route path="/tags">
