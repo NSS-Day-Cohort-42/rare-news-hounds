@@ -45,49 +45,43 @@ export const ApplicationViews = () => {
           </CategoryProvider>
         </PostProvider>
 
-          <TagProvider>
-            <PostProvider>
-              <CategoryProvider>
-                <CommentProvider>
-                  <Route path="/my-posts" component={UserPostList} />
-               
-                        
-                  <Route
-                    exact
-                    path="/posts/categories/:categoryId(\d+)"
-                    render={(props) => <PostList {...props} />}
-                    />       
-                  
-             
-                  
-                  <Route
-                    exact
-                    path="/posts/:postId(\d+)"
-                    render={(props) =>  <PostDetail {...props} />}
-                  />
-                  <Route
-                    exact
-                    path="/posts/:postId(\d+)/comments"
-                    render={(props) => (
-                      <>
-                        <CommentForm {...props} />
-                        <CommentList {...props} />
-                      </>
-                    )}
-                  />
-                </CommentProvider>
-              </CategoryProvider>
-            </PostProvider>
-          </TagProvider>
-
+        <TagProvider>
+          <PostProvider>
+            <CategoryProvider>
+              <CommentProvider>
+                <Route path="/my-posts" component={UserPostList} />
+                <Route
+                  exact
+                  path="/posts/categories/:categoryId(\d+)"
+                  render={(props) => <PostList {...props} />}
+                />
+                <Route
+                  exact
+                  path="/posts/:postId(\d+)"
+                  render={(props) => <PostDetail {...props} />}
+                />
+                <Route
+                  exact
+                  path="/posts/:postId(\d+)/comments"
+                  render={(props) => (
+                    <>
+                      <CommentForm {...props} />
+                      <CommentList {...props} />
+                    </>
+                  )}
+                />
+              </CommentProvider>
+            </CategoryProvider>
+          </PostProvider>
+        </TagProvider>
         <CategoryProvider>
           <Route path="/categories">
             <CategoryManager />
           </Route>
         </CategoryProvider>
         <Route path="/profileList">
-            <ProfileList />
-          </Route>
+          <ProfileList />
+        </Route>
 
         <TagProvider>
           <Route path="/tags">

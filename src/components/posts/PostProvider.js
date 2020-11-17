@@ -40,8 +40,8 @@ export const PostProvider = (props) => {
       .then(setPosts);
   };
 
-  const getPostsByCategoryId = (categoryId) => {
-    return fetch(`http://localhost:8000/posts/${categoryId}`, {
+  const getPostsByCategoryId = (category_id) => {
+    return fetch(`http://localhost:8000/posts?category_id=${category_id}`, {
       headers: {
         "Authorization": `Token ${localStorage.getItem("rare_user_token")}`,
         "Content-Type": "application/json"
