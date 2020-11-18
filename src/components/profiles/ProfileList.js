@@ -1,7 +1,9 @@
 import { ProfileContext } from "./ProfileProvider";
 import React, { useContext, useEffect } from "react";
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom"
 import ProfileStatusToggle from "./ProfileStatusToggle";
+import "./ProfileDetail.css"
 
 export const ProfileList = (props) => {
   const { profiles, getProfiles } = useContext(ProfileContext);
@@ -21,7 +23,8 @@ export const ProfileList = (props) => {
           const isStaff = profile.is_staff;
           return (
             <tr>
-              <td>{profile.username}</td>
+              <td><Link to={`/profiles/${profile.id}`}>{profile.username}</Link></td>
+              
               <td>
                 {localStorage.getItem("is_admin") &&
                   <ProfileStatusToggle

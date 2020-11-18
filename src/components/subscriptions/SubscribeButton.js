@@ -1,17 +1,21 @@
 import React, { useContext, useEffect } from "react"
 import { SubscribeContext } from "./SubscriptionsProvider";
+import Button from 'react-bootstrap/Button';
 
 
-export default () => {
-    const { createSubscription } = useContext();
+export default (props) => {
+    const { createSubscription } = useContext(SubscribeContext);
     
-    const subscribe = ()=> {
-
+    const handleSubmitSubscribeClick = (e)=> {
+        e.preventDefault();
+        const newSubscribeObject = {
+            author_id: props.authorId
+        }
+        createSubscription(newSubscribeObject)
     }
+    
     return (
-        <button onclick={e => {
-            e.preventDefault()
-            subscribe()
-        }}>Subscribe</button>
+        <Button className="d-block ml-auto my-2" type="submit" onClick={handleSubmitSubscribeClick}>Subscribe</Button>
+
     )
 }

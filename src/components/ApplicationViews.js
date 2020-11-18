@@ -14,6 +14,8 @@ import CommentForm from "./comments/CommentForm";
 import { TagManager } from "./tags/TagManager";
 import { ProfileList } from "./profiles/ProfileList";
 import { ProfileProvider } from "./profiles/ProfileProvider"
+import ProfileDetail from "./profiles/ProfileDetail"
+import { SubscriptionProvider } from "./subscriptions/SubscriptionsProvider";
 
 
 export const ApplicationViews = () => {
@@ -91,9 +93,16 @@ export const ApplicationViews = () => {
         </TagProvider>
 
         <ProfileProvider>
+          <SubscriptionProvider>
           <Route exact path="/profiles">
             <ProfileList />
           </Route>
+          <Route
+                  exact
+                  path="/profiles/:profileId(\d+)"
+                  render={(props) => <ProfileDetail {...props} />}
+                />
+          </SubscriptionProvider>
         </ProfileProvider>
       </main>
     </>
