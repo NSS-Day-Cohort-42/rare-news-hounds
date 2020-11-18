@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { ProfileContext } from "./ProfileProvider";
 
 export default (props) => {
-  console.log(props)
   const { userId, isStaff, canDeactivate } = props;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [show, setShow] = useState(false);
@@ -35,7 +34,7 @@ export default (props) => {
   // after removing the "is_admin" token
   const handleSelfNuke = (e) => {
 
-    console.log(props.canDeactivate)
+ 
 
     e.preventDefault();
     setIsSubmitting(true);
