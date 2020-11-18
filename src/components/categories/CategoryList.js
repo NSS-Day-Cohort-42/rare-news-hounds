@@ -6,6 +6,7 @@ import { Button, Col, ListGroup} from "react-bootstrap";
 import { MdSettings } from "react-icons/md";
 import { ConfirmableDeleteButton } from "../posts/ConfirmableDeleteButton";
 import { ConfirmableEditCategoryButton} from "../categories/ConfirmableEditCategoryButton";
+import { Link } from "react-router-dom";
 
 export default (props) => {
   const { categories, getCategories, deleteCategory } = useContext(CategoryContext);
@@ -50,9 +51,13 @@ export default (props) => {
               <Col xs="9">
                 <ListGroup key={c.id}>
                   <ListGroup.Item className="mb-2">
+                    <Link to={`posts/categories/${c.id}`}>
+                     
                     <h3>
                       <Category category={c} />
                     </h3>
+                   
+                    </Link>
                   </ListGroup.Item>
                 </ListGroup>
               </Col>

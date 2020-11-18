@@ -11,10 +11,14 @@ export const ProfileList = (props) => {
     getProfiles()
   }, []);
 
+  const alphabeticalUsers = profiles.sort((userId1, userId2) => {
+    return userId1.username.localeCompare(userId2.username);
+  })
+
   return (
     <Table striped bordered hover size="sm" className="userProfileContainer">
       <tbody>
-        {profiles.map((profile) => {
+        {alphabeticalUsers.map((profile) => {
           const isStaff = profile.is_staff;
           return (
             <tr>

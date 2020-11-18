@@ -11,14 +11,19 @@ import Category from "../categories/Category"
 import Tag from "../tags/Tag"
 
 export const PostList = props => {
-    const { getPosts, deletePost, posts } = useContext(PostContext)
+    const { getPosts, deletePost, posts, getPostsByCategoryId } = useContext(PostContext)
 
     posts.sort((a,b) => b.id - a.id)
 
     // Initialization effect hook -> Go get post data
     useEffect(() => {
+    if(props.match.params.categoryId) {
+        const categoryId = parseInt(props.match.params.categoryId)
+        getPostsByCategoryId(categoryId)
+      } else {
         getPosts()
-    }, [])
+      }
+      }, [])
 
     const history = useHistory()
 
