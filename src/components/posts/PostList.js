@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { Row, Button, Table } from "react-bootstrap"
 import { MdAdd } from "react-icons/md"
-
 import { PostContext } from "./PostProvider"
 import EditPostButton from "./EditPostButton"
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"

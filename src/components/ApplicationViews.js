@@ -16,6 +16,7 @@ import { TagManager } from "./tags/TagManager";
 import { ProfileList } from "./profiles/ProfileList";
 import { ProfileProvider } from "./profiles/ProfileProvider";
 import ProfileDetail from "./profiles/ProfileDetail";
+import { SubscriptionProvider } from "./subscriptions/SubscriptionsProvider";
 import { ReactionProvider } from "./reactions/ReactionProvider";
 
 export const ApplicationViews = () => {
@@ -52,7 +53,11 @@ export const ApplicationViews = () => {
             <CategoryProvider>
               <CommentProvider>
                 <ReactionProvider>
-                  <Route path="/my-posts" component={UserPostList} />
+                  <Route path="/my-posts">
+                    <UserPostList
+                      userId={parseInt(localStorage.getItem("rare_user_id"))}
+                    />
+                  </Route>
                   <Route
                     exact
                     path="/posts/categories/:categoryId(\d+)"
@@ -73,16 +78,27 @@ export const ApplicationViews = () => {
                       </>
                     )}
                   />
+                  <Route
+                    exact
+                    path="/profiles/:profileId/posts"
+                    render={(props) => (
+                      <UserPostList
+                        userId={parseInt(props.match.params.profileId)}
+                      />
+                    )}
+                  />
                 </ReactionProvider>
               </CommentProvider>
             </CategoryProvider>
           </PostProvider>
         </TagProvider>
+
         <CategoryProvider>
           <Route path="/categories">
             <CategoryManager />
           </Route>
         </CategoryProvider>
+
         <Route path="/profileList">
           <ProfileList />
         </Route>
@@ -94,14 +110,16 @@ export const ApplicationViews = () => {
         </TagProvider>
 
         <ProfileProvider>
-          <Route exact path="/profiles">
-            <ProfileList />
-          </Route>
-          <Route
-            exact
-            path="/profiles/:profileId(\d+)"
-            render={(props) => <ProfileDetail {...props} />}
-          />
+          <SubscriptionProvider>
+            <Route exact path="/profiles">
+              <ProfileList />
+            </Route>
+            <Route
+              exact
+              path="/profiles/:profileId(\d+)"
+              render={(props) => <ProfileDetail {...props} />}
+            />
+          </SubscriptionProvider>
         </ProfileProvider>
       </main>
     </>
