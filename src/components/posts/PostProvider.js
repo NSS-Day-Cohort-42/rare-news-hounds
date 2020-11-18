@@ -51,6 +51,16 @@ export const PostProvider = (props) => {
       .then(setPosts);
   };
 
+  const getSubscribedPosts = () => {
+    return fetch('http://localhost:8000/posts?subscribed=true', {
+      headers: {
+        "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
+      }
+    })
+      .then(res => res.json())
+      .then(setPosts);
+  };
+
   const createPost = (post) => {
     return fetch(`http://localhost:8000/posts`, {
       method: "POST",
@@ -110,6 +120,7 @@ export const PostProvider = (props) => {
         getPosts,
         getPostById,
         getPostsByUserId,
+        getSubscribedPosts,
         deletePost,
         createPost,
         updatePost,

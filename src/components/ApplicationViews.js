@@ -7,6 +7,7 @@ import { UserPostList } from "./posts/UserPostList";
 import { TagProvider } from "./tags/TagProvider";
 import PostDetail from "./posts/PostDetail";
 import { PostList } from "./posts/PostList";
+import { SubscribedPostList } from "./posts/SubscribedPostList"
 import { CommentProvider } from "./comments/CommentProvider";
 import { CategoryManager } from "./categories/CategoryManager";
 import { CommentList } from "./comments/CommentList";
@@ -36,15 +37,14 @@ export const ApplicationViews = () => {
         <PostProvider>
           <CategoryProvider>
             <TagProvider>
+              <Route exact path="/" component={SubscribedPostList} />
+
+              <Route exact path="/posts" component={PostList} />
+
               <Route path="/posts/create" component={PostForm} />
 
               <Route path="/posts/edit/:postId" component={PostForm} />
             </TagProvider>
-          </CategoryProvider>
-        </PostProvider>
-        <PostProvider>
-          <CategoryProvider>
-            <Route exact path="/" component={PostList} />
           </CategoryProvider>
         </PostProvider>
 
