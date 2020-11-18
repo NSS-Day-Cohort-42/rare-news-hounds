@@ -4,10 +4,9 @@ import { Image, Badge, Row, Col, Button } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
 import EditPostButton from "./EditPostButton";
-import { CommentList } from "../comments/CommentList";
 import "./PostDetail.css";
-import CommentForm from "../comments/CommentForm";
 import { PostTagList } from "../postTags/PostTagList";
+import ReactionList from "../reactions/ReactionList";
 
 export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
@@ -73,6 +72,7 @@ export default (props) => {
       <Row className="justify-content-center my-4">
         <p className="postDetail__content w-75">{post.content}</p>
       </Row>
+      <ReactionList />
       {post.id && (
         <PostTagList postTags={post.tags}/>
       )}
