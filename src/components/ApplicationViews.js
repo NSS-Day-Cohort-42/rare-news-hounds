@@ -51,7 +51,9 @@ export const ApplicationViews = () => {
           <PostProvider>
             <CategoryProvider>
               <CommentProvider>
-                <Route path="/my-posts" component={UserPostList} />
+                <Route path="/my-posts">
+                  <UserPostList userId={parseInt(localStorage.getItem("rare_user_id"))} />
+                </Route>
                 <Route
                   exact
                   path="/posts/categories/:categoryId(\d+)"
@@ -70,6 +72,13 @@ export const ApplicationViews = () => {
                       <CommentForm {...props} />
                       <CommentList {...props} />
                     </>
+                  )}
+                />
+                <Route 
+                  exact
+                  path="/profiles/:profileId/posts"
+                  render={props => (
+                    <UserPostList userId={parseInt(props.match.params.profileId)} />
                   )}
                 />
               </CommentProvider>
