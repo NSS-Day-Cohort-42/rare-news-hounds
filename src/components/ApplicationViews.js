@@ -51,7 +51,7 @@ export const ApplicationViews = () => {
             <CategoryProvider>
               <CommentProvider>
                 <Route path="/my-posts">
-                  <UserPostList userId={localStorage.getItem("rare_user_id")} />
+                  <UserPostList userId={parseInt(localStorage.getItem("rare_user_id"))} />
                 </Route>
                 <Route
                   exact
