@@ -30,39 +30,45 @@ export default (props) => {
   return (
     <>
       <article>
-          {categories.map((c) => (
-            <Row key={c.id} className="align-items-center">
-              <Col xs="3">
-                { c.label !== 'Uncategorized' && 
-                  <Row>
-                    <Col xs="6">
-                    <ConfirmableEditCategoryButton category={c} />
-                    </Col>
+          {categories.map((c) => {
+            const canEditAndDelete = localStorage.getItem('is_admin') &&
+              c.label !== 'Uncategorized'
 
-                    <Col xs="6">
-                      <ConfirmableDeleteButton 
-                        prompt="Are you sure you want to delete this category?" 
-                        onDelete={() => deleteCategory(c.id)} />
-                    </Col>
-                  </Row>
+            return (
+              <Row key={c.id} className="align-items-center">
+                { canEditAndDelete &&
+                  <Col xs="3">
+                      <Row>
+                        <Col xs="6">
+                        <ConfirmableEditCategoryButton category={c} />
+                        </Col>
+
+                        <Col xs="6">
+                          <ConfirmableDeleteButton 
+                            prompt="Are you sure you want to delete this category?" 
+                            onDelete={() => deleteCategory(c.id)} />
+                        </Col>
+                      </Row>
+                    
+                  </Col>
                 }
-              </Col>
 
-              <Col xs="9">
-                <ListGroup key={c.id}>
-                  <ListGroup.Item className="mb-2">
-                    <Link to={`posts/categories/${c.id}`}>
-                     
-                    <h3>
-                      <Category category={c} />
-                    </h3>
-                   
-                    </Link>
-                  </ListGroup.Item>
-                </ListGroup>
-              </Col>
-            </Row>
-          ))}
+                <Col xs={canEditAndDelete ? "9" : "12"}>
+                  <ListGroup key={c.id}>
+                    <ListGroup.Item className="mb-2">
+                      <Link to={`posts/categories/${c.id}`}>
+                      
+                      <h3>
+                        <Category category={c} />
+                      </h3>
+                    
+                      </Link>
+                    </ListGroup.Item>
+                  </ListGroup>
+                </Col>
+              </Row>
+            )
+          })}
       </article>
     </>
   );
