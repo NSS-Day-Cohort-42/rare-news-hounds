@@ -36,7 +36,6 @@ export const PostList = props => {
 
     return (
         <div className="postList">
-          <SubscribeButton />
           <Row className="align-items-center justify-content-end my-4">
             <Button variant="light" 
               className="d-flex align-items-center"

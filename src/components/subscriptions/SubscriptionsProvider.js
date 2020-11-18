@@ -1,8 +1,9 @@
 import React, { createContext } from 'react';
+export const SubscribeContext = createContext();
 export const SubscriptionContext = createContext();
 
 export const SubscriptionProvider = (props) => {
-    const Subscribe = (sub) => {
+    const createSubscription = (sub) => {
         return fetch (`http://localhost:8000/subscriptions`, {
             method: 'POST',
             headers: {
@@ -13,4 +14,14 @@ export const SubscriptionProvider = (props) => {
         })
         .then((res)=> res.json())
     }
+
+
+    return (
+        <SubscribeContext.Provider
+        value={{
+            createSubscription
+        }}>
+            {props.children}
+        </SubscribeContext.Provider>
+    )
 }
