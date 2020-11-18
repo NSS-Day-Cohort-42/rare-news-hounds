@@ -37,7 +37,7 @@ export const ProfileList = (props) => {
 
                     isStaff={profile.is_staff}
                     userId={profile.id}
-                    canDeactivate={counter >= 2}
+                    canDeactivate={counter >=  2}
                   />
                 }
               </td>

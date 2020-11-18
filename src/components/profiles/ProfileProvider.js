@@ -3,7 +3,7 @@ export const ProfileContext = createContext();
 
 export const ProfileProvider = (props) => {
   const [profiles, setProfiles] = useState([]);
-console.log(profiles)
+
   const getProfiles = () => {
     return fetch(`http://localhost:8000/profiles`, {
       headers: {
@@ -38,12 +38,24 @@ console.log(profiles)
     }).then(getProfiles);
   };
 
+  const updateProfile = (userId, profileUpdate) => {
+    return fetch(`http://localhost:8000/profiles/${userId}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(profileUpdate),
+    }).then(getProfiles);
+  };
+
   return (
     <ProfileContext.Provider
       value={{
         getProfiles,
         profiles,
         updateUserRole,
+        updateProfile,
         getProfileById
       }}
     >
