@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ProfileContext } from "./ProfileProvider"
-import { Row, Col, Button } from "react-bootstrap"
+import { Row, Col } from "react-bootstrap"
 import Logo from "../nav/newshound.jpg"
 import moment from "moment";
 import SubscribeButton from "../subscriptions/SubscribeButton";

@@ -15,7 +15,7 @@ export default (props) => {
     }
     
     return (
-        <Button className="d-block ml-auto my-2" type="submit" onClick={handleSubmitSubscribeClick}>Subscribe</Button>
+        <Button className="d-block ml-auto my-2" type="submit" onClick={handleSubmitSubscribeClick}>Pupscribe</Button>
 
     )
 }
