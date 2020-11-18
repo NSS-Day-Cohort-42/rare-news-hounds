@@ -1,0 +1,16 @@
+.profile__image {
+    height: 225px;
+    width: 250px
+}
+.profileDetail_username{ 
+    font-size: larger;
+}
+.profileDetail_email{ 
+    font-size: larger;
+}
+.profileDetail_date{ 
+    font-size: larger;
+}
+.profileDetail_type{ 
+    font-size: larger;
+}
