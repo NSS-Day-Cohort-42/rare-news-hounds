@@ -38,12 +38,24 @@ export const ProfileProvider = (props) => {
     }).then(getProfiles);
   };
 
+  const updateProfile = (userId, profileUpdate) => {
+    return fetch(`http://localhost:8000/profiles/${userId}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(profileUpdate),
+    }).then(getProfiles);
+  };
+
   return (
     <ProfileContext.Provider
       value={{
         getProfiles,
         profiles,
         updateUserRole,
+        updateProfile,
         getProfileById
       }}
     >
