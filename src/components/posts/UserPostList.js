@@ -5,12 +5,14 @@ import { PostContext } from "./PostProvider"
 import { ImagePostListItem } from "./ImagePostListItem"
 
 export const UserPostList = props => {
+  const { userId } = props
+
   const { posts, getPostsByUserId } = useContext(PostContext)
 
   posts.sort((a,b) => b.id - a.id)
 
   useEffect(() => {
-    getPostsByUserId(localStorage.getItem('rare_user_id')) 
+    getPostsByUserId(userId) 
   }, [])
  
   return (
