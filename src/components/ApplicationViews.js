@@ -74,6 +74,13 @@ export const ApplicationViews = () => {
                     </>
                   )}
                 />
+                <Route 
+                  exact
+                  path="/profiles/:profileId/posts"
+                  render={props => (
+                    <UserPostList userId={parseInt(props.match.params.profileId)} />
+                  )}
+                />
               </CommentProvider>
             </CategoryProvider>
           </PostProvider>
