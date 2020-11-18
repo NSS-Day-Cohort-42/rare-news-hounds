@@ -16,6 +16,12 @@ export const ProfileList = (props) => {
     return userId1.username.localeCompare(userId2.username);
   })
 
+  let counter = 0;
+  profiles.forEach(user => {
+    if (user.is_staff) {
+      counter++
+    }
+  });
   return (
     <Table striped bordered hover size="sm" className="userProfileContainer">
       <tbody>
@@ -24,18 +30,21 @@ export const ProfileList = (props) => {
           return (
             <tr>
               <td><Link to={`/profiles/${profile.id}`}>{profile.username}</Link></td>
-              
+
               <td>
                 {localStorage.getItem("is_admin") &&
                   <ProfileStatusToggle
+
                     isStaff={profile.is_staff}
                     userId={profile.id}
+                    canDeactivate={counter >= 2}
                   />
                 }
               </td>
             </tr>
           );
-        })}
+        }
+        )}
       </tbody>
     </Table>
   );

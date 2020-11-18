@@ -3,7 +3,7 @@ export const ProfileContext = createContext();
 
 export const ProfileProvider = (props) => {
   const [profiles, setProfiles] = useState([]);
-
+console.log(profiles)
   const getProfiles = () => {
     return fetch(`http://localhost:8000/profiles`, {
       headers: {
