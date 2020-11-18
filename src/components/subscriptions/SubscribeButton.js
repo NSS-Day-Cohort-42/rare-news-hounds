@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 import { SubscribeContext } from "./SubscriptionsProvider";
 import Button from 'react-bootstrap/Button';
 
@@ -15,7 +15,7 @@ export default (props) => {
     }
     
     return (
-        <Button className="d-block ml-auto my-2" type="submit" onClick={handleSubmitSubscribeClick}>Pupscribe</Button>
+        <Button className="d-block ml-auto my-2" type="submit" onClick={handleSubmitSubscribeClick}>Tail</Button>
 
     )
 }
