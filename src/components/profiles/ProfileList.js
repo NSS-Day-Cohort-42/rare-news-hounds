@@ -24,7 +24,7 @@ export const ProfileList = (props) => {
           const isStaff = profile.is_staff;
           return (
             <tr>
-              <td>{profile.username}</td>
+              <td><Link to={`/profiles/${profile.id}`}>{profile.username}</Link></td>
                 {
                   localStorage.getItem("is_admin") &&
                   <>
@@ -44,7 +44,6 @@ export const ProfileList = (props) => {
                     </td>
                   </>
                 }
-              <td><Link to={`/profiles/${profile.id}`}>{profile.username}</Link></td>
             </tr>
           );
         })}
