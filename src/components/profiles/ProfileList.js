@@ -1,8 +1,10 @@
 import { ProfileContext } from "./ProfileProvider";
 import React, { useContext, useEffect } from "react";
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom"
 import ProfileStatusToggle from "./ProfileStatusToggle";
 import ProfileActiveToggle from "./ProfileActiveToggle";
+import "./ProfileDetail.css"
 
 export const ProfileList = (props) => {
   const { profiles, getProfiles } = useContext(ProfileContext);
@@ -42,6 +44,7 @@ export const ProfileList = (props) => {
                     </td>
                   </>
                 }
+              <td><Link to={`/profiles/${profile.id}`}>{profile.username}</Link></td>
             </tr>
           );
         })}
