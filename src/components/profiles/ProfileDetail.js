@@ -14,7 +14,7 @@ export default (props) => {
         const profileId = parseInt(props.match.params.profileId)
         getProfileById(profileId).then(setProfile)
     }, [props.match.params.profileId])
-    console.log(profile)
+    
 
    
 
