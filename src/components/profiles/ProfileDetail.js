@@ -4,6 +4,7 @@ import { ProfileContext } from "./ProfileProvider"
 import { Row, Col } from "react-bootstrap"
 import Logo from "../nav/newshound.jpg"
 import moment from "moment";
+import SubscribeButton from "../subscriptions/SubscribeButton";
 
 export default (props) => {
     const { getProfileById } = useContext(ProfileContext)
@@ -19,6 +20,7 @@ export default (props) => {
     return (
 
         <div className="profileDetail">
+            <SubscribeButton authorId={profile.id}/>
             <Row>
             <Col className="d-flex flex-column align-items-start">
                 <img className="profile__image" src={profile.profile_image_url ? profile.profile_image_url : Logo } fluid />
