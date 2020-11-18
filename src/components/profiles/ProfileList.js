@@ -3,25 +3,20 @@ import React, { useContext, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom"
 import ProfileStatusToggle from "./ProfileStatusToggle";
+import ProfileActiveToggle from "./ProfileActiveToggle";
 import "./ProfileDetail.css"
 
 export const ProfileList = (props) => {
   const { profiles, getProfiles } = useContext(ProfileContext);
 
   useEffect(() => {
-    getProfiles();
+    getProfiles()
   }, []);
 
   const alphabeticalUsers = profiles.sort((userId1, userId2) => {
     return userId1.username.localeCompare(userId2.username);
   })
 
-  let counter = 0;
-  profiles.forEach(user => {
-    if (user.is_staff) {
-      counter++
-    }
-  });
   return (
     <Table striped bordered hover size="sm" className="userProfileContainer">
       <tbody>
@@ -30,9 +25,18 @@ export const ProfileList = (props) => {
           return (
             <tr>
               <td><Link to={`/profiles/${profile.id}`}>{profile.username}</Link></td>
-
-              <td>
-                {localStorage.getItem("is_admin") &&
+                {
+                  localStorage.getItem("is_admin") &&
+                  <>
+                    <td>
+                      <ProfileActiveToggle
+                      isActive={profile.active}
+                      userId={profile.id}
+                      key={profile.id}
+                      />
+                    </td>
+                    <td>
+                    {localStorage.getItem("is_admin") &&
                   <ProfileStatusToggle
 
                     isStaff={profile.is_staff}
@@ -40,11 +44,12 @@ export const ProfileList = (props) => {
                     canDeactivate={counter >=  2}
                   />
                 }
-              </td>
+                    </td>
+                  </>
+                }
             </tr>
           );
-        }
-        )}
+        })}
       </tbody>
     </Table>
   );

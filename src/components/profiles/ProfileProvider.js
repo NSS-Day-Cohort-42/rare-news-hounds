@@ -3,8 +3,14 @@ export const ProfileContext = createContext();
 
 export const ProfileProvider = (props) => {
   const [profiles, setProfiles] = useState([]);
+  {localStorage.getItem("is_admin") &&
+                  <ProfileStatusToggle
 
-  const getProfiles = () => {
+                    isStaff={profile.is_staff}
+                    userId={profile.id}
+                    canDeactivate={counter >=  2}
+                  />
+                }
     return fetch(`http://localhost:8000/profiles`, {
       headers: {
         Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
