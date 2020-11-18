@@ -15,6 +15,18 @@ export const ProfileProvider = (props) => {
       .then(setProfiles);
   };
 
+  const getProfileById = (profileId) => {
+    return fetch(`http://localhost:8000/profiles/${profileId}`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
+        "Content-Type": "application/json",
+      }
+    })
+      .then((res) =>
+        res.json()
+      );
+  };
+
   const updateUserRole = (userId, isStaffUpdate) => {
     return fetch(`http://localhost:8000/profiles/${userId}/update_role`, {
       method: "PATCH",
@@ -32,6 +44,7 @@ export const ProfileProvider = (props) => {
         getProfiles,
         profiles,
         updateUserRole,
+        getProfileById
       }}
     >
       {props.children}
