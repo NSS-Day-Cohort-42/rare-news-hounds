@@ -8,7 +8,6 @@ import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton"
 import { ApprovePostToggler } from "./ApprovePostToggler"
 import Category from "../categories/Category"
 import Tag from "../tags/Tag"
-import SubscribeButton from "../subscriptions/SubscribeButton"
 
 export const PostList = props => {
     const { getPosts, deletePost, posts, getPostsByCategoryId } = useContext(PostContext)
