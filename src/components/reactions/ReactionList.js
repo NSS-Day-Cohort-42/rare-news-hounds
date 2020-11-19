@@ -34,7 +34,7 @@ export default (props) => {
   }, []);
 
   const handleReactionClick = (reactionValue, reactionId) => {
-    if (reactionValue === true) {
+    if (reactionValue === false) {
       setSubmitting(true);
       addReaction(reactionId, postId).then(() => {
         setSubmitting(false);
