@@ -1,5 +1,5 @@
 import React from "react";
-
+// NON OPERATION BUT REACT FLIPPED OUT WHEN I TRIED TO DELETE IT
 export default (props) => {
   const { postReactions } = props;
 
