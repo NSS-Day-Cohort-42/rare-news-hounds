@@ -20,7 +20,7 @@ export const SubscribedPostList = () => {
     loadingMessage = "Loading..."
   }
   else if(isLoaded && !posts.length) {
-    loadingMessage = "You are not subscribed to any users... start tailing some puppers (puppers is a metaphor for users) to see some posts here!"
+    loadingMessage = "There are no posts to show in your feed right now... go subscribe to some users with posts! Start tailing some puppers (puppers is a metaphor for users) to see some posts here!!!"
   }
 
   return (
