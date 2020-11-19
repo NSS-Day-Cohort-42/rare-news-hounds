@@ -19,7 +19,7 @@ export default (props) => {
     return (
 
         <div className="profileDetail">
-            <SubscribeButton authorId={profile.id} subbed={profile.subscribed} onUpdate={()=>{
+            <SubscribeButton authorId={profile.id} subscribed={profile.subscribed} onUpdate={()=>{
                 getProfileById(profile.id).then(setProfile)
             }}/>
             <Row>
