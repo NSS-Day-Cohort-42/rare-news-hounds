@@ -19,7 +19,9 @@ export default (props) => {
     return (
 
         <div className="profileDetail">
-            <SubscribeButton authorId={profile.id}/>
+            <SubscribeButton authorId={profile.id} subbed={profile.subscribed} onUpdate={()=>{
+                getProfileById(profile.id).then(setProfile)
+            }}/>
             <Row>
             <Col className="d-flex flex-column align-items-start">
                 <img className="profile__image" src={profile.profile_image_url ? profile.profile_image_url : Logo } fluid />
