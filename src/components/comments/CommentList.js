@@ -27,48 +27,40 @@ export const CommentList = (props) => {
       >
         <ListGroup>
           {comments.map((c) => {
-            if (
-              parseInt(localStorage.getItem("rare_user_id")) === c.author.id
-            ) {
-              return (
-                <div>
-                  <ListGroup.Item key={c.id}>
-                    <Row className="justify-content-between">
-                      <h1>subject: {c.subject}</h1>
-                      <div className="d-flex">
+            const isOwnComment = c.author.id === parseInt(localStorage.getItem("rare_user_id"))
+            
+            const canEdit = isOwnComment
+            const canDelete = isOwnComment || localStorage.getItem('is_admin')
+
+            return (
+              <div>
+                <ListGroup.Item key={c.id}>
+                  <Row className="justify-content-between">
+                    <h1>subject: {c.subject}</h1>
+                    <div className="d-flex">
+                      { canEdit && 
                         <ConfirmableEditCommentButton
                           comment={c}
                           postId={parseInt(props.match.params.postId)}
                         />
+                      }
+
+                      { canDelete &&
                         <ConfirmableDeleteButton
                           prompt="Are you sure you want to delete this comment?"
                           onDelete={() => confirmDelete(c.id, props)}
                         />
-                      </div>
-                    </Row>
-                    <h4>{c.content}</h4>
-                    <h4>
-                      {new Date(c.created_on).toLocaleDateString("en-Us")}
-                    </h4>
-                    <h4>{c.author && c.author.username}</h4>
-                  </ListGroup.Item>
-                </div>
-              );
-            } else {
-              return (
-                <div>
-                  <ListGroup.Item key={c.id}>
-                    <div comment={c.content} />
-                    <h1>subject: {c.subject}</h1>
-                    <h4>{c.content}</h4>
-                    <h4>
-                      {new Date(c.created_on).toLocaleDateString("en-Us")}
-                    </h4>
-                    <h4>{c.author && c.author.username}</h4>
-                  </ListGroup.Item>
-                </div>
-              );
-            }
+                      }
+                    </div>
+                  </Row>
+                  <h4>{c.content}</h4>
+                  <h4>
+                    {new Date(c.created_on).toLocaleDateString("en-Us")}
+                  </h4>
+                  <h4>{c.author && c.author.username}</h4>
+                </ListGroup.Item>
+              </div>
+            );
           })}
         </ListGroup>
       </div>
