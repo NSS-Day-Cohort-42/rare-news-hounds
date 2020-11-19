@@ -32,39 +32,44 @@ export default (props) => {
   return (
     <>
       <article className="tags">
-        {tags.map((t) => (
-          <Row key={t.id} className="align-items-center">
-            <Col xs="3">
-              <Row>
-                <Col xs="6">
-                  <ConfirmableEditTagButton tag={t} />
-                </Col>
-                <Col xs="6">
-                  <ConfirmableDeleteButton 
-                    prompt="Are you sure you want to delete this tag?"
-                    onDelete={() => confirmDelete(t.id)} />
-                </Col>
-              </Row>
-            </Col>
+        {tags.map((t) => {
+          const canEditAndDelete = localStorage.getItem('is_admin')
 
-            <Col xs="9">
-              <ListGroup>
-                <ListGroup.Item className="mb-2">
+          return (
+            <Row key={t.id} className="align-items-center">
+              { canEditAndDelete &&
+                <Col xs="3">
                   <Row>
-                    <Col className="mt-2">
-                      <h3>
-                      <Tag tag={t} />
-                      </h3>
+                    <Col xs="6">
+                      <ConfirmableEditTagButton tag={t} />
                     </Col>
-                    <Col className="d-flex justify-content-end m-2">
+                    <Col xs="6">
+                      <ConfirmableDeleteButton 
+                        prompt="Are you sure you want to delete this tag?"
+                        onDelete={() => confirmDelete(t.id)} />
                     </Col>
                   </Row>
-                </ListGroup.Item>
-              </ListGroup>
-            </Col>
-          </Row>
+                </Col>
+              }
 
-        ))}
+              <Col xs={canEditAndDelete ? "9" : "12"}>
+                <ListGroup>
+                  <ListGroup.Item className="mb-2">
+                    <Row>
+                      <Col className="mt-2">
+                        <h3>
+                        <Tag tag={t} />
+                        </h3>
+                      </Col>
+                      <Col className="d-flex justify-content-end m-2">
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                </ListGroup>
+              </Col>
+            </Row>
+          )}
+        )}
       </article>
     </>
   );
