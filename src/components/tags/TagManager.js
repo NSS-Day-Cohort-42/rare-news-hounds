@@ -13,10 +13,12 @@ export const TagManager = () => {
   screen sizes, but to stack on top of the List in lower-than-medium screen sizes */
   return (
     <Row className="flex-md-row-reverse align-items-start justify-content-around">
-      <Col lg="5" sm="12" className="border border-dark rounded py-4">
-        <h2 className="text-center">Create a new tag</h2>
-        <TagForm />
-      </Col>
+      { localStorage.getItem('is_admin') && 
+        <Col lg="5" sm="12" className="border border-dark rounded py-4">
+          <h2 className="text-center">Create a new tag</h2>
+          <TagForm />
+        </Col>
+      }
       <Col lg="5" sm="12">
         <h2 className="text-center my-4">Tags</h2>
         <TagList />
