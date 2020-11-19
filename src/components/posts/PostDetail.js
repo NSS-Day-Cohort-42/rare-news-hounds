@@ -4,10 +4,10 @@ import { Image, Badge, Row, Col, Button } from "react-bootstrap";
 import { ConfirmableDeleteButton } from "./ConfirmableDeleteButton";
 import { PostContext } from "./PostProvider";
 import EditPostButton from "./EditPostButton";
-import { CommentList } from "../comments/CommentList";
 import "./PostDetail.css";
-import CommentForm from "../comments/CommentForm";
 import { PostTagList } from "../postTags/PostTagList";
+import ReactionList from "../reactions/ReactionList";
+import PostReactions from "./PostReactions";
 
 export default (props) => {
   const { getPostById, deletePost, getPosts } = useContext(PostContext);
@@ -23,6 +23,10 @@ export default (props) => {
         props.history.goBack();
       });
   };
+
+  const handleReaction = (postId) => {
+      getPostById(postId).then(setPost)    
+  }
 
   useEffect(() => {
     const postId = parseInt(props.match.params.postId);
@@ -73,9 +77,8 @@ export default (props) => {
       <Row className="justify-content-center my-4">
         <p className="postDetail__content w-75">{post.content}</p>
       </Row>
-      {post.id && (
-        <PostTagList postTags={post.tags}/>
-      )}
+      {post.id && <ReactionList postReactions={post.reactions} userReactions={post.user_reactions} postId={post.id} handleReaction={handleReaction} />}
+      {post.id && <PostTagList postTags={post.tags} />}
     </div>
   );
 };

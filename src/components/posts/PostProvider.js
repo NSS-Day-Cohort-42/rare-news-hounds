@@ -113,6 +113,28 @@ export const PostProvider = (props) => {
       .then(getPosts)
   }
 
+  const addReaction = (reactionId, postId) => {
+    return fetch(`http://localhost:8000/posts/${postId}/reaction`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
+      },
+      body: JSON.stringify({"reaction_id": reactionId})
+    })
+  }
+
+  const deleteReaction = (reactionId, postId) => {
+    return fetch(`http://localhost:8000/posts/${postId}/reaction`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("rare_user_token")}`
+      },
+      body: JSON.stringify({"reaction_id": reactionId})
+    })
+  }
+
   return (
     <PostContext.Provider
       value={{
@@ -125,7 +147,9 @@ export const PostProvider = (props) => {
         createPost,
         updatePost,
         getPostsByCategoryId,
-        updatePostApproval
+        updatePostApproval,
+        addReaction,
+        deleteReaction
       }}
     >
       {props.children}

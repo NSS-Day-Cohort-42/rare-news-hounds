@@ -16,7 +16,6 @@ export default (props) => {
         getProfileById(profileId).then(setProfile)
     }, [props.match.params.profileId])
    
-
     return (
 
         <div className="profileDetail">

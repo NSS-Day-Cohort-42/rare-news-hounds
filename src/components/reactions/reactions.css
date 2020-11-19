@@ -1,0 +1,13 @@
+.reactions {
+    display: flex
+}
+
+.reaction {
+    display: flex;
+    align-items: center;
+}
+
+.reaction--image {
+    border: none;
+    background: none;
+}
