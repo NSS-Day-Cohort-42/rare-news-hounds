@@ -16,10 +16,10 @@ export const ProfileList = (props) => {
     const alphabeticalUsers = profiles.sort((userId1, userId2) => {
         return userId1.username.localeCompare(userId2.username);
     })
- 
+
     let counter = 0
     profiles.forEach(user => {
-        if(user.is_staff) {
+        if (user.is_staff) {
             counter++
         }
     });

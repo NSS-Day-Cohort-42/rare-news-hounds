@@ -4,6 +4,7 @@ export const ProfileContext = createContext();
 export const ProfileProvider = (props) => {
   const [profiles, setProfiles] = useState([]);
 
+  const getProfiles = () => {
     return fetch(`http://localhost:8000/profiles`, {
       headers: {
         Authorization: `Token ${localStorage.getItem("rare_user_token")}`,
@@ -61,4 +62,4 @@ export const ProfileProvider = (props) => {
       {props.children}
     </ProfileContext.Provider>
   );
-
+};
