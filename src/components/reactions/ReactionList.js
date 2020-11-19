@@ -6,9 +6,9 @@ import { ReactionContext } from "./ReactionProvider";
 import "./reactions.css";
 
 export default (props) => {
-  const { postReactions, userReactions, postId } = props;
+  const { postReactions, userReactions, postId, handleReaction } = props;
   const { reactions, getReactions } = useContext(ReactionContext);
-  const { addReaction, deleteReaction } = useContext(PostContext);
+  const { addReaction, deleteReaction} = useContext(PostContext);
   const [submitting, setSubmitting] = useState(false);
   const history = useHistory();
 
@@ -38,13 +38,13 @@ export default (props) => {
       setSubmitting(true);
       addReaction(reactionId, postId).then(() => {
         setSubmitting(false);
-        history.push(`/posts/${postId}`);
+        handleReaction(postId);
       });
     } else {
       setSubmitting(true)  
         deleteReaction(reactionId, postId).then(() => {
             setSubmitting(false)
-            history.push(`/posts/${postId}`)
+            handleReaction(postId)
         })
     }
   };

@@ -24,6 +24,10 @@ export default (props) => {
       });
   };
 
+  const handleReaction = (postId) => {
+      getPostById(postId).then(setPost)    
+  }
+
   useEffect(() => {
     const postId = parseInt(props.match.params.postId);
     getPostById(postId).then(setPost);
@@ -73,7 +77,7 @@ export default (props) => {
       <Row className="justify-content-center my-4">
         <p className="postDetail__content w-75">{post.content}</p>
       </Row>
-      {post.id && <ReactionList postReactions={post.reactions} userReactions={post.user_reactions} postId={post.id} />}
+      {post.id && <ReactionList postReactions={post.reactions} userReactions={post.user_reactions} postId={post.id} handleReaction={handleReaction} />}
       {post.id && <PostTagList postTags={post.tags} />}
     </div>
   );
