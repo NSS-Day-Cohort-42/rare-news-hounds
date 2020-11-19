@@ -4,18 +4,23 @@ import { useHistory } from "react-router-dom";
 import { ProfileContext } from "./ProfileProvider";
 
 export default (props) => {
-  const { userId, isStaff } = props;
+  const { userId, isStaff, canDeactivate } = props;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [show, setShow] = useState(false);
   const history = useHistory();
   const currentRareUserId = parseInt(localStorage.getItem("rare_user_id"));
 
-  const { updateUserRole } = useContext(ProfileContext);
+  const { updateUserRole, profiles } = useContext(ProfileContext);
 
   const handleStatusToggle = (e) => {
     // check to see if current user (an admin) is choosing to demote themselves, and if so render a modal
     // prompting them to confirm; otherwise, toggle selected user's status
     if (currentRareUserId === userId && e.target.value === "false") {
+
+      if (!canDeactivate) {
+        window.alert('please leave one admin')
+        return
+      }
       setShow(true);
     } else {
       setIsSubmitting(true);
@@ -25,14 +30,17 @@ export default (props) => {
       );
     }
   };
-
   //runs when a user (admin) confirms self-demotion; re-pushing the path to the profiles list is necessary to re-render
   // after removing the "is_admin" token
   const handleSelfNuke = (e) => {
+
+ 
+
     e.preventDefault();
     setIsSubmitting(true);
     updateUserRole(userId, { is_staff: "false" }).then(() => {
       setIsSubmitting(false);
+
       localStorage.removeItem("is_admin");
       history.push("/profiles");
     });
@@ -40,7 +48,7 @@ export default (props) => {
 
   return (
     <>
-          <label htmlFor="Author" style={{ paddingLeft: '10px', paddingRight: '5px'}}>Author</label>
+      <label htmlFor="Author" style={{ paddingLeft: '10px', paddingRight: '5px' }}>Author</label>
       <input
         label="Author"
         id={`makeAuthor-${userId}`}
@@ -50,7 +58,7 @@ export default (props) => {
         onChange={handleStatusToggle}
         value="false"
       />
-      <label htmlFor="Admin" style={{ paddingLeft: '10px', paddingRight: '5px'}}>Admin</label>
+      <label htmlFor="Admin" style={{ paddingLeft: '10px', paddingRight: '5px' }}>Admin</label>
       <input
         label="Admin"
         id={`makeAdmin-${userId}`}
