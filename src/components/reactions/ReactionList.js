@@ -33,6 +33,9 @@ export default (props) => {
     getReactions();
   }, []);
 
+    // when a user clicks a reaction, if reactionValue is false, they're trying to delete,
+    // so do that; otherwise they're tyring to add, so do that. then we have to re-fetch our post
+    // and re-set it in PostDetail so it passes new accurate props to this component
   const handleReactionClick = (reactionValue, reactionId) => {
     if (reactionValue === false) {
       setSubmitting(true);
@@ -51,8 +54,10 @@ export default (props) => {
 
   return (
     <section className="reactions">
-      {reactionsWithCount.map((r) => {
-        const userHasReacted = userReactions.some((ur) => ur === r.id);
+          {reactionsWithCount.map((r) => {
+          // userReactions is an array of reactionIds for this post + user combo
+              const userHasReacted = userReactions.some((ur) => ur === r.id);
+              
         return (
           <article className="reaction">
             <div className="reaction--count">{r.count}</div>
