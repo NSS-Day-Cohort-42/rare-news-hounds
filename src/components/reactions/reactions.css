@@ -1,5 +1,7 @@
 .reactions {
-    display: flex
+    display: flex;
+    border: 2px solid black;
+    border-radius: 20px;
 }
 
 .reaction {
@@ -10,4 +12,16 @@
 .reaction--image {
     border: none;
     background: none;
+}
+
+.btn-outline-dark {
+    color:black !important;
+    border-color: black !important;
+    border-width: 2px !important
+}
+
+.btn-outline-dark:hover {
+    color:white !important;
+    border-color: white !important;
+    border-width: 2px !important
 }

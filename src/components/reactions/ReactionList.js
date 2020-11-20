@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Row } from "react-bootstrap";
+import { Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { PostContext } from "../posts/PostProvider";
 import { ReactionContext } from "./ReactionProvider";
@@ -62,14 +62,14 @@ export default (props) => {
 
         return (
           <article className="reaction">
-            <div className="reaction--count">{r.count}</div>
             <button
               disabled={submitting}
               className="reaction--image"
               onClick={() => handleReactionClick(userHasReacted, r.id)}
             >
-              <img src={r.img} />
+              <Image src={r.img} />
             </button>
+            <div className="reaction--count">{r.count}</div>
           </article>
         );
       })}

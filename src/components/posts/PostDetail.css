@@ -6,3 +6,7 @@
 .postDetail__category {
   font-size: 1.5rem;
 }
+
+.postDetail__button {
+  background: transparent
+}
