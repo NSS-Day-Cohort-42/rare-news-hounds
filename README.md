@@ -15,6 +15,7 @@ Requirements:
 NPM (https://www.npmjs.com/)
 
 1. In the terminal, run `git clone https://github.com/NSS-Day-Cohort-42/rare-news-hounds.git`
+1. Move into the folder you just created `cd rare-news-hounds`
 1. Run `npm install`
 1. Run `npm start`
 1. This will bring up a browser window showing the react app, but you won't be able to log into the site or access data without running the database side of this project. To download and start the server, go to https://github.com/NSS-Day-Cohort-42/news_hounds_django_server, and follow the readme there.
